@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
 
 namespace Dixit.Server
 {
@@ -14,6 +16,13 @@ namespace Dixit.Server
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+               .Enrich.FromLogContext()
+               .MinimumLevel.Debug()
+               .WriteTo.Console()
+               //.WriteTo.Loggly()
+                   .CreateLogger();
+
             CreateWebHostBuilder(args).Build().Run();
         }
 

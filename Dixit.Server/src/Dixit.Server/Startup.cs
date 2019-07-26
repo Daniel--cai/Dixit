@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Dixit.Core.SharedKernel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace Dixit.Server
 {
@@ -27,6 +26,24 @@ namespace Dixit.Server
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();
+
+        }
+
+        private static IServiceProvider BuildDependencyInjectionProvider(IServiceCollection services)
+        {
+            var builder = new ContainerBuilder();
+
+            // Populate the container using the service collection
+            builder.Populate(services);
+
+            // TODO: Add Registry Classes to eliminate reference to Infrastructure
+            Assembly webAssembly = Assembly.GetExecutingAssembly();
+            Assembly coreAssembly = Assembly.GetAssembly(typeof(BaseEntity));
+            //Assembly infrastructureAssembly = Assembly.GetAssembly(typeof(EfRepository)); // TODO: Move to Infrastucture Registry
+            //builder.RegisterAssemblyTypes(webAssembly, coreAssembly, infrastructureAssembly).AsImplementedInterfaces();
+
+            IContainer applicationContainer = builder.Build();
+            return new AutofacServiceProvider(applicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
