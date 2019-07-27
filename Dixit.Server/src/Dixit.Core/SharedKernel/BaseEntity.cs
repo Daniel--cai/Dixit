@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Dixit.Core.Interfaces;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Dixit.Core.SharedKernel
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity: IEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public List<BaseDomainEvent> Events = new List<BaseDomainEvent>();
     }
 }
