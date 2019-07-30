@@ -1,9 +1,10 @@
 ﻿using Dixit.Core.SharedKernel;
+using MediatR;
 
 namespace Dixit.Core.Interfaces
 {
-    public interface IDomainEventHandler<T> where T : BaseDomainEvent
+    public interface IDomainEventHandler<T> : IRequestHandler<T> where T : BaseDomainEvent
     {
-        void Handle(T domainEvent);
+        //void Handle(T domainEvent);
     }
 }
