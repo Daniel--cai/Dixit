@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dixit.Server", "src\Dixit.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dixit.Infrastructure", "src\Dixit.Infrastructure\Dixit.Infrastructure.csproj", "{B23FECF6-EF02-46D0-A096-0C4D5A49C6AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dixit.Core", "src\Dixit.Core\Dixit.Core.csproj", "{9EEF025C-5E25-48ED-9555-548C01264C9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dixit.Domain", "src\Dixit.Core\Dixit.Domain.csproj", "{9EEF025C-5E25-48ED-9555-548C01264C9E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dixit.Tests", "tests\Dixit.Tests\Dixit.Tests.csproj", "{E72F67F1-5C68-471D-8D4D-EF1B7172B6BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dixit.Domain", "src\Dixit.Domain\Dixit.Domain.csproj", "{8F0010A1-2C92-4349-BD7F-835A95676CB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dixit.Application", "src\Dixit.Domain\Dixit.Application.csproj", "{8F0010A1-2C92-4349-BD7F-835A95676CB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

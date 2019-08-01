@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dixit.Core\Dixit.Core.csproj" />
+    <ProjectReference Include="..\Dixit.Core\Dixit.Domain.csproj" />
   </ItemGroup>
 
 </Project>
