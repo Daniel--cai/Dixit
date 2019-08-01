@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dixit.Core.Commands
 {
-    public class CreateLobbyCommand : IRequestHandler<CreateLobbyRequest,string>
+    public class CreateLobbyCommand : IRequestHandler<CreateLobbyRequest, string>
     {
         public Task<string> Handle(CreateLobbyRequest request, CancellationToken cancellationToken)
         {

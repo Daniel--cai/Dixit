@@ -19,7 +19,7 @@ namespace Dixit.Server.RealTime
             
         public Task Handle(LobbyCreatedEvent notification, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _hubContext.Clients.All.SendAsync("lobbyCreated", notification, cancellationToken);
         }
     }
 }
