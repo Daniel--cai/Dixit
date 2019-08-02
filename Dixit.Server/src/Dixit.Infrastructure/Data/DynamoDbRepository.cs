@@ -1,12 +1,12 @@
-﻿using Dixit.Core.Interfaces;
-using Dixit.Core.SharedKernel;
+﻿using Dixit.Domain.Interfaces;
+using Dixit.Application.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Dixit.Infrastructure.Data
 {
-    public class DynamoDbRepository : IRepository
+    public class DynamoDbRepository
     {
         public T Add<T>(T entity) where T : BaseEntity
         {

@@ -1,4 +1,4 @@
-﻿using Dixit.Core.Entities;
+﻿using Dixit.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;

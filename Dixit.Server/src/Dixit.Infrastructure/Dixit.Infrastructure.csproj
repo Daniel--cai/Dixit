@@ -10,7 +10,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dixit.Core\Dixit.Domain.csproj" />
+    <Folder Include="DomainEvents\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dixit.Application\Dixit.Application.csproj" />
+    <ProjectReference Include="..\Dixit.Domain\Dixit.Domain.csproj" />
   </ItemGroup>
 
 </Project>

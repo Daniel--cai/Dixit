@@ -1,12 +1,12 @@
-﻿using Dixit.Core.Entities;
-using Dixit.Core.Interfaces;
-using Dixit.Core.SharedKernel;
-using Dixit.Core.ValueObjects;
+﻿using Dixit.Domain.Entities;
+using Dixit.Domain.Interfaces;
+using Dixit.Domain.SharedKernel;
+using Dixit.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Core.Aggregates
+namespace Dixit.Domain.Aggregates
 {
     public class Lobby : BaseEntity, IAggregateRoot
     {

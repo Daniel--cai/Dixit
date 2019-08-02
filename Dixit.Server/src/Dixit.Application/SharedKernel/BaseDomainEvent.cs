@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dixit.Core.SharedKernel
+namespace Dixit.Application.SharedKernel
 {
     public abstract class BaseDomainEvent
     {

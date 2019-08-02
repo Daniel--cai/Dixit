@@ -1,7 +1,7 @@
 ﻿using Dixit.Domain.Interfaces;
 using System.Collections.Generic;
 
-namespace Dixit.Application.SharedKernel
+namespace Dixit.Domain.SharedKernel
 {
     public abstract class BaseEntity: IEntity
     {

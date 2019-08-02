@@ -1,7 +1,7 @@
-﻿using Dixit.Core.Entities;
+﻿using Dixit.Domain.Entities;
 using System.Collections.Generic;
 
-namespace Dixit.Core.ValueObjects
+namespace Dixit.Domain.ValueObjects
 {
     public class Round
     {

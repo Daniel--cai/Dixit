@@ -1,4 +1,4 @@
-﻿using Dixit.Core.Interfaces;
+﻿using Dixit.Domain.Interfaces;
 
 namespace Dixit.Domain.Entities
 {

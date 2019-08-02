@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Core.Services
+namespace Dixit.Domain.Interfaces
 {
-    public interface IAwsDynamodbClient
+    public interface IAggregateRoot
     {
     }
 }

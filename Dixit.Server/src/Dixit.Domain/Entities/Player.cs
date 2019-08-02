@@ -1,6 +1,6 @@
-﻿using Dixit.Core.SharedKernel;
+﻿using Dixit.Domain.SharedKernel;
 
-namespace Dixit.Core.Entities
+namespace Dixit.Domain.Entities
 {
     public class Player : BaseEntity
     {

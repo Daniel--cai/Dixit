@@ -1,5 +1,5 @@
 ﻿
-namespace Dixit.Core.ValueObjects
+namespace Dixit.Domain.ValueObjects
 {
     public enum State
     {

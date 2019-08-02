@@ -1,6 +1,6 @@
-﻿using Dixit.Core.Entities;
+﻿using Dixit.Domain.Entities;
 
-namespace Dixit.Core.ValueObjects
+namespace Dixit.Domain.ValueObjects
 {
     public class Vote
     {

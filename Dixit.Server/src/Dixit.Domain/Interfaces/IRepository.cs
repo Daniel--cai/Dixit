@@ -1,4 +1,4 @@
-﻿using Dixit.Core.SharedKernel;
+﻿using Dixit.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Text;

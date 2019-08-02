@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Dixit.Core.ValueObjects
+namespace Dixit.Domain.ValueObjects
 {
     public class Game 
     {
