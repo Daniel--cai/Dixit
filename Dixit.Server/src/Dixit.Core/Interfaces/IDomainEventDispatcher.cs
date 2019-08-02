@@ -1,6 +1,6 @@
-﻿using Dixit.Core.SharedKernel;
+﻿using Dixit.Domain.SharedKernel;
 
-namespace Dixit.Core.Interfaces
+namespace Dixit.Domain.Interfaces
 {
     public interface IDomainEventDispatcher
     {

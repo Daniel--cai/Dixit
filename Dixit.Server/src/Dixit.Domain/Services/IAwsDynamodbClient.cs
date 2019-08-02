@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Core.Responses
+namespace Dixit.Core.Services
 {
-    public class CreateLobbyResponse
+    public interface IAwsDynamodbClient
     {
     }
 }

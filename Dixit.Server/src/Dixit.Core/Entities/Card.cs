@@ -1,6 +1,6 @@
 ﻿using Dixit.Core.Interfaces;
 
-namespace Dixit.Core.Entities
+namespace Dixit.Domain.Entities
 {
     public class Card : IEntity
     {  
