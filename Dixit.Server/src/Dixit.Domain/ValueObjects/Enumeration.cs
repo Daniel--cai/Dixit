@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Dixit.Domain.SharedKernel
+namespace Dixit.Domain.ValueObjects
 {
     public abstract class Enumeration : IComparable
     {
@@ -45,9 +45,8 @@ namespace Dixit.Domain.SharedKernel
             foreach (var info in fields)
             {
                 var instance = new T();
-                var locatedValue = info.GetValue(instance) as T;
 
-                if (locatedValue != null)
+                if (info.GetValue(instance) is T locatedValue)
                 {
                     yield return locatedValue;
                 }
@@ -56,9 +55,8 @@ namespace Dixit.Domain.SharedKernel
 
         public override bool Equals(object obj)
         {
-            var otherValue = obj as Enumeration;
 
-            if (otherValue == null)
+            if (!(obj is Enumeration otherValue))
             {
                 return false;
             }

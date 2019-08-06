@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Domain.Services
+namespace Dixit.Application.Services
 {
     public interface IAwsDynamodbClient
     {

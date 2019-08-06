@@ -9,6 +9,6 @@ namespace Dixit.Application.Responses
     public class JoinLobbyResponse
     {
         public State State { get; set; }
-        public List<Player> Players { get; set; }
+        public IEnumerable<Player> Players { get; set; }
     }
 }

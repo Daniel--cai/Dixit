@@ -1,4 +1,4 @@
-﻿using Dixit.Domain.Services;
+﻿using Dixit.Application.Services;
 
 namespace Dixit.Infrastructure.Services
 {

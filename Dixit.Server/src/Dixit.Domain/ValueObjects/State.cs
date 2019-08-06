@@ -1,6 +1,4 @@
 ﻿
-using Dixit.Domain.SharedKernel;
-
 namespace Dixit.Domain.ValueObjects
 {
     public class State : Enumeration

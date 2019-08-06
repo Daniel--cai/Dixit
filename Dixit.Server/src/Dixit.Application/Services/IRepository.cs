@@ -1,9 +1,7 @@
-﻿using Dixit.Domain.SharedKernel;
-using System;
+﻿using Dixit.Application.SharedKernel;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Dixit.Domain.Interfaces
+namespace Dixit.Application.Interfaces
 {
     public interface IRepository
     {

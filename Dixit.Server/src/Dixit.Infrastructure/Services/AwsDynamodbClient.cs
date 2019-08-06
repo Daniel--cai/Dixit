@@ -1,7 +1,6 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
-
-using Dixit.Domain.Services;
+using Dixit.Application.Services;
 using Dixit.Infrastructure.Configuration;
 using System;
 using System.Collections.Generic;
