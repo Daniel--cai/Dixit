@@ -8,5 +8,6 @@ namespace Dixit.Application.Commands
 {
     public class StartLobbyCommand : IRequest
     {
+        public string Code { get; set; }
     }
 }

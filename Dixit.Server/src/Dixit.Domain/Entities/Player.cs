@@ -9,5 +9,11 @@ namespace Dixit.Domain.Entities
         public int Score { get; set; }
 
         public int Id { get; set; }
-}
+
+        public int ScorePoint()
+        {
+            Score++;
+            return Score;
+        }
+    }
 }

@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Application.Events
+namespace Dixit.Application.Events.Game
 {
-    public class LobbyStartedEvent : INotification
+    public class RoundFinished : INotification
     {
     }
 }
