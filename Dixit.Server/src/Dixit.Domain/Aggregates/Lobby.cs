@@ -26,10 +26,7 @@ namespace Dixit.Domain.Aggregates
         }
         private Player NextStoryTeller()
         {
-
             return Players[Game.Rounds.Count % Players.Count];
         }
-        
-
     }
 }

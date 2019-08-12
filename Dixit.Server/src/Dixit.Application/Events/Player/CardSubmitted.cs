@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Application.Events.Player
+namespace Dixit.Application.Events
 {
-    class CardSubmitted : INotification
+    public class CardSubmitted : INotification
     {
     }
 }
