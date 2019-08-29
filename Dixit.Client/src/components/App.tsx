@@ -1,12 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import logo from "../assets/images/logo.svg";
+import "./App.scss";
+import { SpringFadeIn } from "./spring-fadein";
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {Array(5)
+          .fill("")
+          .map(_ => (
+            <SpringFadeIn>
+              <img src={logo} className="App-logo" alt="logo" />
+            </SpringFadeIn>
+          ))}
+
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -21,6 +28,6 @@ const App: React.FC = () => {
       </header>
     </div>
   );
-}
+};
 
 export default App;
