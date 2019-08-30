@@ -3,6 +3,7 @@ using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Dixit.Application.SharedKernel;
+using Dixit.Server.RealTime;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +26,9 @@ namespace Dixit.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+    
             services.AddSignalR();
-
+        
         }
 
         private static IServiceProvider BuildDependencyInjectionProvider(IServiceCollection services)
@@ -58,6 +60,10 @@ namespace Dixit.Server
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSignalR(route =>
+            {
+                route.MapHub<LobbyEventsClientHub>("/lobbyevents");
+            });
 
             app.UseHttpsRedirection();
             

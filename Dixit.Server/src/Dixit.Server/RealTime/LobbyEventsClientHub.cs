@@ -8,5 +8,10 @@ namespace Dixit.Server.RealTime
 {
     public class LobbyEventsClientHub : Hub
     {
+        public override async Task OnConnectedAsync()
+        {
+            var helo = "ex";
+            await base.OnConnectedAsync();
+        }
     }
 }
