@@ -2,8 +2,11 @@
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Dixit.Application.Commands;
+using Dixit.Application.Events;
 using Dixit.Application.SharedKernel;
 using Dixit.Server.RealTime;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +31,8 @@ namespace Dixit.Server
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
     
             services.AddSignalR();
-        
+            services.AddMediatR(typeof (CreateLobbyCommand), typeof(LobbyJoinedEvent),typeof(LobbyEventsClientDispatcher));
+
         }
 
         private static IServiceProvider BuildDependencyInjectionProvider(IServiceCollection services)
@@ -64,7 +68,6 @@ namespace Dixit.Server
             {
                 route.MapHub<LobbyEventsClientHub>("/lobbyevents");
             });
-
             app.UseHttpsRedirection();
             
             app.UseMvc();

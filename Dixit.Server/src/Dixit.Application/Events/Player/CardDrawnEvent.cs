@@ -4,11 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Application.Events
+namespace Dixit.Application.Events.Player
 {
-    public class LobbyJoinedEvent : INotification
+    public class CardDrawnEvent : INotification
     {
-        public string Code { get; set; }
         public Domain.Entities.Player Player { get; set; }
+        public Card Card { get; set; }
+        public string Code { get; set; }
     }
 }

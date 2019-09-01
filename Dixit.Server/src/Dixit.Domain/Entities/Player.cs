@@ -1,4 +1,5 @@
 ﻿using Dixit.Domain.Interfaces;
+using System.Collections.Generic;
 
 namespace Dixit.Domain.Entities
 {
@@ -7,6 +8,7 @@ namespace Dixit.Domain.Entities
         public string Name { get; set; }
         public string Identifier { get; set; }
         public int Score { get; set; }
+        public List<Card> Hand { get; set;}
 
         public int Id { get; set; }
 
@@ -15,5 +17,12 @@ namespace Dixit.Domain.Entities
             Score++;
             return Score;
         }
+
+        public List<Card> DrawCard(Card card)
+        {
+            Hand.Add(card);
+            return Hand;
+        }
+
     }
 }

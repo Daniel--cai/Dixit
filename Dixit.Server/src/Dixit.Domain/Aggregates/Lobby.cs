@@ -14,6 +14,7 @@ namespace Dixit.Domain.Aggregates
         public Game Game { get; set; }
         public IList<Player> Players { get; set; }
         public State GameState { get; set; }
+        
 
         public int Id { get; set; }
 
@@ -24,9 +25,17 @@ namespace Dixit.Domain.Aggregates
             round.SetStoryTeller(storyTeller);
             return round;
         }
-        private Player NextStoryTeller()
+
+        public Player NextStoryTeller()
         {
             return Players[Game.Rounds.Count % Players.Count];
+        }
+
+        public Card DrawCard(Player player)
+        {
+            var card = Game.DrawCard();
+            player.DrawCard(card);
+            return card;
         }
     }
 }

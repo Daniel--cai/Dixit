@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Dixit.Application.Events.Game
 {
-    public class RoundFinished : INotification
+    public class RoundFinishedEvent : INotification
     {
+        public string Code { get; set; }
     }
 }

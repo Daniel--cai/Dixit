@@ -6,9 +6,10 @@ using System.Text;
 
 namespace Dixit.Application.Events
 {
-    public class LobbyJoinedEvent : INotification
+    public class CardSubmittedEvent : INotification
     {
-        public string Code { get; set; }
         public Domain.Entities.Player Player { get; set; }
+        public Card Card { get; set; }
+        public string Code { get; set; }
     }
 }

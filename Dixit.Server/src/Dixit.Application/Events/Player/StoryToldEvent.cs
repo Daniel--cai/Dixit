@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Dixit.Application.Events
 {
-    public class StoryTold : INotification
+    public class StoryToldEvent : INotification
     {
         public string Description { get; set; }
         public Card Card { get; set; }

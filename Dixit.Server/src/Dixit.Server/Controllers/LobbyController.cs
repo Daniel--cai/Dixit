@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dixit.Application.Commands;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dixit.Server.Controllers
@@ -10,9 +12,19 @@ namespace Dixit.Server.Controllers
     [ApiController]
     public class LobbyController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+
+        private readonly IMediator _mediator;
+
+        public LobbyController(IMediator mediator)
         {
+            _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<string>>> Get()
+        {
+
+            await _mediator.Send(new JoinLobbyCommand { Name = "123", Code = "1233" });
             return new string[] { "value1", "value2" };
         }
 
