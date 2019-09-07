@@ -1,11 +1,12 @@
 ﻿using Dixit.Domain.Entities;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Dixit.Application.Commands.Player
 {
-    public class VoteCardCommand
+    public class VoteCardCommand: IRequest
     {
         public Domain.Entities.Player Player { get; set; }
         public Card Card { get; set; }

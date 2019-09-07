@@ -15,8 +15,12 @@ namespace Dixit.Domain.Aggregates
         public IList<Player> Players { get; set; }
         public State GameState { get; set; }
         
-
         public int Id { get; set; }
+
+        public Lobby()
+        {
+            Code = new Guid().ToString().Substring(0,4);
+        }
 
         public Round NextRound()
         {
@@ -36,6 +40,28 @@ namespace Dixit.Domain.Aggregates
             var card = Game.DrawCard();
             player.DrawCard(card);
             return card;
+        }
+
+        public bool HasAllPlayersVoted()
+        {
+            var currentRound = Game.Rounds[Game.RoundNumber];
+            return currentRound.Votes.Count() == Players.Count;
+        }
+
+        public List<Tuple<string, int>> TallyVotes()
+        {
+            var scorers = Game.CurrentRound().Votes
+                            .Where(vote => vote.Card.Id == Game.CurrentRound().StoryTellerCard.Id)
+                            .Select(vote => vote.Player);
+            var scoreBoard= new List<Tuple<string, int>>();
+
+            foreach (var scorer in scorers)
+            {
+                var scored= Players.First(player => player.Name == scorer.Name);
+                scoreBoard.Add(new Tuple<string, int>(scored.Name, scored.ScorePoint()));
+            };
+
+            return scoreBoard;
         }
     }
 }

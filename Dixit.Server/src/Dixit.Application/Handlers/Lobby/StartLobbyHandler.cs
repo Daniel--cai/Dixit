@@ -16,10 +16,10 @@ namespace Dixit.Application.Handlers
         {
             _mediator = mediator;
         }
-        public Task<Unit> Handle(StartLobbyCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(StartLobbyCommand request, CancellationToken cancellationToken)
         {
-            _mediator.Publish(new LobbyStartedEvent());
-            return Unit.Task;
+            await _mediator.Publish(new LobbyStartedEvent());
+            return Unit.Value;
         }
     }
 }

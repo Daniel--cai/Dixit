@@ -33,5 +33,8 @@ namespace Dixit.Domain.ValueObjects
                 throw new InvalidOperationException($"Player {player.Name} is not the storyteller but is trying to tell one.");
             Story = story;
         }
+
+ 
+
     }
 }

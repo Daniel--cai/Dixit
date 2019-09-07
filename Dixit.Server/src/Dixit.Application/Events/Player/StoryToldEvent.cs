@@ -5,9 +5,9 @@ namespace Dixit.Application.Events
 {
     public class StoryToldEvent : INotification
     {
-        public string Description { get; set; }
+        public string Story { get; set; }
         public Card Card { get; set; }
-        public string Player { get; set; }
+        public string StoryTeller { get; set; }
         public string Code { get; set; }
     }
 }

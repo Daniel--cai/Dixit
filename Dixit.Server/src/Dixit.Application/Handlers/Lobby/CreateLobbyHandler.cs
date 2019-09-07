@@ -1,10 +1,8 @@
 ﻿using Dixit.Application.Commands;
 using Dixit.Application.Events;
 using Dixit.Application.Responses;
+using Dixit.Domain.Aggregates;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,8 +19,14 @@ namespace Dixit.Application.Handlers
 
         public Task<CreateLobbyResponse> Handle(CreateLobbyCommand request, CancellationToken cancellationToken)
         {
+            var lobby = new Lobby();
+            
             _mediator.Publish(new LobbyJoinedEvent());
-            return null;
+
+            return Task.FromResult(new CreateLobbyResponse
+            {
+                Code = lobby.Code
+            });
         }
     }
 }

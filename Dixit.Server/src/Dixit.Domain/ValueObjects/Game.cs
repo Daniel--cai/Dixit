@@ -19,9 +19,9 @@ namespace Dixit.Domain.ValueObjects
             return round;
         }
 
-        public int GetRoundNumber()
+        public Round CurrentRound()
         {
-            return RoundNumber;
+            return Rounds[RoundNumber];
         }
 
         public Card DrawCard()
@@ -32,7 +32,7 @@ namespace Dixit.Domain.ValueObjects
         public void ShuffleDeck()
         {
 
-        }
-
+        }     
+    
     }
 }

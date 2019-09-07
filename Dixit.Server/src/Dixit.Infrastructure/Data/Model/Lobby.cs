@@ -10,7 +10,7 @@ namespace Dixit.Infrastructure.Data.Model
     {
         [DynamoDBHashKey]
         public int Id  { get; set; }
-        public int Code { get; set; }
+        public string Code { get; set; }
         public bool Equals(Lobby other)
         {
             if (ReferenceEquals(null, other)) return false;
