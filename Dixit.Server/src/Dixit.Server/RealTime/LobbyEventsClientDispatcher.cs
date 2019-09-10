@@ -14,9 +14,9 @@ namespace Dixit.Server.RealTime
 {
     public class LobbyEventsClientDispatcher : INotificationHandler<LobbyJoinedEvent>, INotificationHandler<CardDrawnEvent>
     {
-        private readonly IHubContext<LobbyEventsClientHub, ILobbyEventsClient> _hubContext;
+        private readonly IHubContext<LobbyEventsClientHub, IEventsClient> _hubContext;
 
-        public LobbyEventsClientDispatcher (IHubContext<LobbyEventsClientHub, ILobbyEventsClient> hubContext)
+        public LobbyEventsClientDispatcher (IHubContext<LobbyEventsClientHub, IEventsClient> hubContext)
         {
             _hubContext = hubContext;
         }

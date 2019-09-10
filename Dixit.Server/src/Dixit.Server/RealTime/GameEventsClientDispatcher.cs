@@ -12,9 +12,9 @@ namespace Dixit.Server.RealTime
 {
     public class GameEventsClientDispatcher : INotificationHandler<RoundFinishedEvent>
     {
-        private readonly IHubContext<LobbyEventsClientHub, ILobbyEventsClient> _hubContext;
+        private readonly IHubContext<LobbyEventsClientHub, IEventsClient> _hubContext;
 
-        public GameEventsClientDispatcher(IHubContext<LobbyEventsClientHub, ILobbyEventsClient> hubContext)
+        public GameEventsClientDispatcher(IHubContext<LobbyEventsClientHub, IEventsClient> hubContext)
         {
             _hubContext = hubContext;
         }

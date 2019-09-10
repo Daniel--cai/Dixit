@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dixit.Server.RealTime
 {
-    public class LobbyEventsClientHub : Hub<ILobbyEventsClient>
+    public class LobbyEventsClientHub : Hub<IEventsClient>
     {
     }
 }
