@@ -1,0 +1,113 @@
+.menu-container {
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+
+  max-width: 1720px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+
+  a {
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Oswald", sans-serif;
+    // transition: 0.3s opacity ease-in-out;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.logo {
+  grid-column: 1;
+  text-align: left;
+  font-size: 40px;
+  padding: 1rem;
+}
+.left-menu {
+  align-self: center;
+  grid-column: 2;
+
+  a {
+    padding: 10px;
+    margin: 0 15px;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    &:hover {
+      background: black;
+      color: white;
+      span {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.burger-menu__line {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+  border-radius: 4px;
+}
+
+.burger-menu {
+  grid-column: 3;
+  align-self: center;
+  margin-right: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+#menu-toggle,
+.burger-menu {
+  display: none;
+  grid-column: 3;
+  text-align: right;
+}
+
+@media only screen and (max-width: 1025px) {
+  .burger-menu {
+    display: inline-block;
+  }
+
+  .left-menu {
+    display: none;
+  }
+
+  #menu-toggle:checked ~ .left-menu {
+    display: grid;
+    grid-row: 2;
+    grid-column: 1 / 4;
+    a:hover {
+      transform: skew(20deg);
+      span {
+        transform: skew(-20deg);
+      }
+    }
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    margin-right: -50px;
+  }
+  100% {
+    margin-right: 0px;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    margin-right: -50px;
+  }
+  100% {
+    margin-right: 0px;
+  }
+}

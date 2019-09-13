@@ -1,7 +1,7 @@
 const proxy = require("http-proxy-middleware");
 const URI = "https://localhost:5001";
 module.exports = function(app) {
-  const apiProxy = proxy("/lobbyevents", {
+  const apiProxy = proxy("/api", {
     target: URI,
     secure: false,
     changeOrigin: true
@@ -12,6 +12,7 @@ module.exports = function(app) {
     secure: false,
     changeOrigin: true
   });
+
   app.use(apiProxy);
   app.use(wsProxy);
 };
