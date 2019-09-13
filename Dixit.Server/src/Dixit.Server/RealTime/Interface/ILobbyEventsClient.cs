@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Dixit.Server.RealTime.DTO;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Dixit.Server.RealTime.Interface
 {
     public interface ILobbyEventsClient
     {
-        Task LobbyJoined(INotification notification);
-        Task CardDrawn(INotification notification);
+        Task LobbyJoined(LobbyJoinedDTO notification);
+        Task CardDrawn(INotificationDTO notification);
     }
 }

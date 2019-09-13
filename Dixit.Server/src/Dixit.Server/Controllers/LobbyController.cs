@@ -33,5 +33,12 @@ namespace Dixit.Server.Controllers
         {
             return "value";
         }    
+
+        [HttpPost]
+        public async Task<ActionResult<string>> CreateLobby(CreateLobbyCommand command)
+        {
+            var lobby = await _mediator.Send(command);
+            return lobby.Code;
+        }
     }
 }

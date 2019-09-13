@@ -11,6 +11,13 @@ namespace Dixit.Infrastructure.Data.Model
         [DynamoDBHashKey]
         public int Id  { get; set; }
         public string Code { get; set; }
+        public List<Round> Rounds { get; set; } = new List<Round>();
+        public int RoundNumber { get; set; }
+        public List<int> Deck { get; set; } = new List<int>();
+        public List<int> Discard { get; set; } = new List<int>();
+        public List<Player> Players { get; set; }
+        public string GameState { get; set; }
+
         public bool Equals(Lobby other)
         {
             if (ReferenceEquals(null, other)) return false;

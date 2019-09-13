@@ -1,6 +1,7 @@
 ﻿using Dixit.Application.Commands;
 using Dixit.Application.Events;
 using Dixit.Application.Responses;
+using Dixit.Application.Services;
 using Dixit.Domain.Aggregates;
 using MediatR;
 using System.Threading;
@@ -11,17 +12,20 @@ namespace Dixit.Application.Handlers
     public class CreateLobbyHandler : IRequestHandler<CreateLobbyCommand, CreateLobbyResponse>
     {
         private readonly IMediator _mediator;
+        private readonly IAwsDynamodbService _awsDynamodbService;
 
-        public CreateLobbyHandler(IMediator mediator)
+        public CreateLobbyHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
         {
             _mediator = mediator;
+            _awsDynamodbService = awsDynamodbService;
         }
 
         public Task<CreateLobbyResponse> Handle(CreateLobbyCommand request, CancellationToken cancellationToken)
         {
             var lobby = new Lobby();
-            
-            _mediator.Publish(new LobbyJoinedEvent());
+            //var player = new Domain.Entities.Player(request.Name);
+            //lobby.Players.Add(player);
+            _awsDynamodbService.AddLobby(lobby);
 
             return Task.FromResult(new CreateLobbyResponse
             {

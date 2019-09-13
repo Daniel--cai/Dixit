@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Dixit.Application.Events;
-using Dixit.Server.RealTime.Events;
 using Dixit.Server.RealTime.Interface;
 using Dixit.Application.Events.Player;
+using Dixit.Server.RealTime.DTO;
 
 namespace Dixit.Server.RealTime
 {
@@ -23,12 +23,12 @@ namespace Dixit.Server.RealTime
             
         public Task Handle(LobbyJoinedEvent notification, CancellationToken cancellationToken)
         {
-            return _hubContext.Clients.All.LobbyJoined(notification);
+            return _hubContext.Clients.All.LobbyJoined(new LobbyJoinedDTO { Player = notification.Player.Name } );
         }
 
         public Task Handle(CardDrawnEvent notification, CancellationToken cancellationToken)
         {
-            return _hubContext.Clients.All.LobbyJoined(notification);
+            return _hubContext.Clients.All.CardDrawn(null);
         }
     }
 }

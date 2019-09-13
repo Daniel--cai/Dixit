@@ -5,6 +5,6 @@ namespace Dixit.Application.Commands
 {
     public class CreateLobbyCommand : IRequest<CreateLobbyResponse>
     {
-        public string Name { get; set; }
+        //public string Name { get; set; }
     }
 }

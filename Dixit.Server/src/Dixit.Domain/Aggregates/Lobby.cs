@@ -11,47 +11,77 @@ namespace Dixit.Domain.Aggregates
     public class Lobby : IEntity, IAggregateRoot
     {
         public string Code { get; set; }
-        public Game Game { get; set; }
-        public IList<Player> Players { get; set; }
+        public List<Round> Rounds { get; set; }
+        public int RoundNumber { get; set; }
+        public List<Card> Deck { get; set; }
+        public List<Card> Discard { get; set; }
+        public List<Player> Players { get; set; }
         public State GameState { get; set; }
-        
         public int Id { get; set; }
 
         public Lobby()
         {
-            Code = new Guid().ToString().Substring(0,4);
+            Code = Guid.NewGuid().ToString().Substring(0, 4);
+            Rounds = new List<Round>();
+            Deck = new List<Card>();
+            Discard = new List<Card>();
+            Players = new List<Player>();
+            GameState = State.Lobby;
+        }
+
+        public Round NewRound()
+        {
+            var round = new Round();
+            Rounds.Add(round);
+            RoundNumber++;
+            return round;
+        }
+
+        public Round CurrentRound()
+        {
+            return Rounds[RoundNumber];
+        }
+
+        public Card DrawCard()
+        {
+            return Deck.First();
+        }
+
+        public void ShuffleDeck()
+        {
+
         }
 
         public Round NextRound()
         {
             var storyTeller = NextStoryTeller();
-            var round = Game.NewRound();
+            var round = NewRound();
             round.SetStoryTeller(storyTeller);
             return round;
         }
 
         public Player NextStoryTeller()
         {
-            return Players[Game.Rounds.Count % Players.Count];
+            return Players[Rounds.Count % Players.Count];
         }
 
         public Card DrawCard(Player player)
         {
-            var card = Game.DrawCard();
+            var card = DrawCard();
             player.DrawCard(card);
             return card;
         }
 
         public bool HasAllPlayersVoted()
         {
-            var currentRound = Game.Rounds[Game.RoundNumber];
+            var currentRound = Rounds[RoundNumber];
             return currentRound.Votes.Count() == Players.Count;
         }
 
         public List<Tuple<string, int>> TallyVotes()
         {
-            var scorers = Game.CurrentRound().Votes
-                            .Where(vote => vote.Card.Id == Game.CurrentRound().StoryTellerCard.Id)
+            var scorers = CurrentRound().Votes
+                            .Where(vote => vote.Card.Id == CurrentRound().StoryTellerCard.Id)
                             .Select(vote => vote.Player);
             var scoreBoard= new List<Tuple<string, int>>();
 

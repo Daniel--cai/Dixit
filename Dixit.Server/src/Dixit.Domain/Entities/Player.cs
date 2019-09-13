@@ -12,6 +12,14 @@ namespace Dixit.Domain.Entities
 
         public int Id { get; set; }
 
+        public Player(string name, string identifier)
+        {
+            Name = name;
+            Identifier = identifier;
+            Score = 0;
+            Hand = new List<Card>();
+        }
+
         public int ScorePoint()
         {
             Score++;

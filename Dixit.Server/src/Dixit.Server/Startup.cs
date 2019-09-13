@@ -4,7 +4,9 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Dixit.Application.Commands;
 using Dixit.Application.Events;
+using Dixit.Application.Services;
 using Dixit.Application.SharedKernel;
+using Dixit.Infrastructure.Services;
 using Dixit.Server.RealTime;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +33,8 @@ namespace Dixit.Server
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
     
             services.AddSignalR();
+            services.AddScoped<IAwsDynamodbClient, AwsDynamodbClient>();
+            services.AddScoped<IAwsDynamodbService, AwsDynamodbService>();
             services.AddMediatR(typeof (CreateLobbyCommand), typeof(LobbyJoinedEvent),typeof(LobbyEventsClientDispatcher));
 
         }
