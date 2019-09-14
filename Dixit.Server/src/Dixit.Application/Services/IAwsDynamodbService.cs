@@ -9,7 +9,7 @@ namespace Dixit.Application.Services
     public interface IAwsDynamodbService
     {
         void AddLobby(Lobby lobby);
-        Lobby GetLobbyByCode(string code);
+        Task<Lobby> GetLobbyByCode(string code);
         Task SaveLobby(Lobby lobby);
     }
 }

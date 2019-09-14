@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\Game\" />
-    <Folder Include="Handlers\Game\" />
     <Folder Include="Responses\Game\" />
     <Folder Include="Responses\Player\" />
   </ItemGroup>

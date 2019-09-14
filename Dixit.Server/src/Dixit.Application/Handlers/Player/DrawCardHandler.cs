@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Application.Handlers.Player
+namespace Dixit.Application.Handlers
 {
     public class DrawCardHandler
     {

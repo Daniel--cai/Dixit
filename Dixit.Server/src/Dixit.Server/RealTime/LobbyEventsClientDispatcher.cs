@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Dixit.Application.Events;
 using Dixit.Server.RealTime.Interface;
 using Dixit.Application.Events.Player;
-using Dixit.Server.RealTime.DTO;
+using Dixit.Server.DTO;
 
 namespace Dixit.Server.RealTime
 {

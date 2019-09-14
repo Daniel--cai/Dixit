@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Dixit.Server.DTO;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,5 @@ namespace Dixit.Server.RealTime.Interface
     public interface IGameEventsClient
     {
         Task RoundFinished(INotificationDTO notification);
-
     }
 }

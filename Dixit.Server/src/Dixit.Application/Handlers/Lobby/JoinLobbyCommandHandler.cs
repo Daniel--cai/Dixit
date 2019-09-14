@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Dixit.Application.Handlers
 {
-    public class JoinLobbyHandler : INotificationHandler<LobbyJoinedEvent>
+    public class JoinLobbyCommandHandler : INotificationHandler<LobbyJoinedEvent>
     {
         private readonly IMediator _mediator;
         private readonly IAwsDynamodbService _awsDynamodbService;
 
-        public JoinLobbyHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
+        public JoinLobbyCommandHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
         {
             _mediator = mediator;
             _awsDynamodbService = awsDynamodbService;
@@ -24,10 +24,9 @@ namespace Dixit.Application.Handlers
 
         public async Task Handle(LobbyJoinedEvent notification, CancellationToken cancellationToken)
         {
-            var lobby = _awsDynamodbService.GetLobbyByCode(notification.Code);
+            var lobby = await _awsDynamodbService.GetLobbyByCode(notification.Code);
             lobby.Players.Add(notification.Player);
             await _awsDynamodbService.SaveLobby(lobby);
-            return;
         }
     }
 }

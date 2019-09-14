@@ -1,7 +1,11 @@
 import { Action } from "redux";
 
-export type Event = "lobbyJoined" | "gameStarted";
-export type Actions = "connect" | Event;
+export type Actions =
+  | "connect"
+  | "connected"
+  | "codeUpdated"
+  | "lobbyJoined"
+  | "gameStarted";
 
 export interface AnyAction<T> extends Action<T> {
   [extraProps: string]: any;

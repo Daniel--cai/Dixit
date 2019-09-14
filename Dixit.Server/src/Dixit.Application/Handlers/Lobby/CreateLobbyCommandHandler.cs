@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Dixit.Application.Handlers
 {
-    public class CreateLobbyHandler : IRequestHandler<CreateLobbyCommand, CreateLobbyResponse>
+    public class CreateLobbyCommandHandler : IRequestHandler<CreateLobbyCommand, CreateLobbyResponse>
     {
         private readonly IMediator _mediator;
         private readonly IAwsDynamodbService _awsDynamodbService;
 
-        public CreateLobbyHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
+        public CreateLobbyCommandHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
         {
             _mediator = mediator;
             _awsDynamodbService = awsDynamodbService;

@@ -12,3 +12,11 @@ export interface LobbyJoined {
 export interface GameStarted extends Message {
   player: string;
 }
+
+export interface Connected {
+  success: boolean;
+}
+
+export interface CodeUpdated {
+  code: boolean;
+}

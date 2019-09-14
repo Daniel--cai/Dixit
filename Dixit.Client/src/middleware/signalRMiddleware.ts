@@ -1,15 +1,17 @@
-import { Actions, State, lobbyJoinedAction, AnyAction } from "../store";
+import {
+  Actions,
+  State,
+  lobbyJoinedAction,
+  AnyAction,
+  connectedAction
+} from "../store";
 import { MiddlewareAPI, Dispatch, Middleware } from "redux";
 import * as signalR from "@aspnet/signalr";
+import { push, CallHistoryMethodAction } from "connected-react-router";
 
-interface SignalrHubConnection extends Omit<signalR.HubConnection, "on"> {
-  on: (action: Actions, dispatch: (data: any) => void) => void;
-}
-
-export function rootReducer(state: State, action: AnyAction<Actions>) {
-  switch (action.type) {
-  }
-}
+// interface SignalrHubConnection extends Omit<signalR.HubConnection, "on"> {
+//   on: (action: Actions, dispatch: (data: any) => void) => void;
+// }
 
 const startSignalRConnection = (connection: signalR.HubConnection) =>
   connection
@@ -20,20 +22,20 @@ const startSignalRConnection = (connection: signalR.HubConnection) =>
 export const signalRMiddleware: Middleware<Dispatch> = ({
   dispatch,
   getState
-}: MiddlewareAPI<Dispatch<AnyAction<Actions>>, State>) => next => async (
-  action: AnyAction<Actions>
-) => {
-  switch (action.type) {
-    case "connect":
-      const connectionHub = `/lobbyevents?name=${action.payload.name}&code=${action.payload.code}`;
-      const connection: signalR.HubConnection = new signalR.HubConnectionBuilder()
-        .withUrl(connectionHub)
-        .build();
-      await startSignalRConnection(connection);
-      connection.on("lobbyJoined", data => dispatch(lobbyJoinedAction(data)));
-      break;
-    default:
-      break;
+}: MiddlewareAPI<
+  Dispatch<AnyAction<Actions> | CallHistoryMethodAction>,
+  State
+>) => next => async (action: AnyAction<Actions>) => {
+  if (!getState().connected && action.type === "connect") {
+    const connectionHub = `/lobbyevents?name=${action.payload.name}&code=${action.payload.code}`;
+    const connection: signalR.HubConnection = new signalR.HubConnectionBuilder()
+      .withUrl(connectionHub)
+      .build();
+    await startSignalRConnection(connection);
+    dispatch(connectedAction({ success: true }));
+    dispatch(push(`/game/${action.payload.code}`));
+
+    connection.on("lobbyJoined", data => dispatch(lobbyJoinedAction(data)));
   }
   return next(action);
 };

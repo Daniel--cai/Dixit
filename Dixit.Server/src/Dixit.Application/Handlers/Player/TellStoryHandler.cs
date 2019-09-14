@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers.Player
+namespace Dixit.Application.Handlers
 {
     public class TellStoryHandler : IRequestHandler<TellStoryCommand>
     {

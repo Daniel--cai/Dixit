@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Dixit.Application.Handlers
 {
-    public class StartLobbyHandler : IRequestHandler<StartLobbyCommand>
+    public class StartLobbyCommandHandler : IRequestHandler<StartLobbyCommand>
     {
         private readonly IMediator _mediator;
-        public StartLobbyHandler(IMediator mediator)
+        public StartLobbyCommandHandler(IMediator mediator)
         {
             _mediator = mediator;
         }

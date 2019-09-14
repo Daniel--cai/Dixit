@@ -3,13 +3,10 @@ using Dixit.Application.Events;
 using Dixit.Application.Events.Game;
 using Dixit.Domain.Aggregates;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers.Player
+namespace Dixit.Application.Handlers
 {
     public class VoteCardHandler : IRequestHandler<VoteCardCommand>
     {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dixit.Application.Commands;
+using Dixit.Application.Queries;
+using Dixit.Domain.Aggregates;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,18 +23,12 @@ namespace Dixit.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>> Get()
+        public async Task<ActionResult<Lobby>> GetByCode(GetLobbyByCodeQuery query)
         {
 
-            await _mediator.Send(new JoinLobbyCommand { Name = "123", Code = "1233" });
-            return new string[] { "value1", "value2" };
+            var lobby = await _mediator.Send(query);
+            return lobby;
         }
-
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }    
 
         [HttpPost]
         public async Task<ActionResult<string>> CreateLobby(CreateLobbyCommand command)

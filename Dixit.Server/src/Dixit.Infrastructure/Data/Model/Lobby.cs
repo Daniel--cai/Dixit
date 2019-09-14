@@ -38,8 +38,8 @@ namespace Dixit.Infrastructure.Data.Model
             unchecked
             {
                 var hashCode = Id;
-                hashCode = (hashCode * 397) ^ (Id != null ? Id.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (Id != null ? Id.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Id.GetHashCode();
+                hashCode = (hashCode * 397) ^ Id.GetHashCode();
                 return hashCode;
             }
         }

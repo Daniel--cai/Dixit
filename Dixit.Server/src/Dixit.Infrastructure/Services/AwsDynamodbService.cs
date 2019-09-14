@@ -21,10 +21,10 @@ namespace Dixit.Infrastructure.Services
             Lobbies.Add(lobby);
         }
 
-        public Lobby GetLobbyByCode(string code)
+        public Task<Lobby> GetLobbyByCode(string code)
         {
             var found = Lobbies.FirstOrDefault(lobby => lobby.Code.ToLower() == code.ToLower());
-            return found;
+            return Task.FromResult(found);
         }
 
         public Task SaveLobby(Lobby lobby)
