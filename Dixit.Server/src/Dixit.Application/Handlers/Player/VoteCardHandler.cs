@@ -1,6 +1,5 @@
-﻿using Dixit.Application.Commands.Player;
+﻿using Dixit.Application.Commands;
 using Dixit.Application.Events;
-using Dixit.Application.Events.Game;
 using Dixit.Domain.Aggregates;
 using MediatR;
 using System.Threading;

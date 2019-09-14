@@ -1,4 +1,4 @@
-﻿using Dixit.Application.Commands.Player;
+﻿using Dixit.Application.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,7 +19,7 @@ namespace Dixit.Server.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("TellStory")]
         public async Task<ActionResult> TellStory(TellStoryCommand command)
         {
 

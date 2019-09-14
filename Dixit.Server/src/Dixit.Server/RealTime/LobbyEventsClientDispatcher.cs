@@ -7,12 +7,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dixit.Application.Events;
 using Dixit.Server.RealTime.Interface;
-using Dixit.Application.Events.Player;
 using Dixit.Server.DTO;
 
 namespace Dixit.Server.RealTime
 {
-    public class LobbyEventsClientDispatcher : INotificationHandler<LobbyJoinedEvent>, INotificationHandler<CardDrawnEvent>
+    public class LobbyEventsClientDispatcher : INotificationHandler<LobbyJoinedEvent>, INotificationHandler<LobbyStartedEvent>
     {
         private readonly IHubContext<LobbyEventsClientHub, IEventsClient> _hubContext;
 
@@ -26,9 +25,10 @@ namespace Dixit.Server.RealTime
             return _hubContext.Clients.All.LobbyJoined(new LobbyJoinedDTO { Player = notification.Player.Name } );
         }
 
-        public Task Handle(CardDrawnEvent notification, CancellationToken cancellationToken)
+        public Task Handle(LobbyStartedEvent notification, CancellationToken cancellationToken)
         {
-            return _hubContext.Clients.All.CardDrawn(null);
+            return _hubContext.Clients.All.LobbyStarted(new LobbyStartedDTO { StoryTeller = notification.StoryTeller.Name });
         }
+
     }
 }

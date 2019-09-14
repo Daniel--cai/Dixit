@@ -7,5 +7,6 @@ namespace Dixit.Server.RealTime.Interface
     {
         Task LobbyJoined(LobbyJoinedDTO notification);
         Task CardDrawn(INotificationDTO notification);
+        Task LobbyStarted(LobbyStartedDTO notification);
     }
 }

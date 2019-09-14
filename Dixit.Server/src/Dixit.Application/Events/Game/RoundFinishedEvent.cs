@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Application.Events.Game
+namespace Dixit.Application.Events
 {
     public class RoundFinishedEvent : INotification
     {

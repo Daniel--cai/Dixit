@@ -9,7 +9,7 @@ namespace Dixit.Application.Events
 {
     public class CardVotedEvent : INotification
     {
-        public Domain.Entities.Player Player { get; set; }
+        public Player Player { get; set; }
         public Card Card  {get;set;}
         public string Code { get; set; }
     }

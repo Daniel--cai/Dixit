@@ -27,14 +27,13 @@ namespace Dixit.Domain.ValueObjects
             };
         }
 
-        public void PlayerTellStory(Player player, string story)
+        public void PlayerTellStory(Player player, string story, Card card)
         {
             if (player != StoryTeller)
                 throw new InvalidOperationException($"Player {player.Name} is not the storyteller but is trying to tell one.");
             Story = story;
+            StoryTellerCard = card;
         }
-
- 
 
     }
 }

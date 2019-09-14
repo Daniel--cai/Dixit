@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dixit.Server.RealTime
 {
-    public class PlayerEventsClientDispatcher : INotificationHandler<StoryToldEvent>
+    public class PlayerEventsClientDispatcher : INotificationHandler<CardVotedEvent>, INotificationHandler<CardSubmittedEvent>,  INotificationHandler<StoryToldEvent>
     {
         private readonly IHubContext<LobbyEventsClientHub, IEventsClient> _hubContext;
 
@@ -19,6 +19,11 @@ namespace Dixit.Server.RealTime
         public Task Handle(StoryToldEvent notification, CancellationToken cancellationToken)
         {
             return _hubContext.Clients.All.StoryTold(notification);
+        }
+
+        public Task Handle(CardVotedEvent notification, CancellationToken cancellationToken)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

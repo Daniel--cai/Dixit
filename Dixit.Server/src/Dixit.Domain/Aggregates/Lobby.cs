@@ -27,6 +27,7 @@ namespace Dixit.Domain.Aggregates
             Discard = new List<Card>();
             Players = new List<Player>();
             GameState = State.Lobby;
+            RoundNumber = 0;
         }
 
         public Round NewRound()
@@ -39,7 +40,7 @@ namespace Dixit.Domain.Aggregates
 
         public Round CurrentRound()
         {
-            return Rounds[RoundNumber];
+            return Rounds[RoundNumber - 1];
         }
 
         public Card DrawCard()
@@ -93,5 +94,11 @@ namespace Dixit.Domain.Aggregates
 
             return scoreBoard;
         }
+
+        public Player GetPlayerByName(string name)
+        {
+            return Players.Find(player => player.Name == name);
+        }
+
     }
 }

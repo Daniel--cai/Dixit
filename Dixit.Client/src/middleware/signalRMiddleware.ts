@@ -1,11 +1,10 @@
 import {
-  Actions,
   State,
   lobbyJoinedAction,
-  AnyAction,
-  connectedAction
+  connectedAction,
+  gameStartedAction
 } from "../store";
-import { MiddlewareAPI, Dispatch, Middleware } from "redux";
+import { MiddlewareAPI, Dispatch, Middleware, AnyAction } from "redux";
 import * as signalR from "@aspnet/signalr";
 import { push, CallHistoryMethodAction } from "connected-react-router";
 
@@ -22,10 +21,7 @@ const startSignalRConnection = (connection: signalR.HubConnection) =>
 export const signalRMiddleware: Middleware<Dispatch> = ({
   dispatch,
   getState
-}: MiddlewareAPI<
-  Dispatch<AnyAction<Actions> | CallHistoryMethodAction>,
-  State
->) => next => async (action: AnyAction<Actions>) => {
+}: MiddlewareAPI<any, State>) => next => async (action: AnyAction) => {
   if (!getState().connected && action.type === "connect") {
     const connectionHub = `/lobbyevents?name=${action.payload.name}&code=${action.payload.code}`;
     const connection: signalR.HubConnection = new signalR.HubConnectionBuilder()
@@ -33,9 +29,10 @@ export const signalRMiddleware: Middleware<Dispatch> = ({
       .build();
     await startSignalRConnection(connection);
     dispatch(connectedAction({ success: true }));
-    dispatch(push(`/game/${action.payload.code}`));
+    dispatch(push(`/lobby/${action.payload.code}`));
 
     connection.on("lobbyJoined", data => dispatch(lobbyJoinedAction(data)));
+    connection.on("lobbyStarted", data => dispatch(gameStartedAction(data)));
   }
   return next(action);
 };

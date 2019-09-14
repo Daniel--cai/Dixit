@@ -1,12 +1,11 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Dixit.Domain.Entities;
+using MediatR;
 
 namespace Dixit.Application.Events
 {
     public class LobbyStartedEvent : INotification
     {
         public string Code { get; set; }
+        public Player StoryTeller { get; set; }
     }
 }
