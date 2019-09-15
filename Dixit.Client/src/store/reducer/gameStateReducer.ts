@@ -10,7 +10,8 @@ export function gameStateReducer(
     }
 
     case "storyTold": {
-      return GameState.Story;
+      console.log(action.payload);
+      return GameState.InProgress;
     }
     default:
       return state;

@@ -14,7 +14,6 @@ namespace Dixit.Domain.Aggregates
         public List<Round> Rounds { get; set; }
         public int RoundNumber { get; set; }
         public List<Card> Deck { get; set; }
-        public List<Card> Discard { get; set; }
         public List<Player> Players { get; set; }
         public State GameState { get; set; }
         public int Id { get; set; }
@@ -24,7 +23,6 @@ namespace Dixit.Domain.Aggregates
             Code = Guid.NewGuid().ToString().Substring(0, 4);
             Rounds = new List<Round>();
             Deck = new List<Card>();
-            Discard = new List<Card>();
             Players = new List<Player>();
             GameState = State.Lobby;
             RoundNumber = 0;
@@ -69,7 +67,7 @@ namespace Dixit.Domain.Aggregates
         public Card DrawCard(Player player)
         {
             var card = DrawCard();
-            player.DrawCard(card);
+            //player.DrawCard(card);
             return card;
         }
 
@@ -79,25 +77,38 @@ namespace Dixit.Domain.Aggregates
             return currentRound.Votes.Count() == Players.Count;
         }
 
-        public List<Tuple<string, int>> TallyVotes()
+        public void TallyVotes(List<ScoreCard> scoreCards)
         {
-            var scorers = CurrentRound().Votes
-                            .Where(vote => vote.Card.Id == CurrentRound().StoryTellerCard.Id)
-                            .Select(vote => vote.Player);
-            var scoreBoard= new List<Tuple<string, int>>();
 
-            foreach (var scorer in scorers)
+            foreach (var scoreCard in scoreCards)
             {
-                var scored= Players.First(player => player.Name == scorer.Name);
-                scoreBoard.Add(new Tuple<string, int>(scored.Name, scored.ScorePoint()));
-            };
-
-            return scoreBoard;
+                scoreCard.Player.ScorePoint(scoreCard.Score);
+            }
         }
 
         public Player GetPlayerByName(string name)
         {
             return Players.Find(player => player.Name == name);
+        }
+
+        public Card GetCard(int id)
+        {
+            return Deck.Find(card => card.Id == id);
+        }
+
+        public void PlayerTellStory(Player player, string story, Card card)
+        {
+            if (GameState != State.Story)
+                throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for TellStory command");
+            CurrentRound().PlayerTellStory(player, story, card);
+            GameState = State.InProgress;
+        }
+
+        public void PlayerVoteCard(Player player, Card card)
+        {
+            if (GameState != State.Voting)
+                throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for PlayerVoteCard command");
+            CurrentRound().PlayerVoteCard(player, card);
         }
 
     }

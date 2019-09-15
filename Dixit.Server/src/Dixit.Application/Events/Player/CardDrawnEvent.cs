@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Application.Commands
+namespace Dixit.Application.Events
 {
-    public class VoteCardCommand: IRequest
+    public class CardDrawnEvent : INotification
     {
-        public string Player { get; set; }
-        public int Card { get; set; }
         public string Code { get; set; }
+        public Player Player { get; set; }
+        public Card Card { get; set; }
     }
 }

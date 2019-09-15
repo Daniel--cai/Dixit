@@ -2,7 +2,12 @@ import {
   State,
   lobbyJoinedAction,
   connectedAction,
-  gameStartedAction
+  gameStartedAction,
+  storyToldAction,
+  cardSubmittedAction,
+  cardVotedAction,
+  roundFinishedAction,
+  storyRevealedAction
 } from "../store";
 import { MiddlewareAPI, Dispatch, Middleware, AnyAction } from "redux";
 import * as signalR from "@aspnet/signalr";
@@ -33,6 +38,11 @@ export const signalRMiddleware: Middleware<Dispatch> = ({
 
     connection.on("lobbyJoined", data => dispatch(lobbyJoinedAction(data)));
     connection.on("lobbyStarted", data => dispatch(gameStartedAction(data)));
+    connection.on("storyTold", data => dispatch(storyToldAction(data)));
+    connection.on("cardSubmitted", data => dispatch(cardSubmittedAction(data)));
+    connection.on("cardVoted", data => dispatch(cardVotedAction(data)));
+    connection.on("roundFinished", data => dispatch(roundFinishedAction(data)));
+    connection.on("storyRevealed", data => dispatch(storyRevealedAction(data)));
   }
   return next(action);
 };

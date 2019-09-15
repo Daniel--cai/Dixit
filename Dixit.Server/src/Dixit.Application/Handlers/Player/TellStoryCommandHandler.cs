@@ -26,9 +26,11 @@ namespace Dixit.Application.Handlers
         public async Task<Unit> Handle(TellStoryCommand request, CancellationToken cancellationToken)
         {
             var lobby = await _awsDynamodbService.GetLobbyByCode(request.Code);
+           
             var player = lobby.GetPlayerByName(request.StoryTeller);
-            lobby.CurrentRound().PlayerTellStory(player, request.Story, new Card(request.Card));
-            lobby.GameState = State.InProgress;
+            var card = lobby.GetCard(request.Card);
+            lobby.PlayerTellStory(player, request.Story, card);
+           
             await _awsDynamodbService.SaveLobby(lobby);
             await _mediator.Publish(new StoryToldEvent
             {

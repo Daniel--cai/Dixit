@@ -1,20 +1,18 @@
 import { Actions, AnyAction } from "..";
+import { RoundFinished } from "../../client/events";
 
 export interface Info {
   name: string;
   code: string;
 }
 
-export function infoReducer(
-  state: Info = { name: "", code: "" },
+export function handReducer(
+  state: number[] = [],
   action: AnyAction<Actions>
-): Info {
+): number[] {
   switch (action.type) {
-    case "connect": {
-      return {
-        name: action.payload.name,
-        code: action.payload.code
-      };
+    case "roundFinished": {
+      return action.payload;
     }
     default:
       return state;

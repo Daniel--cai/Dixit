@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dixit.Application.Commands
 {
-    class SubmitCardCommand
+    public class SubmitCardCommand
     {
     }
 }

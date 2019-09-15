@@ -11,5 +11,6 @@ namespace Dixit.Server.DTO
         public List<VoteDTO> Votes { get;set;}
         public List<PlayerDTO> PlayerUpdates { get; set; }
         public string NextStoryTeller { get; set; }
+        public int StoryCard { get; set; }
     }
 }

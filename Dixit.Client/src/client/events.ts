@@ -28,9 +28,8 @@ export interface StoryRevealed extends Message {
 }
 
 export interface RoundFinished extends Message {
-  player: string;
   votes: Vote[];
-  playerUpdates: PlayerUpdate[];
+  playerUpdates: ScoreUpdate[];
   nextStoryTeller: string;
 }
 
@@ -53,9 +52,8 @@ export interface GameFetched {
   gameState: string;
 }
 
-interface PlayerUpdate {
+interface ScoreUpdate {
   name: string;
-  hand: number[];
   score: number;
 }
 

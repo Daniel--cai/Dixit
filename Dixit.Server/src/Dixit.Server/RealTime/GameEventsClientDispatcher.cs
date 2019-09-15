@@ -1,4 +1,5 @@
 ﻿using Dixit.Application.Events;
+using Dixit.Server.DTO;
 using Dixit.Server.RealTime.Interface;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
@@ -21,7 +22,28 @@ namespace Dixit.Server.RealTime
 
         public Task Handle(RoundFinishedEvent notification, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var scores = notification.PlayerScores.Select(player =>
+                new PlayerDTO
+                {
+                    Name = player.Player.Name,
+                    Score = player.Score
+                });
+
+            var votes = notification.Votes.Select(vote =>
+                new VoteDTO
+                {
+                    Player = vote.Player.Name,
+                    Card = vote.Card.Id
+                });
+
+            return _hubContext.Clients.All.RoundFinished(
+                new RoundFinishedDTO
+                {
+                    PlayerUpdates = scores.ToList(),
+                    Votes = votes.ToList(),
+                    NextStoryTeller = notification.NextStoryTeller.Name,
+                    StoryCard = notification.StoryCard.Id
+                });
         }
 
         public Task Handle(StoryRevealedEvent notification, CancellationToken cancellationToken)
@@ -30,3 +52,4 @@ namespace Dixit.Server.RealTime
         }
     }
 }
+ 

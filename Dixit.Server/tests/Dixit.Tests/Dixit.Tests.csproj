@@ -14,8 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\" />
     <Folder Include="Integration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Dixit.Application\Dixit.Application.csproj" />
+    <ProjectReference Include="..\..\src\Dixit.Domain\Dixit.Domain.csproj" />
   </ItemGroup>
 
 </Project>

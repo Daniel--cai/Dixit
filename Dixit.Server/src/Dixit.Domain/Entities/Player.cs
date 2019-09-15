@@ -1,14 +1,14 @@
 ﻿using Dixit.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Dixit.Domain.Entities
 {
-    public class Player : IEntity
+    public class Player : IEntity, IEquatable<Player>
     {
         public string Name { get; set; }
         public string Identifier { get; set; }
         public int Score { get; set; }
-        public List<Card> Hand { get; set;}
 
         public int Id { get; set; }
 
@@ -17,19 +17,47 @@ namespace Dixit.Domain.Entities
             Name = name;
             Identifier = identifier;
             Score = 0;
-            Hand = new List<Card>();
         }
 
-        public int ScorePoint()
+        public int ScorePoint(int bonus = 1)
         {
-            Score++;
+            Score = Score + bonus;
             return Score;
         }
 
-        public List<Card> DrawCard(Card card)
+        public override bool Equals(object obj)
         {
-            Hand.Add(card);
-            return Hand;
+            return Equals(obj as Player);
+        }
+
+        public bool Equals(Player other)
+        {
+            return Name == other.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
+
+        public static bool operator ==(Player lhs, Player rhs)
+        {
+            if (lhs is null)
+            {
+                if (rhs is null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(Player lhs, Player rhs)
+        {
+            return !(lhs == rhs);
         }
 
     }

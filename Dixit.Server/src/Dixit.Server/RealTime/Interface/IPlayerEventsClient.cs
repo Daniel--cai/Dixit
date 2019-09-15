@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Dixit.Server.DTO;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,9 @@ namespace Dixit.Server.RealTime.Interface
 {
     public interface IPlayerEventsClient
     {
-        Task StoryTold(INotification notification);
+        Task StoryTold(StoryToldDTO notification);
+        Task CardVoted(CardVotedDTO notification);
+        Task CardSubmitted(CardSubmittedDTO notification);
+        Task CardDrawn(CardDrawnDTO notification);
     }
 }

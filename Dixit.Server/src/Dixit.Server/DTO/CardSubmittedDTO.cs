@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dixit.Server.DTO
 {
-    public class CardVotedDTO : INotificationDTO
+    public class CardSubmittedDTO
     {
         public string Player { get; set; }
     }

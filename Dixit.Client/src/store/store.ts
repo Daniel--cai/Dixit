@@ -9,6 +9,7 @@ import { GameState } from "../constants/GameState";
 export interface State {
   name: string;
   code: string;
+  hand: number[];
   players: string[];
   connected: boolean;
   router: RouterState;
