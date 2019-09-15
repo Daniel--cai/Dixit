@@ -26,7 +26,6 @@ namespace Dixit.Application.Handlers
             //var player = new Domain.Entities.Player(request.Name);
             //lobby.Players.Add(player);
             _awsDynamodbService.AddLobby(lobby);
-
             return Task.FromResult(new CreateLobbyResponse
             {
                 Code = lobby.Code

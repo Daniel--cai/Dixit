@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace Dixit.Application.Handlers
 {
-    public class VoteCardHandler : IRequestHandler<VoteCardCommand>
+    public class VoteCardCommandHandler : IRequestHandler<VoteCardCommand>
     {
         private readonly IMediator _mediator;
         private readonly IScoreService _scoreService;
         private readonly IAwsDynamodbService _awsDynamodbService;
 
-        public VoteCardHandler(IMediator mediator, IScoreService scoreService, IAwsDynamodbService awsDynamodbService)
+        public VoteCardCommandHandler(IMediator mediator, IScoreService scoreService, IAwsDynamodbService awsDynamodbService)
         {
             _mediator = mediator;
             _scoreService = scoreService;
@@ -28,27 +28,33 @@ namespace Dixit.Application.Handlers
 
             var card = lobby.GetCard(request.Card);
             var player = lobby.GetPlayerByName(request.Player);
+
+            lobby.PlayerVoteCard(player, card);
+
             await _mediator.Publish(new CardVotedEvent { Code = request.Code, Player = player, Card = card });
 
             if  (lobby.HasAllPlayersVoted())
             {
-                var votes = lobby.CurrentRound().Votes;
-                var storyCard = lobby.CurrentRound().StoryTellerCard;
-                var storyTeller = lobby.CurrentRound().StoryTeller;
+                var votes = lobby.CurrentVotes;
+                var storyCard = lobby.CurrentStoryCard;
+                var storyTeller = lobby.CurrentStoryTeller;
                 var score = _scoreService.VallyVotes(votes, storyTeller, storyCard);
+
                 lobby.TallyVotes(score);
-                lobby.NextRound();
+                lobby.NewRound();
+
                 var roundFinishedEvent = new RoundFinishedEvent
                 {
                     Code = lobby.Code,
                     PlayerScores = score,
                     Votes = votes.ToList(),
-                    NextStoryTeller = lobby.CurrentRound().StoryTeller,
+                    NextStoryTeller = lobby.CurrentStoryTeller,
                     StoryCard = storyCard
                 };
+
                 await _mediator.Publish(roundFinishedEvent);
             }
-
+            await _awsDynamodbService.SaveLobby(lobby);
             return Unit.Value;
         }
     }

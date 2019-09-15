@@ -9,6 +9,7 @@ namespace Dixit.Server.RealTime.Interface
 {
     public interface IGameEventsClient
     {
-        Task RoundFinished(INotificationDTO notification);
+        Task RoundFinished(RoundFinishedDTO notification);
+        Task StoryRevealed(StoryRevealedDTO notification);
     }
 }

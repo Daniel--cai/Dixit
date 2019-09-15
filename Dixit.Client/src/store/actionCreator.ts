@@ -7,16 +7,16 @@ import {
   CodeUpdated,
   GameFetched,
   StoryRevealed,
-  CardSubmitted,
+  CardPlayed,
   StoryTold,
   CardVoted,
   RoundFinished
 } from "../client/events";
 import { Actions, AnyAction } from "../store/action";
-import Axios from "axios";
 import { Dispatch } from "redux";
 import { State } from ".";
 import { push, CallHistoryMethodAction } from "connected-react-router";
+import { Apiclient } from "../api/api";
 
 export type ActionCreator<T extends Message> = (
   message: T
@@ -39,13 +39,13 @@ export const storyToldAction: ActionCreator<StoryTold> = message => ({
   payload: message
 });
 
-export const cardSubmittedAction: ActionCreator<CardSubmitted> = message => ({
-  type: "cardSubmitted",
+export const cardPlayedAction: ActionCreator<CardPlayed> = message => ({
+  type: "cardPlayed",
   payload: message
 });
 
 export const storyRevealedAction: ActionCreator<StoryRevealed> = message => ({
-  type: "cardSubmitted",
+  type: "storyRevealed",
   payload: message
 });
 
@@ -71,7 +71,7 @@ export const codeUpdatedAction: ActionCreator<CodeUpdated> = message => ({
 
 export const fetchGameAction = (code: string) => {
   return async (dispatch: Dispatch) => {
-    var response = await Axios.get(`/api/lobby?code=${code}`);
+    var response = await Apiclient.get(`/lobby?code=${code}`);
     console.log(response.data);
     dispatch({
       type: "fetchGame",

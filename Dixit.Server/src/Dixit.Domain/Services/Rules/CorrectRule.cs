@@ -12,9 +12,12 @@ namespace Dixit.Domain.Services.Rules
     {
         public List<ScoreCard> CalculateScore(List<Vote> votes, Player storyTeller, Card storyCard)
         {
-            var scorers = votes.Where(vote => vote.Card.Id == storyCard.Id).Select(vote => vote.Player);
-
-            var scoreBoard = scorers.Select(scorer => new ScoreCard(scorer, 3)).ToList();
+            var scoreBoard = new List<ScoreCard>();
+            if (votes.FindAll(vote => vote.Card.Id == storyCard.Id).Count != votes.Count)
+            {
+                var scorers = votes.Where(vote => vote.Card.Id == storyCard.Id).Select(vote => vote.Player);
+                scoreBoard = scorers.Select(scorer => new ScoreCard(scorer, 3)).ToList();
+            }
 
             return scoreBoard;
         }

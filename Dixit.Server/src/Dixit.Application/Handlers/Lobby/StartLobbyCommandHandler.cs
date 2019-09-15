@@ -24,11 +24,10 @@ namespace Dixit.Application.Handlers
         public async Task<Unit> Handle(StartLobbyCommand request, CancellationToken cancellationToken)
         {
             var lobby = await _awsDynamodbService.GetLobbyByCode(request.Code);
-            if (lobby.GameState != State.Lobby) return Unit.Value;
-            lobby.GameState = State.Story;
-            lobby.NextRound();
-            var storyTeller = lobby.CurrentRound().StoryTeller;
-            await _mediator.Publish(new LobbyStartedEvent { Code = request.Code, StoryTeller = storyTeller } );
+            lobby.NewRound();
+            lobby.DealDeck();
+            await _awsDynamodbService.SaveLobby(lobby);
+            await _mediator.Publish(new LobbyStartedEvent { Code = request.Code, StoryTeller = lobby.CurrentStoryTeller } );
             return Unit.Value;
         }
     }

@@ -3,6 +3,7 @@ using Dixit.Domain.Interfaces;
 using Dixit.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Dixit.Domain.Services.Rules
@@ -17,7 +18,7 @@ namespace Dixit.Domain.Services.Rules
             }
             else if (votes.FindAll(vote => vote.Card.Id == storyCard.Id).Count == votes.Count)
             {
-                return new List<ScoreCard> { new ScoreCard(storyTeller, 0) };
+                return votes.Select(vote => new ScoreCard(vote.Player, 2)).ToList();
             }
             else
             {

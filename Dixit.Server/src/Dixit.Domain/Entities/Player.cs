@@ -42,15 +42,8 @@ namespace Dixit.Domain.Entities
 
         public static bool operator ==(Player lhs, Player rhs)
         {
-            if (lhs is null)
-            {
-                if (rhs is null)
-                {
-                    return true;
-                }
-
-                return false;
-            }
+            if (lhs is null && rhs is null) return true;
+            if (lhs is null || rhs is null) return false;
 
             return lhs.Equals(rhs);
         }

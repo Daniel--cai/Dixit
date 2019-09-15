@@ -22,7 +22,20 @@ namespace Dixit.Server.Controllers
         [HttpPost("TellStory")]
         public async Task<ActionResult> TellStory(TellStoryCommand command)
         {
+            await _mediator.Send(command);
+            return Ok();
+        }
 
+        [HttpPost("PlayCard")]
+        public async Task<ActionResult> PlayCard(PlayCardCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpPost("VoteCard")]
+        public async Task<ActionResult> VoteCard(VoteCardCommand command)
+        {
             await _mediator.Send(command);
             return Ok();
         }

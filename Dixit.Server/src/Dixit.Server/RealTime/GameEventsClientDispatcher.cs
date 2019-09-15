@@ -3,8 +3,6 @@ using Dixit.Server.DTO;
 using Dixit.Server.RealTime.Interface;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -48,7 +46,12 @@ namespace Dixit.Server.RealTime
 
         public Task Handle(StoryRevealedEvent notification, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _hubContext.Clients.All.StoryRevealed(
+                new StoryRevealedDTO
+                {
+                    Cards = notification.Cards
+                    .Select(card => card.Id).ToList()
+                });
         }
     }
 }

@@ -25,12 +25,11 @@ namespace Dixit.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<Lobby>> GetByCode([FromQuery] GetLobbyByCodeQuery query)
         {
-
             var lobby = await _mediator.Send(query);
             return lobby;
         }
 
-        [HttpPost]
+        [HttpPost("createLobby")]
         public async Task<ActionResult<string>> CreateLobby(CreateLobbyCommand command)
         {
             var lobby = await _mediator.Send(command);

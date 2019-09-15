@@ -6,11 +6,13 @@ export type Actions =
   | "fetchGame"
   | "fetchPlayers"
   | "codeUpdated"
+  | "cardDrawn"
+  | "cardVoted"
   | "lobbyJoined"
   | "gameStarted"
   | "storyTold"
-  | "cardSubmitted"
-  | "cardVoted"
+  | "storyRevealed"
+  | "cardPlayed"
   | "roundFinished";
 
 export interface AnyAction<T> extends Action<T> {

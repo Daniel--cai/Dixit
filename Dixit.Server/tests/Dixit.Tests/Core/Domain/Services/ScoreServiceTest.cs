@@ -1,4 +1,5 @@
-﻿using Dixit.Domain.Entities;
+﻿using AutoFixture;
+using Dixit.Domain.Entities;
 using Dixit.Domain.Interfaces;
 using Dixit.Domain.Services;
 using Dixit.Domain.Services.Rules;
@@ -22,22 +23,26 @@ namespace Dixit.Tests.Core.Domain.Services
 
         public ScoreServiceTest()
         {
-            player1 = new Player("player1", "");
-            player2 = new Player("player2", "");
-            player3 = new Player("player3", "");
-            player4 = new Player("player4", "");
-            card1 = new Card(1);
-            card2 = new Card(2);
-            card3 = new Card(3);
-            card4 = new Card(4);
-            card1.Drawn(player1);
-            card2.Drawn(player2);
-            card3.Drawn(player3);
-            card4.Drawn(player4);
+            var fixture = new Fixture();
+
+            player1 = fixture.Create<Player>();
+            player2 = fixture.Create<Player>();
+            player3 = fixture.Create<Player>();
+            player4 = fixture.Create<Player>();
+
+            card1 = fixture.Create<Card>();
+            card2 = fixture.Create<Card>();
+            card3 = fixture.Create<Card>();
+            card4 = fixture.Create<Card>();
+
+            card1.DrawnBy(player1);
+            card2.DrawnBy(player2);
+            card3.DrawnBy(player3);
+            card4.DrawnBy(player4);
         }
 
         [Fact]
-        public void BonusRuleShouldReturn1WhenVote()
+        public void BonusRuleShouldReturnAtLeast1WhenVote()
         {
             var storyTeller = player4;
             var votes = new List<Vote> { new Vote(player1,card2), new Vote(player2, card4), new Vote(player3, card2) };
@@ -57,7 +62,7 @@ namespace Dixit.Tests.Core.Domain.Services
         }
 
         [Fact]
-        public void StoryRuleShouldReturn0When0Votes()
+        public void StoryRuleShouldReturn0When0VotesCorrect()
         {
             var storyTeller = player4;
             var storyCard = card4;
@@ -80,7 +85,7 @@ namespace Dixit.Tests.Core.Domain.Services
         }
 
         [Fact]
-        public void StoryRuleShouldReturn0WhenAllVotes()
+        public void StoryRuleShouldReturn0WhenAllVotesCorrect()
         {
             var storyTeller = player4;
             var storyCard = card4;
@@ -96,10 +101,10 @@ namespace Dixit.Tests.Core.Domain.Services
             var player3Score = scoreBoard.Find(board => board.Player == player3);
             var player4Score = scoreBoard.Find(board => board.Player == player4);
 
-            Assert.Equal(3, player1Score.Score);
-            Assert.Equal(3, player2Score.Score);
-            Assert.Equal(3, player3Score.Score);
-            Assert.Equal(0, player4Score.Score);
+            Assert.Equal(2, player1Score.Score);
+            Assert.Equal(2, player2Score.Score);
+            Assert.Equal(2, player3Score.Score);
+            Assert.Null(player4Score);
         }
     }
 }

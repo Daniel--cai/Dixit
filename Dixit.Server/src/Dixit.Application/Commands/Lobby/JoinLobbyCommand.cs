@@ -1,8 +1,4 @@
-﻿using Dixit.Application.Responses;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MediatR;
 
 namespace Dixit.Application.Commands
 {

@@ -1,4 +1,5 @@
-﻿using Dixit.Application.Responses;
+﻿
+using Dixit.Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;

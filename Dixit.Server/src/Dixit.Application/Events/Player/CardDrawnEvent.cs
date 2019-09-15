@@ -10,6 +10,6 @@ namespace Dixit.Application.Events
     {
         public string Code { get; set; }
         public Player Player { get; set; }
-        public Card Card { get; set; }
+        public List<Card> Hand { get; set; }
     }
 }

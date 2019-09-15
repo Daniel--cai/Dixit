@@ -4,8 +4,8 @@ import { State, fetchGameAction } from "../store";
 import { RouteComponentProps } from "react-router";
 import { push } from "connected-react-router";
 import classnames from "classnames";
-import Axios from "axios";
 import { GameState } from "../constants/GameState";
+import { Apiclient } from "../api/api";
 
 export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
   const [story, setStory] = useState("");
@@ -26,12 +26,12 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
     }
   }, []);
 
-  const tellStory = () => {
-    Axios.post("/api/player/tellstory", {
+  const tellStory = async () => {
+    await Apiclient.tellStory({
       code: props.match.params.code,
-      storyTeller: name,
       story,
-      card: 1
+      card: 1,
+      storyTeller: name
     });
   };
 

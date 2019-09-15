@@ -3,6 +3,7 @@ using Dixit.Server.DTO;
 using Dixit.Server.RealTime.Interface;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,8 +41,8 @@ namespace Dixit.Server.RealTime
 
         public Task Handle(CardSubmittedEvent notification, CancellationToken cancellationToken)
         {
-            return _hubContext.Clients.All.CardSubmitted(
-                new CardSubmittedDTO
+            return _hubContext.Clients.All.CardPlayed(
+                new CardPlayedDTO
                 {
                     Player = notification.Player.Name,
                 }
@@ -54,7 +55,7 @@ namespace Dixit.Server.RealTime
                 new CardDrawnDTO
                 {
                     Player = notification.Player.Name,
-                    Card = notification.Card.Id
+                    Card = notification.Hand.Select(card => card.Id).ToList()
                 }
             );
         }

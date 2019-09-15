@@ -11,7 +11,7 @@ namespace Dixit.Server.RealTime.Interface
     {
         Task StoryTold(StoryToldDTO notification);
         Task CardVoted(CardVotedDTO notification);
-        Task CardSubmitted(CardSubmittedDTO notification);
+        Task CardPlayed(CardPlayedDTO notification);
         Task CardDrawn(CardDrawnDTO notification);
     }
 }

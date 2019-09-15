@@ -7,11 +7,13 @@ import { storyTellerReducer } from "./storyTellerReducer";
 import { gameStateReducer } from "./gameStateReducer";
 import { connectedReducer } from "./connectedReducer";
 import { State } from "../store";
+import { handReducer } from "./handReducer";
 
 const createRootReducer = (history: any) =>
   combineReducers<State>({
     name: nameReducer,
     code: codeReducer,
+    hand: handReducer,
     players: playerReducer,
     storyTeller: storyTellerReducer,
     gameState: gameStateReducer,

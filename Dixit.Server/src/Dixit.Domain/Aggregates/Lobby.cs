@@ -13,7 +13,7 @@ namespace Dixit.Domain.Aggregates
         public string Code { get; set; }
         public List<Round> Rounds { get; set; }
         public int RoundNumber { get; set; }
-        public List<Card> Deck { get; set; }
+        public Deck Deck { get; set; }
         public List<Player> Players { get; set; }
         public State GameState { get; set; }
         public int Id { get; set; }
@@ -22,60 +22,50 @@ namespace Dixit.Domain.Aggregates
         {
             Code = Guid.NewGuid().ToString().Substring(0, 4);
             Rounds = new List<Round>();
-            Deck = new List<Card>();
+            Deck = InitializeDeck();
             Players = new List<Player>();
             GameState = State.Lobby;
             RoundNumber = 0;
         }
 
-        public Round NewRound()
-        {
-            var round = new Round();
-            Rounds.Add(round);
-            RoundNumber++;
-            return round;
-        }
-
-        public Round CurrentRound()
-        {
-            return Rounds[RoundNumber - 1];
-        }
-
-        public Card DrawCard()
-        {
-            return Deck.First();
-        }
-
-        public void ShuffleDeck()
+        private Deck InitializeDeck()
         {
 
+            var deck = new List<Card>();
+            for(var i = 1; i < 50; i++)
+            {
+                var card = new Card(i);
+                deck.Add(card);
+            }
+
+            return new Deck(deck).Shuffle();
         }
 
-        public Round NextRound()
-        {
-            var storyTeller = NextStoryTeller();
-            var round = NewRound();
-            round.SetStoryTeller(storyTeller);
-            return round;
-        }
+        //aggregate getters
 
-        public Player NextStoryTeller()
-        {
-            return Players[Rounds.Count % Players.Count];
-        }
+        public Round CurrentRound => RoundNumber > 0 ? Rounds[RoundNumber - 1] : null;
 
-        public Card DrawCard(Player player)
-        {
-            var card = DrawCard();
-            //player.DrawCard(card);
-            return card;
-        }
+        public Player NextStoryTeller => Players[Rounds.Count % Players.Count];
+
+        public Player CurrentStoryTeller => CurrentRound?.StoryTeller;
+
+        public Card CurrentStoryCard => CurrentRound?.StoryTellerCard;
+
+        public List<Card> CurrentPlayedCards => Deck.Cards.Where(card => card.RoundSubmitted == RoundNumber).ToList();
+
+        public List<Vote> CurrentVotes => CurrentRound?.Votes;
 
         public bool HasAllPlayersVoted()
         {
-            var currentRound = Rounds[RoundNumber];
-            return currentRound.Votes.Count() == Players.Count;
+            return CurrentVotes.Count == Players.Count - 1;
         }
+
+        public bool HasAllPlayersPlayed()
+        {
+            return CurrentPlayedCards.Count == Players.Count - 1;
+        }
+
+        //utility
 
         public void TallyVotes(List<ScoreCard> scoreCards)
         {
@@ -93,14 +83,45 @@ namespace Dixit.Domain.Aggregates
 
         public Card GetCard(int id)
         {
-            return Deck.Find(card => card.Id == id);
+            return Deck.FindCard(id);
         }
+
+        //entity wrappers
+
+        public Round NewRound()
+        {
+            if (GameState != State.Lobby && GameState != State.Voting)
+                throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for NewRound command");
+
+            var round = new Round(++RoundNumber, NextStoryTeller);
+            Rounds.Add(round);
+            GameState = State.Story;
+            return round;
+        }
+
+
+        public void DealDeck()
+        {
+
+        }
+
+        public Card DrawCard(Player player)
+        {
+            return Deck.Draw(player);
+        }
+
+        public void ShuffleDeck()
+        {
+            Deck.Shuffle();
+        }
+
+        //player actions
 
         public void PlayerTellStory(Player player, string story, Card card)
         {
             if (GameState != State.Story)
                 throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for TellStory command");
-            CurrentRound().PlayerTellStory(player, story, card);
+            CurrentRound.PlayerTellStory(player, story, card);
             GameState = State.InProgress;
         }
 
@@ -108,7 +129,18 @@ namespace Dixit.Domain.Aggregates
         {
             if (GameState != State.Voting)
                 throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for PlayerVoteCard command");
-            CurrentRound().PlayerVoteCard(player, card);
+            CurrentRound.PlayerVoteCard(player, card);
+        }
+
+        public void PlayerPlayCard(Player player, Card card)
+        {
+            if (GameState != State.InProgress)
+                throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for PlayerPlayCard command");
+            CurrentRound.PlayerPlayCard(player, card);
+            if (HasAllPlayersPlayed())
+            {
+                GameState = State.Voting;
+            }
         }
 
     }

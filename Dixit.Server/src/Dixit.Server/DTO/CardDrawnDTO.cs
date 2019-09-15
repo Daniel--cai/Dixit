@@ -8,6 +8,6 @@ namespace Dixit.Server.DTO
     public class CardDrawnDTO
     {
         public string Player { get; set; }
-        public int Card { get; set; }
+        public List<int> Card { get; set; }
     }
 }

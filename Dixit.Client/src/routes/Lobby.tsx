@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 // import logo from "../assets/images/logo.svg";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { connectAction, State, fetchGameAction } from "../store";
 import { push } from "connected-react-router";
 import { RouteComponentProps } from "react-router";
 import Axios from "axios";
+import { Apiclient } from "../api/api";
 
 export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
   var [name, setName] = useState("");
@@ -17,7 +17,7 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
 
   const createAndConnect = async () => {
     var createLobbyCommand = {};
-    var response = await axios.post("/api/lobby", createLobbyCommand);
+    var response = await Apiclient.createLobby(createLobbyCommand);
     dispatch(connectAction({ name, code: response.data }));
   };
 

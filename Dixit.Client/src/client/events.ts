@@ -15,8 +15,13 @@ export interface StoryTold extends Message {
   story: string;
 }
 
-export interface CardSubmitted extends Message {
+export interface CardPlayed extends Message {
   player: string;
+}
+
+export interface CardDrawn extends Message {
+  player: string;
+  card: number[];
 }
 
 export interface CardVoted extends Message {
