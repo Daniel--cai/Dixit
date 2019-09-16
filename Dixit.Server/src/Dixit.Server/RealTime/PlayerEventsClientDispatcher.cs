@@ -51,7 +51,7 @@ namespace Dixit.Server.RealTime
 
         public Task Handle(CardDrawnEvent notification, CancellationToken cancellationToken)
         {
-            return _hubContext.Clients.All.CardDrawn(
+            return _hubContext.Clients.Client(notification.Player.Identifier).CardDrawn(
                 new CardDrawnDTO
                 {
                     Player = notification.Player.Name,

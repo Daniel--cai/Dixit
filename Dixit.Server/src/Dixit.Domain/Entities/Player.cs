@@ -32,7 +32,7 @@ namespace Dixit.Domain.Entities
 
         public bool Equals(Player other)
         {
-            return Name == other.Name;
+            return Name == other?.Name;
         }
 
         public override int GetHashCode()

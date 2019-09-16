@@ -28,6 +28,12 @@ namespace Dixit.Application.Handlers
             lobby.DealDeck();
             await _awsDynamodbService.SaveLobby(lobby);
             await _mediator.Publish(new LobbyStartedEvent { Code = request.Code, StoryTeller = lobby.CurrentStoryTeller } );
+
+            foreach  (var player in lobby.Players)
+            {
+                await _mediator.Publish(new CardDrawnEvent { Code = request.Code, Player = player, Hand = lobby.Deck.Hand(player) });
+            }
+
             return Unit.Value;
         }
     }

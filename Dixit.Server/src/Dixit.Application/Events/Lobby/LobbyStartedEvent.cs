@@ -1,4 +1,5 @@
 ﻿using Dixit.Domain.Entities;
+using Dixit.Domain.ValueObjects;
 using MediatR;
 
 namespace Dixit.Application.Events

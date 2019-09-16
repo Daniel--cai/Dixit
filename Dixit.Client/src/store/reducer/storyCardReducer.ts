@@ -1,15 +1,12 @@
 import { Actions, AnyAction } from "..";
 import { RoundFinished } from "../../client/events";
-export function storyTellerReducer(
-  state: string = "",
+export function storyCardReducer(
+  state: number = -1,
   action: AnyAction<Actions>
-): string {
+): number {
   switch (action.type) {
-    case "gameStarted": {
-      return action.payload.storyTeller;
-    }
     case "roundFinished": {
-      return (action.payload as RoundFinished).nextStoryTeller;
+      return (action.payload as RoundFinished).storyCard;
     }
     default:
       return state;

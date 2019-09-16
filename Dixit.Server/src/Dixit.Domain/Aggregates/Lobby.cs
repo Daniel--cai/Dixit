@@ -62,7 +62,7 @@ namespace Dixit.Domain.Aggregates
 
         public bool HasAllPlayersPlayed()
         {
-            return CurrentPlayedCards.Count == Players.Count - 1;
+            return CurrentPlayedCards.Count == Players.Count;
         }
 
         //utility
@@ -96,13 +96,25 @@ namespace Dixit.Domain.Aggregates
             var round = new Round(++RoundNumber, NextStoryTeller);
             Rounds.Add(round);
             GameState = State.Story;
+
+            foreach(var player in Players)
+            {
+                Deck.Draw(player);
+            }
+
             return round;
         }
 
 
         public void DealDeck()
         {
-
+            foreach (var player in Players)
+            {
+                for (var i = 0; i < 5; i++)
+                {
+                    DrawCard(player);
+                }
+            }
         }
 
         public Card DrawCard(Player player)
@@ -122,6 +134,7 @@ namespace Dixit.Domain.Aggregates
             if (GameState != State.Story)
                 throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for TellStory command");
             CurrentRound.PlayerTellStory(player, story, card);
+            card.Played(RoundNumber);
             GameState = State.InProgress;
         }
 
@@ -129,6 +142,11 @@ namespace Dixit.Domain.Aggregates
         {
             if (GameState != State.Voting)
                 throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for PlayerVoteCard command");
+
+
+            if (!CurrentPlayedCards.Contains(card))
+                throw new InvalidOperationException($"Player {player.Name} cannot vote for a card that hasn't been played.");
+
             CurrentRound.PlayerVoteCard(player, card);
         }
 
@@ -136,12 +154,15 @@ namespace Dixit.Domain.Aggregates
         {
             if (GameState != State.InProgress)
                 throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for PlayerPlayCard command");
+            var count = Deck.Hand(player).Count;
+            if (Deck.Hand(player).Count < 6)
+                throw new InvalidOperationException($"Player {player.Name} has already played a card");
+
             CurrentRound.PlayerPlayCard(player, card);
             if (HasAllPlayersPlayed())
             {
                 GameState = State.Voting;
             }
         }
-
     }
 }

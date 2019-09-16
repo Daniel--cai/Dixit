@@ -10,8 +10,14 @@ export function gameStateReducer(
     }
 
     case "storyTold": {
-      console.log(action.payload);
       return GameState.InProgress;
+    }
+    case "storyRevealed": {
+      return GameState.Voting;
+    }
+
+    case "roundFinished": {
+      return GameState.Story;
     }
     default:
       return state;

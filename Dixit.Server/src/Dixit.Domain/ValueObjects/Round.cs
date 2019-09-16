@@ -22,10 +22,12 @@ namespace Dixit.Domain.ValueObjects
         public void PlayerVoteCard(Player player, Card card)
         {
             if (card.Owner == player)
-                throw new InvalidOperationException($"Player {player.Name} cannot vote for their own card");
-
+                throw new InvalidOperationException($"Player {player.Name} cannot vote for their own card.");
+      
             if (player == StoryTeller)
                 throw new InvalidOperationException($"Storyteller {player.Name} cannot vote in this round.");
+
+
 
             Votes.RemoveAll(existingVote => existingVote.Player == player);
 
@@ -53,7 +55,7 @@ namespace Dixit.Domain.ValueObjects
                 throw new InvalidOperationException($"Player {player.Name} does not hold card {card.Id}.");
 
             Story = story;
-            StoryTellerCard = card;
+            StoryTellerCard = card;            
         }
     }
 }

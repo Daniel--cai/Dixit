@@ -7,7 +7,8 @@ import {
   cardPlayedAction,
   cardVotedAction,
   roundFinishedAction,
-  storyRevealedAction
+  storyRevealedAction,
+  cardDrawnAction
 } from "../store";
 import { MiddlewareAPI, Dispatch, Middleware, AnyAction } from "redux";
 import * as signalR from "@aspnet/signalr";
@@ -39,6 +40,7 @@ export const signalRMiddleware: Middleware<Dispatch> = ({
     connection.on("lobbyJoined", data => dispatch(lobbyJoinedAction(data)));
     connection.on("lobbyStarted", data => dispatch(gameStartedAction(data)));
     connection.on("storyTold", data => dispatch(storyToldAction(data)));
+    connection.on("cardDrawn", data => dispatch(cardDrawnAction(data)));
     connection.on("cardPlayed", data => dispatch(cardPlayedAction(data)));
     connection.on("cardVoted", data => dispatch(cardVotedAction(data)));
     connection.on("roundFinished", data => dispatch(roundFinishedAction(data)));

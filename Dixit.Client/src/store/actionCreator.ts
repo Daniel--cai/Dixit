@@ -10,7 +10,8 @@ import {
   CardPlayed,
   StoryTold,
   CardVoted,
-  RoundFinished
+  RoundFinished,
+  CardDrawn
 } from "../client/events";
 import { Actions, AnyAction } from "../store/action";
 import { Dispatch } from "redux";
@@ -41,6 +42,11 @@ export const storyToldAction: ActionCreator<StoryTold> = message => ({
 
 export const cardPlayedAction: ActionCreator<CardPlayed> = message => ({
   type: "cardPlayed",
+  payload: message
+});
+
+export const cardDrawnAction: ActionCreator<CardDrawn> = message => ({
+  type: "cardDrawn",
   payload: message
 });
 

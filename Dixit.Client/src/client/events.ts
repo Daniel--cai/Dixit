@@ -34,8 +34,9 @@ export interface StoryRevealed extends Message {
 
 export interface RoundFinished extends Message {
   votes: Vote[];
-  playerUpdates: ScoreUpdate[];
+  playerUpdates: Scoreboard[];
   nextStoryTeller: string;
+  storyCard: number;
 }
 
 export interface GameStarted extends Message {
@@ -51,18 +52,24 @@ export interface CodeUpdated {
 }
 
 export interface GameFetched {
-  players: string[];
+  players: Player[];
   roundNumber: number;
   round: any;
   gameState: string;
 }
 
-interface ScoreUpdate {
+interface Player {
   name: string;
   score: number;
 }
 
-interface Vote {
+export interface Scoreboard {
+  name: string;
+  score: number;
+  scored: number;
+}
+
+export interface Vote {
   player: string;
   card: number;
 }

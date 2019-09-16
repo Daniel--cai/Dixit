@@ -53,7 +53,7 @@ namespace Dixit.Domain.Entities
 
         public bool Equals(Card other)
         {
-            return Id == other.Id;
+            return Id == other?.Id;
         }
 
         public override int GetHashCode()

@@ -32,8 +32,20 @@ namespace Dixit.Domain.ValueObjects
             return Cards.Where(card => card.Owner == player && card.Discarded == false).ToList();
         }
 
+
         public Deck Shuffle()
         {
+            Random random = new Random();
+            int n = Cards.Count;
+
+            for (int i = Cards.Count - 1; i > 1; i--)
+            {
+                int rnd = random.Next(i + 1);
+
+                Card value = Cards[rnd];
+                Cards[rnd] = Cards[i];
+                Cards[i] = value;
+            }
             return this;
         }
     }
