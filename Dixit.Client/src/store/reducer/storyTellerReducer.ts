@@ -1,5 +1,5 @@
 import { Actions, AnyAction } from "..";
-import { RoundFinished } from "../../client/events";
+import { RoundFinished, GameFetched } from "../../client/events";
 export function storyTellerReducer(
   state: string = "",
   action: AnyAction<Actions>
@@ -11,6 +11,11 @@ export function storyTellerReducer(
     case "roundFinished": {
       return (action.payload as RoundFinished).nextStoryTeller;
     }
+
+    case "fetchGame": {
+      return (action.payload as GameFetched).currentStoryTeller;
+    }
+
     default:
       return state;
   }

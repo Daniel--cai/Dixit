@@ -1,5 +1,6 @@
 import { Actions, AnyAction } from "..";
 import { GameState } from "../../constants/GameState";
+import { GameFetched } from "../../client/events";
 export function gameStateReducer(
   state: GameState = GameState.Lobby,
   action: AnyAction<Actions>
@@ -8,16 +9,17 @@ export function gameStateReducer(
     case "gameStarted": {
       return GameState.Story;
     }
-
     case "storyTold": {
       return GameState.InProgress;
     }
     case "storyRevealed": {
       return GameState.Voting;
     }
-
     case "roundFinished": {
       return GameState.Story;
+    }
+    case "fetchGame": {
+      return (action.payload as GameFetched).gameState;
     }
     default:
       return state;

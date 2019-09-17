@@ -17,6 +17,7 @@ namespace Dixit.Domain.Aggregates
         public List<Player> Players { get; set; }
         public State GameState { get; set; }
         public int Id { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public Lobby()
         {
@@ -51,18 +52,22 @@ namespace Dixit.Domain.Aggregates
 
         public Card CurrentStoryCard => CurrentRound?.StoryTellerCard;
 
-        public List<Card> CurrentPlayedCards => Deck.Cards.Where(card => card.RoundSubmitted == RoundNumber).ToList();
+        public string CurrentStory => CurrentRound?.Story;
+
+        public List<Card> CurrentPlayedCards => Deck.Cards.Where(card => card.RoundSubmitted != 0 && card.RoundSubmitted == RoundNumber).ToList();
 
         public List<Vote> CurrentVotes => CurrentRound?.Votes;
 
         public bool HasAllPlayersVoted()
         {
-            return CurrentVotes.Count == Players.Count - 1;
+            return CurrentVotes.Count >= ActivePlayers.Count - 1;
         }
+
+        public List<Player> ActivePlayers => Players.Where(player => player.Connected).ToList();
 
         public bool HasAllPlayersPlayed()
         {
-            return CurrentPlayedCards.Count == Players.Count;
+            return CurrentPlayedCards.Count >= ActivePlayers.Count;
         }
 
         //utility
@@ -97,7 +102,7 @@ namespace Dixit.Domain.Aggregates
             Rounds.Add(round);
             GameState = State.Story;
 
-            foreach(var player in Players)
+            foreach(var player in ActivePlayers)
             {
                 Deck.Draw(player);
             }
@@ -108,7 +113,7 @@ namespace Dixit.Domain.Aggregates
 
         public void DealDeck()
         {
-            foreach (var player in Players)
+            foreach (var player in ActivePlayers)
             {
                 for (var i = 0; i < 5; i++)
                 {
@@ -163,6 +168,29 @@ namespace Dixit.Domain.Aggregates
             {
                 GameState = State.Voting;
             }
+        }
+
+        public Player PlayerConnected(string name, string identifier)
+        {
+            var existingPlayer = Players.Find(player => player.Name == name);
+            if (existingPlayer != null)
+            {
+                existingPlayer.Identifier = identifier;
+                existingPlayer.Connected = true;
+            } 
+            else
+            {
+                existingPlayer = new Player(name, identifier);
+                Players.Add(existingPlayer);
+            }
+            return existingPlayer;
+        }
+
+        public Player PlayerDisconnected(string disconnected)
+        {
+            var player = Players.Find(p => p.Name == disconnected);
+            player.Connected = false;
+            return player;
         }
     }
 }

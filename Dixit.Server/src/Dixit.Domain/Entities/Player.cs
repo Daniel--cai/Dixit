@@ -9,13 +9,14 @@ namespace Dixit.Domain.Entities
         public string Name { get; set; }
         public string Identifier { get; set; }
         public int Score { get; set; }
-
+        public bool Connected { get; set; }
         public int Id { get; set; }
 
         public Player(string name, string identifier)
         {
             Name = name;
             Identifier = identifier;
+            Connected = true;
             Score = 0;
         }
 

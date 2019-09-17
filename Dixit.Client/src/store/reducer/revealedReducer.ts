@@ -1,5 +1,5 @@
 import { Actions, AnyAction } from "..";
-import { StoryRevealed } from "../../client/events";
+import { StoryRevealed, GameFetched } from "../../client/events";
 export function revealedReducer(
   state: number[] = [],
   action: AnyAction<Actions>
@@ -8,6 +8,10 @@ export function revealedReducer(
     case "storyRevealed": {
       return (action.payload as StoryRevealed).cards;
     }
+    case "fetchGame": {
+      return (action.payload as GameFetched).cards;
+    }
+
     default:
       return state;
   }

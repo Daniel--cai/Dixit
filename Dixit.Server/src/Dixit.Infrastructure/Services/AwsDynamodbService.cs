@@ -9,22 +9,36 @@ namespace Dixit.Infrastructure.Services
     public class AwsDynamodbService : IAwsDynamodbService
     {
 
-        public static List<Domain.Aggregates.Lobby> Lobbies = new List<Domain.Aggregates.Lobby>();
-
-        public AwsDynamodbService()
-        {
-           
-        }
+        public static List<Lobby> Lobbies = new List<Lobby>();
+        public static List<PlayerConnection> PlayerConnections = new List<PlayerConnection>();
 
         public void AddLobby(Lobby lobby)
         {
             Lobbies.Add(lobby);
         }
 
+        public Task AddPlayerConnection(string name, string identifier, string code)
+        {
+            PlayerConnections.Add(new PlayerConnection { Name = name, Identifier = identifier, Code = code });
+            return Task.FromResult(0);
+        }
+
         public Task<Lobby> GetLobbyByCode(string code)
         {
             var found = Lobbies.FirstOrDefault(lobby => lobby.Code.ToLower() == code.ToLower());
             return Task.FromResult(found);
+        }
+
+        public Task<PlayerConnection> GetPlayerConnectionByIdentifier(string identifier)
+        {
+            var found = PlayerConnections.FirstOrDefault(connection => connection.Identifier.ToLower() == identifier.ToLower());
+            return Task.FromResult(found);
+        }
+
+        public Task RemovePlayerConnection(string identifier)
+        {
+            var count = PlayerConnections.RemoveAll(connection => connection.Identifier.ToLower() == identifier.ToLower());
+            return Task.FromResult(count);
         }
 
         public Task SaveLobby(Lobby lobby)

@@ -23,7 +23,6 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
 
   const joinGame = async () => {
     dispatch(connectAction({ name, code }));
-    dispatch(fetchGameAction(code));
   };
 
   const startGame = async () => {

@@ -21,7 +21,9 @@ namespace Dixit.Tests.Integration
             var lobbyClients = new Mock<IEventsClient>();
 
             hubContext.Setup(x => x.Clients.All.LobbyJoined(It.IsAny<LobbyJoinedDTO>())).Returns(Task.FromResult(0));
-
+            hubContext.Setup(x => x.Clients.All.LobbyLeft(It.IsAny<LobbyLeftDTO>())).Returns(Task.FromResult(0));
+            hubContext.Setup(x => x.Clients.Client(It.IsAny<string>()).CardDrawn(It.IsAny<CardDrawnDTO>())).Returns(Task.FromResult(0));
+            
             ServiceCollection service = new ServiceCollection();
 
             service.AddMediatR(typeof(LobbyEventsClientDispatcher));
@@ -34,6 +36,8 @@ namespace Dixit.Tests.Integration
 
             await mediator.Publish(fixture.Create<LobbyJoinedEvent>());
             await mediator.Publish(fixture.Create<LobbyStartedEvent>());
+            await mediator.Publish(fixture.Create<LobbyLeaveEvent>());
+            
 
             await mediator.Publish(fixture.Create<RoundFinishedEvent>());
             await mediator.Publish(fixture.Create<StoryRevealedEvent>());
@@ -49,8 +53,9 @@ namespace Dixit.Tests.Integration
             hubContext.Verify(mock => mock.Clients.All.StoryRevealed(It.IsAny<StoryRevealedDTO>()), Times.Once());
             hubContext.Verify(mock => mock.Clients.All.CardVoted(It.IsAny<CardVotedDTO>()), Times.Once());
             hubContext.Verify(mock => mock.Clients.All.CardPlayed(It.IsAny<CardPlayedDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.All.CardDrawn(It.IsAny<CardDrawnDTO>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.Client(It.IsAny<string>()).CardDrawn(It.IsAny<CardDrawnDTO>()), Times.Once());
             hubContext.Verify(mock => mock.Clients.All.StoryTold(It.IsAny<StoryToldDTO>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.LobbyLeft(It.IsAny<LobbyLeftDTO>()), Times.Once());
         }
     }
 }

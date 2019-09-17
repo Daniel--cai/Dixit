@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Dixit.Application.Handlers
 {
-    public class JoinLobbyCommandHandler : INotificationHandler<LobbyJoinedEvent>
+    public class JoinLobbyCommandHandler : INotificationHandler<PlayerConnectedEvent>
     {
         private readonly IMediator _mediator;
         private readonly IAwsDynamodbService _awsDynamodbService;
@@ -22,11 +22,16 @@ namespace Dixit.Application.Handlers
             _awsDynamodbService = awsDynamodbService;
         }
 
-        public async Task Handle(LobbyJoinedEvent notification, CancellationToken cancellationToken)
+        public async Task Handle(PlayerConnectedEvent notification, CancellationToken cancellationToken)
         {
             var lobby = await _awsDynamodbService.GetLobbyByCode(notification.Code);
-            lobby.Players.Add(notification.Player);
+            
+            var connected = lobby.PlayerConnected(notification.Player, notification.Identifier);
+            var player = _awsDynamodbService.GetPlayerConnectionByIdentifier(notification.Identifier);
             await _awsDynamodbService.SaveLobby(lobby);
+            await _awsDynamodbService.AddPlayerConnection(notification.Player, notification.Identifier, notification.Code);
+
+            await _mediator.Publish(new LobbyJoinedEvent { Player = connected, Code = notification.Code });
         }
     }
 }

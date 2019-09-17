@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Dixit.Application.Commands;
 using Dixit.Application.Queries;
 using Dixit.Domain.Aggregates;
+using Dixit.Server.DTO;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,10 +24,23 @@ namespace Dixit.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Lobby>> GetByCode([FromQuery] GetLobbyByCodeQuery query)
+        public async Task<ActionResult<LobbyDTO>> GetByCode([FromQuery] GetLobbyByCodeQuery query)
         {
             var lobby = await _mediator.Send(query);
-            return lobby;
+            var reconnect = lobby.Players.Find(player => player.Name == query.Player);
+            var response = new LobbyDTO
+            {
+                Players = lobby.ActivePlayers?.Select(player => new PlayerDTO { Name = player.Name, Score = player.Score }).ToList(),
+                RoundNumber = lobby.RoundNumber,
+                GameState = lobby.GameState.DisplayName,
+                CurrentStoryTeller = lobby.CurrentStoryTeller?.Name,
+                StoryCard = lobby.CurrentStoryCard?.Id ?? 0,
+                Story = lobby.CurrentStory,
+                Cards = lobby.CurrentPlayedCards?.Select(card => card.Id).ToList(),
+                Votes = lobby.CurrentVotes?.Select(vote => new VoteDTO { Card = vote.Card.Id, Player = vote.Player.Name }).ToList(),
+                Hand = lobby.Deck.Hand(reconnect)?.Select(card => card.Id).ToList()
+            };
+            return response;
         }
 
         [HttpPost("createLobby")]

@@ -23,13 +23,13 @@ namespace Dixit.Server.RealTime
             var name = Context.GetHttpContext().Request.Query["name"].ToString();
             var code = Context.GetHttpContext().Request.Query["code"].ToString();
             var connectionId = Context.ConnectionId;
-            var player = new Player(name, connectionId);
-            await _mediator.Publish(new LobbyJoinedEvent { Player = player, Code = code });
+            await _mediator.Publish(new PlayerConnectedEvent { Player = name, Code = code, Identifier = connectionId });
             
         }
-        public override Task OnDisconnectedAsync(Exception exception)
+        public override async Task OnDisconnectedAsync(Exception exception)
         {
-            return base.OnDisconnectedAsync(exception);
+            await _mediator.Publish(new PlayerDisconnectedEvent { Identifier = Context.ConnectionId });
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

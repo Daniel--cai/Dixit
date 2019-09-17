@@ -1,5 +1,5 @@
 import { Actions, AnyAction } from "..";
-import { RoundFinished, Vote } from "../../client/events";
+import { RoundFinished, Vote, GameFetched } from "../../client/events";
 export function voteReducer(
   state: Vote[] = [],
   action: AnyAction<Actions>
@@ -8,6 +8,11 @@ export function voteReducer(
     case "roundFinished": {
       return (action.payload as RoundFinished).votes;
     }
+
+    case "fetchGame": {
+      return (action.payload as GameFetched).votes || [];
+    }
+
     default:
       return state;
   }

@@ -1,17 +1,15 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.SignalR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Dixit.Application.Events;
 using Dixit.Server.RealTime.Interface;
 using Dixit.Server.DTO;
+using System.Linq;
 
 namespace Dixit.Server.RealTime
 {
-    public class LobbyEventsClientDispatcher : INotificationHandler<LobbyJoinedEvent>, INotificationHandler<LobbyStartedEvent>
+    public class LobbyEventsClientDispatcher : INotificationHandler<LobbyJoinedEvent>, INotificationHandler<LobbyStartedEvent>, INotificationHandler<LobbyLeaveEvent>
     {
         private readonly IHubContext<LobbyEventsClientHub, IEventsClient> _hubContext;
 
@@ -27,8 +25,17 @@ namespace Dixit.Server.RealTime
 
         public Task Handle(LobbyStartedEvent notification, CancellationToken cancellationToken)
         {
-            return _hubContext.Clients.All.LobbyStarted(new LobbyStartedDTO { StoryTeller = notification.StoryTeller.Name });
+            return _hubContext.Clients.All.LobbyStarted(
+                new LobbyStartedDTO
+                {
+                    Players = notification.Players.Select(player => player.Name).ToList(), 
+                    StoryTeller = notification.StoryTeller.Name 
+                });
         }
 
+        public Task Handle(LobbyLeaveEvent notification, CancellationToken cancellationToken)
+        {
+            return _hubContext.Clients.All.LobbyLeft(new LobbyLeftDTO { Player = notification.Player.Name });
+        }
     }
 }

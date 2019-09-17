@@ -35,9 +35,11 @@ namespace Dixit.Tests.Core.Domain.Aggregates
         [Fact]
         public void PlayerPlayCard_ShouldChangeVotingGameState()
         {
-            var lobby = SetupLobbyWithOneRound();
+            var lobby = SetupLobby();
+            lobby.NewRound();
             var storyCard = lobby.Deck.Hand(lobby.CurrentStoryTeller).First();
-            var played = new List<Card>();
+            lobby.PlayerTellStory(lobby.CurrentStoryTeller, "Lorem ipsum", storyCard);
+            var played = new List<Card>() { storyCard };
 
             foreach(var player in lobby.Players)
             {
@@ -55,27 +57,23 @@ namespace Dixit.Tests.Core.Domain.Aggregates
         [Fact]
         public void PlayerVoteCard_ShouldRevoteCorrect()
         {
-            var lobby = SetupLobbyWithOneRound();
-            lobby.GameState = State.Voting;
-            var player1 = lobby.Players.First();
-            var player4 = lobby.Players.Last();
-            var card1 = lobby.Deck.Hand(player1).First();
-            lobby.PlayerVoteCard(player4, card1);
-            lobby.PlayerVoteCard(player4, card1);
-            var votes = lobby.CurrentVotes;
-
-            Assert.True(votes.Count == 1);
-        }
-
-
-        private Lobby SetupLobbyWithOneRound()
-        {
             var lobby = SetupLobby();
             lobby.NewRound();
             var storyCard = lobby.Deck.Hand(lobby.CurrentStoryTeller).First();
+            lobby.PlayerTellStory(lobby.CurrentStoryTeller, "Lorem ipsum", storyCard);
 
-            lobby.PlayerTellStory(lobby.CurrentStoryTeller,"Lorem ipsum", storyCard);
-            return lobby;
+            foreach (var player in lobby.Players)
+            {
+                if (player == lobby.CurrentStoryTeller) continue;
+                lobby.PlayerPlayCard(player, lobby.Deck.Hand(player).First());
+            }
+            var player1 = lobby.Players.Last();
+
+            lobby.PlayerVoteCard(player1, storyCard);
+            lobby.PlayerVoteCard(player1, storyCard);
+            var votes = lobby.CurrentVotes;
+
+            Assert.True(votes.Count == 1);
         }
 
         private Lobby SetupLobby()
@@ -84,27 +82,14 @@ namespace Dixit.Tests.Core.Domain.Aggregates
             var player2 = new Player("player2", "");
             var player3 = new Player("player3", "");
             var player4 = new Player("player4", "");
+            var lobby = new Lobby();
 
-            var card1 = new Card(1);
-            var card2 = new Card(2);
-            var card3 = new Card(3);
-            var card4 = new Card(4);
-            var card5 = new Card(5);
-            var card6 = new Card(6);
+            lobby.Players.Add(player1);
+            lobby.Players.Add(player2);
+            lobby.Players.Add(player3);
+            lobby.Players.Add(player4);
 
-            card1.DrawnBy(player1);
-            card2.DrawnBy(player2);
-            card3.DrawnBy(player3);
-            card4.DrawnBy(player4);
-
-            var lobby = new Lobby
-            {
-                Deck = new Deck(new List<Card> { card1, card2, card3, card4, card5, card6 }),
-                Players = new List<Player> { player1, player2, player3, player4 },
-                RoundNumber = 0,
-                GameState = State.Lobby,
-                Rounds = new List<Round>()
-            };
+            lobby.DealDeck();
 
             return lobby;
         }

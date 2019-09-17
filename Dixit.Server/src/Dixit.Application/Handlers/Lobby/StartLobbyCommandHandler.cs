@@ -27,9 +27,15 @@ namespace Dixit.Application.Handlers
             lobby.NewRound();
             lobby.DealDeck();
             await _awsDynamodbService.SaveLobby(lobby);
-            await _mediator.Publish(new LobbyStartedEvent { Code = request.Code, StoryTeller = lobby.CurrentStoryTeller } );
+            await _mediator.Publish(
+                new LobbyStartedEvent
+                {
+                    Code = request.Code,
+                    StoryTeller = lobby.CurrentStoryTeller,
+                    Players = lobby.ActivePlayers
+                });
 
-            foreach  (var player in lobby.Players)
+            foreach  (var player in lobby.ActivePlayers)
             {
                 await _mediator.Publish(new CardDrawnEvent { Code = request.Code, Player = player, Hand = lobby.Deck.Hand(player) });
             }

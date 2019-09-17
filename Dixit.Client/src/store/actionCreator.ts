@@ -5,13 +5,13 @@ import {
   Connect,
   Connected,
   CodeUpdated,
-  GameFetched,
   StoryRevealed,
   CardPlayed,
   StoryTold,
   CardVoted,
   RoundFinished,
-  CardDrawn
+  CardDrawn,
+  LobbyLeft
 } from "../client/events";
 import { Actions, AnyAction } from "../store/action";
 import { Dispatch } from "redux";
@@ -32,6 +32,11 @@ export const connectAction: ActionCreator<Connect> = message => ({
 
 export const lobbyJoinedAction: ActionCreator<LobbyJoined> = message => ({
   type: "lobbyJoined",
+  payload: message
+});
+
+export const lobbyLeftAction: ActionCreator<LobbyLeft> = message => ({
+  type: "lobbyLeft",
   payload: message
 });
 

@@ -9,6 +9,7 @@ export type Actions =
   | "cardDrawn"
   | "cardVoted"
   | "lobbyJoined"
+  | "lobbyLeft"
   | "gameStarted"
   | "storyTold"
   | "storyRevealed"

@@ -1,3 +1,5 @@
+import { GameState } from "../constants/GameState";
+
 export interface Message {}
 export interface Connect {
   name: string;
@@ -7,6 +9,10 @@ export interface Connect {
 export interface StartGame {}
 
 export interface LobbyJoined extends Message {
+  player: string;
+}
+
+export interface LobbyLeft extends Message {
   player: string;
 }
 
@@ -41,6 +47,7 @@ export interface RoundFinished extends Message {
 
 export interface GameStarted extends Message {
   storyTeller: string;
+  players: string[];
 }
 
 export interface Connected {
@@ -54,8 +61,13 @@ export interface CodeUpdated {
 export interface GameFetched {
   players: Player[];
   roundNumber: number;
-  round: any;
-  gameState: string;
+  gameState: GameState;
+  currentStoryTeller: string;
+  storyCard: number;
+  story: string;
+  cards: number[];
+  votes: Vote[];
+  hand: number[];
 }
 
 interface Player {

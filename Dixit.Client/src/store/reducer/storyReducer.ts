@@ -1,5 +1,5 @@
 import { Actions, AnyAction } from "..";
-import { StoryTold } from "../../client/events";
+import { StoryTold, GameFetched } from "../../client/events";
 export function storyReducer(
   state: string = "",
   action: AnyAction<Actions>
@@ -13,6 +13,11 @@ export function storyReducer(
     case "roundFinished": {
       return "";
     }
+
+    case "fetchGame": {
+      return (action.payload as GameFetched).story || "";
+    }
+
     default:
       return state;
   }

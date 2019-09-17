@@ -27,15 +27,13 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
   useEffect(() => {
     if (!connected) {
       dispatch(push("/"));
-    } else {
-      dispatch(fetchGameAction(props.match.params.code));
     }
   }, []);
 
   const tellStory = (card: number) => async () => {
     await Apiclient.tellStory({
       code: props.match.params.code,
-      story,
+      story: storyInput,
       card: card,
       storyTeller: name
     });
@@ -101,12 +99,8 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
         {gameState == GameState.Story && storyTeller == name && (
           <div>
             {hand.map(card => {
-              let action = playCard(card);
-              if (storyTeller == name) {
-                action = tellStory(card);
-              }
               return (
-                <button key={card} onClick={action}>
+                <button key={card} onClick={tellStory(card)}>
                   {card}
                 </button>
               );

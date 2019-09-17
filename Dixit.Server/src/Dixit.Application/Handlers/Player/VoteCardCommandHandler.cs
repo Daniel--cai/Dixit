@@ -52,7 +52,7 @@ namespace Dixit.Application.Handlers
                     StoryCard = storyCard
                 };
 
-                var tasks = lobby.Players.Select(p => _mediator.Publish(new CardDrawnEvent { Code = request.Code, Player = p, Hand = lobby.Deck.Hand(p) }));
+                var tasks = lobby.ActivePlayers.Select(p => _mediator.Publish(new CardDrawnEvent { Code = request.Code, Player = p, Hand = lobby.Deck.Hand(p) }));
                 await Task.WhenAll(tasks);
                 await _mediator.Publish(roundFinishedEvent);
 

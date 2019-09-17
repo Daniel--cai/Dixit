@@ -1,5 +1,10 @@
 import { Actions, AnyAction } from "..";
-import { RoundFinished, Scoreboard, GameFetched } from "../../client/events";
+import {
+  RoundFinished,
+  Scoreboard,
+  GameFetched,
+  GameStarted
+} from "../../client/events";
 
 export function scoreReducer(
   state: Scoreboard[] = [],
@@ -7,9 +12,16 @@ export function scoreReducer(
 ): Scoreboard[] {
   switch (action.type) {
     case "fetchGame": {
-      var payload = action.payload as GameFetched;
+      const payload = action.payload as GameFetched;
       return payload.players.map(player => <Scoreboard>{ ...player });
     }
+    case "gameStarted": {
+      const payload = action.payload as GameStarted;
+      return payload.players.map(
+        player => <Scoreboard>{ name: player, score: 0 }
+      );
+    }
+
     case "roundFinished": {
       console.log(action.payload);
       var updates = (action.payload as RoundFinished).playerUpdates;

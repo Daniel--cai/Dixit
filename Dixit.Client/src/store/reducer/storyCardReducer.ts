@@ -1,5 +1,5 @@
 import { Actions, AnyAction } from "..";
-import { RoundFinished } from "../../client/events";
+import { RoundFinished, GameFetched } from "../../client/events";
 export function storyCardReducer(
   state: number = -1,
   action: AnyAction<Actions>
@@ -7,6 +7,9 @@ export function storyCardReducer(
   switch (action.type) {
     case "roundFinished": {
       return (action.payload as RoundFinished).storyCard;
+    }
+    case "fetchGame": {
+      return (action.payload as GameFetched).storyCard;
     }
     default:
       return state;
