@@ -1,0 +1,20 @@
+@import-normalize;
+@import "./theme.scss";
+body {
+  margin: 0;
+  font-family: 'Karla', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+  background: $main-color;
+  color: $color;
+}
+
+* {
+  box-sizing: border-box
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+}

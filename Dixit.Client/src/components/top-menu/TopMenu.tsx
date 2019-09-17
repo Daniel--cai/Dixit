@@ -1,11 +1,12 @@
 import React from "react";
 import "./TopMenu.scss";
+import Logo from "../../assets/images/logo.png";
 export const TopMenu: React.FC = () => {
   return (
     <div className="menu-container">
       <nav>
         <a href="/" className="logo">
-          DIXIT
+          <img className="menu-container__logo" src={Logo}></img>
         </a>
         <input type="checkbox" id="menu-toggle" />
         <label htmlFor="menu-toggle" className="burger-menu">

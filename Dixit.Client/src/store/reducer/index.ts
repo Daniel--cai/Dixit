@@ -1,5 +1,5 @@
 import { connectRouter } from "connected-react-router";
-import { combineReducers, AnyAction } from "redux";
+import { combineReducers } from "redux";
 import { playerReducer } from "./playerReducer";
 import { nameReducer } from "./nameReducer";
 import { codeReducer } from "./codeReducer";
@@ -29,6 +29,6 @@ const createRootReducer = (history: any) =>
     storyTeller: storyTellerReducer,
     gameState: gameStateReducer,
     connected: connectedReducer,
-    router: connectRouter(history) as any
+    router: connectRouter(history)
   });
 export default createRootReducer;

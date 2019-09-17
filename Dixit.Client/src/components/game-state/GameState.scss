@@ -1,0 +1,51 @@
+@import "../../theme.scss";
+
+.hand {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 100%;
+}
+.hand__card {
+  cursor: pointer;
+  height: auto;
+  padding: 0.2em;
+  background: $light-color;
+  margin: 0.5em;
+  border-radius: $border-radius;
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &--disabled {
+    opacity: 0.85;
+    cursor: default;
+  }
+}
+
+.hand__card {
+}
+
+.hand__card__image {
+  max-width: 100%;
+}
+
+.enter-story {
+  padding: 0.2em;
+}
+.enter-story__input {
+  background: $light-color;
+  border: solid 1px $contrast;
+  outline: none;
+  color: white;
+  border-radius: $border-radius;
+  font-size: 1.2em;
+  padding: 0.5em;
+  width: 100%;
+  &:focus,
+  &:active {
+    background: $lighter-color;
+  }
+}
+.action__text {
+  font-size: 1.6em;
+}

@@ -1,10 +1,15 @@
+@import "../../theme.scss";
 .menu-container {
   width: 100%;
 }
 
+.menu-container__logo {
+  width: 100px;
+}
+
 nav {
   width: 100%;
-
+  background: $nav-bgcolor;
   max-width: 1720px;
   margin: 0 auto;
 
@@ -12,10 +17,9 @@ nav {
   grid-template-columns: auto 1fr auto;
 
   a {
-    color: black;
+    color: $nav-color;
     text-decoration: none;
     text-transform: uppercase;
-    font-family: "Oswald", sans-serif;
     // transition: 0.3s opacity ease-in-out;
     &:hover {
       opacity: 0.7;
@@ -27,7 +31,7 @@ nav {
   grid-column: 1;
   text-align: left;
   font-size: 40px;
-  padding: 1rem;
+  padding: 0.5rem 0.5rem 0 0.5rem;
 }
 .left-menu {
   align-self: center;
@@ -52,9 +56,9 @@ nav {
 .burger-menu__line {
   width: 35px;
   height: 5px;
-  background-color: black;
+  background-color: white;
   margin: 6px 0;
-  border-radius: 4px;
+  border-radius: $border-radius;
 }
 
 .burger-menu {

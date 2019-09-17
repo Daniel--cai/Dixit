@@ -14,7 +14,7 @@ import {
 } from "../store";
 import { MiddlewareAPI, Dispatch, Middleware, AnyAction } from "redux";
 import * as signalR from "@aspnet/signalr";
-import { push, CallHistoryMethodAction } from "connected-react-router";
+import { push } from "connected-react-router";
 
 // interface SignalrHubConnection extends Omit<signalR.HubConnection, "on"> {
 //   on: (action: Actions, dispatch: (data: any) => void) => void;

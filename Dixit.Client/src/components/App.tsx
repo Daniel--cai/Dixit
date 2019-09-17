@@ -3,7 +3,6 @@ import "./App.scss";
 import { TopMenu } from "./top-menu";
 import { Lobby, Game } from "../routes";
 import { ConnectedRouter } from "connected-react-router";
-import { configureStore } from "../store";
 import { Route } from "react-router";
 
 const App: React.FC<any> = ({ history }) => {

@@ -78,7 +78,7 @@ interface Player {
 export interface Scoreboard {
   name: string;
   score: number;
-  scored: number;
+  scored?: number;
 }
 
 export interface Vote {

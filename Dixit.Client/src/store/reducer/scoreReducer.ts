@@ -13,12 +13,12 @@ export function scoreReducer(
   switch (action.type) {
     case "fetchGame": {
       const payload = action.payload as GameFetched;
-      return payload.players.map(player => <Scoreboard>{ ...player });
+      return payload.players.map(player => ({ ...player } as Scoreboard));
     }
     case "gameStarted": {
       const payload = action.payload as GameStarted;
       return payload.players.map(
-        player => <Scoreboard>{ name: player, score: 0 }
+        player => ({ name: player, score: 0 } as Scoreboard)
       );
     }
 

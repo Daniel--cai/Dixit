@@ -13,10 +13,10 @@ import {
   CardDrawn,
   LobbyLeft
 } from "../client/events";
-import { Actions, AnyAction } from "../store/action";
+import { Actions } from "../store/action";
 import { Dispatch } from "redux";
 import { State } from ".";
-import { push, CallHistoryMethodAction } from "connected-react-router";
+import { push } from "connected-react-router";
 import { Apiclient } from "../api/api";
 
 export type ActionCreator<T extends Message> = (
