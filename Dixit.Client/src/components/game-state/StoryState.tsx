@@ -32,7 +32,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
             <div className="action__text">Tell a story</div>
             <div className="enter-story">
               <input
-                className="enter-story__input"
+                className="input"
                 value={storyInput}
                 onChange={e => setStoryInput(e.target.value)}
               />

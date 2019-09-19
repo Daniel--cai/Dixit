@@ -8,10 +8,7 @@
 .hand__card {
   cursor: pointer;
   height: auto;
-  padding: 0.2em;
-  background: $light-color;
   margin: 0.5em;
-  border-radius: $border-radius;
   &:hover {
     opacity: 0.85;
   }
@@ -48,4 +45,5 @@
 }
 .action__text {
   font-size: 1.6em;
+  color: $contrast;
 }

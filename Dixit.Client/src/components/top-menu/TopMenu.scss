@@ -89,12 +89,6 @@ nav {
     display: grid;
     grid-row: 2;
     grid-column: 1 / 4;
-    a:hover {
-      transform: skew(20deg);
-      span {
-        transform: skew(-20deg);
-      }
-    }
   }
 }
 

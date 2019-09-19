@@ -34,7 +34,7 @@ namespace Dixit.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-    
+            services.AddHealthChecks();
             services.AddSignalR();
             services.AddScoped<IAwsDynamodbClient, AwsDynamodbClient>();
             services.AddScoped<IAwsDynamodbService, AwsDynamodbService>();
@@ -80,7 +80,7 @@ namespace Dixit.Server
                 route.MapHub<LobbyEventsClientHub>("/lobbyevents");
             });
             app.UseHttpsRedirection();
-            
+            app.UseHealthChecks("/health");
             app.UseMvc();
         }
     }
