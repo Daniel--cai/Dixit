@@ -1,1 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dixit-client
+  labels:
+    app: dixit-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dixit-client
+  template:
+    metadata:
+      labels:
+        app: dixit-client
+    spec:
+      containers:
+        - name: dixit-client
+          image: danielcaihobby/boardgamehub:dixit-client-1.0.0
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
 
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dixit-client
+spec:
+  selector:
+    app: dixit-client
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

@@ -9,3 +9,4 @@ FROM mhart/alpine-node
 RUN npm install -g serve
 WORKDIR /app
 COPY --from=build /app/build .
+CMD [ "serve", "-l 80", "-s", "."]
