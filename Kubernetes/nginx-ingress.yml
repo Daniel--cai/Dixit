@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: boardgame
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: dixit-client
+              servicePort: 80
+          - path: /
+            backend:
+              serviceName: dixit-server
+              servicePort: 80
