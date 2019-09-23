@@ -9,7 +9,7 @@ const App: React.FC<any> = ({ history }) => {
   return (
     <ConnectedRouter history={history}>
       <div className="app">
-        <TopMenu />
+        {/* <TopMenu /> */}
         <Route exact path="/" component={Lobby} />
         <Route exact path="/lobby/:code" component={Lobby} />
         <Route exact path="/game/:code" component={Game} />

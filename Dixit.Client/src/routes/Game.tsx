@@ -6,6 +6,7 @@ import { push } from "connected-react-router";
 import { GameState } from "../constants/GameState";
 import { PlayerBoard } from "../components/player-board/PlayerBoard";
 import { Field } from "../components/field/Field";
+import { Modal } from "../components/modal/Modal";
 import {
   InProgressState,
   VotingState,
@@ -32,13 +33,11 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
   return (
     <div>
       <div>
-        <PlayerBoard />
-        <p>State: {gameState}</p>
-        {gameState === GameState.InProgress ||
+        {/* <PlayerBoard /> */}
+        {/* <p>State: {gameState}</p> */}
+        {/* {gameState === GameState.InProgress ||
           (gameState === GameState.Voting && <p>Story: {story}</p>)}
-        <br />
-        Name:{name}
-        <br />
+        Name:{name} */}
         <Field />
         {gameState === GameState.Story && (
           <StoryState code={props.match.params.code} />

@@ -5,6 +5,7 @@ import { Apiclient } from "../../api/api";
 import Image1 from "../../assets/cards/1.png";
 import "./GameState.scss";
 import classnames from "classnames";
+import { Modal } from "../modal/Modal";
 
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
@@ -12,6 +13,16 @@ export const StoryState: React.FC<{ code: string }> = props => {
   const hand = useSelector((store: State) => store.hand);
   const storyTeller = useSelector((store: State) => store.storyTeller);
   const disabled = storyInput === "";
+  const [showModal, setShowModel] = useState(false);
+
+  const pickCard = (card: number) => async () => {
+    setShowModel(true);
+  };
+
+  const hideModal = () => {
+    setShowModel(false);
+  };
+
   const tellStory = (card: number) => async () => {
     await Apiclient.tellStory({
       code: props.code,
@@ -22,33 +33,30 @@ export const StoryState: React.FC<{ code: string }> = props => {
   };
 
   return (
-    <div>
-      <div>
+    <>
+      <Modal
+        show={showModal}
+        message={"...and tell a story"}
+        submit={1}
+        hide={hideModal}
+      />
+      <div className="action__state--blurred">
         {storyTeller !== name && (
           <p> {storyTeller} is currently telling a story</p>
         )}
         {storyTeller === name && (
           <>
-            <div className="action__text">Tell a story</div>
-            <div className="enter-story">
-              <input
-                className="input"
-                value={storyInput}
-                onChange={e => setStoryInput(e.target.value)}
-              />
-            </div>
+            <div className="action__text">Pick a card...</div>
             <div className="hand">
               {hand.map(card => {
                 return (
                   <div
-                    className={classnames("hand__card", {
-                      "hand__card--disabled": disabled
-                    })}
+                    className="hand__card"
                     key={card}
-                    onClick={tellStory(card)}
+                    onClick={pickCard(card)}
                   >
                     <img
-                      className="hand__card__image"
+                      className="hand__card__image card__image"
                       src={Image1}
                       alt={`image-${card}`}
                     />
@@ -59,6 +67,6 @@ export const StoryState: React.FC<{ code: string }> = props => {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 };

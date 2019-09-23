@@ -1,0 +1,35 @@
+@import "../../theme.scss";
+
+.modal {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  opacity: 1;
+}
+
+.modal__content {
+  background: black;
+  border: solid 1px #bbbbbb;
+  margin: 5%;
+  padding: 5%;
+  border-radius: $border-radius;
+
+  input {
+    margin: 2em 0;
+    font-size: 1em;
+  }
+}
+.input__wrapper {
+  padding: 2em 1em;
+}
+
+.modal__content__message {
+  font-size: 2em;
+  margin: 1em;
+  color: $contrast;
+}
+
+.modal__content__card {
+  width: 50%;
+  border-radius: $card-border-radius;
+}
