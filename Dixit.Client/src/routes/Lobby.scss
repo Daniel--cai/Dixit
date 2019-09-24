@@ -172,3 +172,9 @@
   box-shadow: 0 0 2px $blue;
   text-shadow: 0 0 2px $blue;
 }
+
+.lobby-screen__help {
+  > * {
+    margin: 0 0.5em;
+  }
+}

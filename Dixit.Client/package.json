@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "@types/classnames": "^2.2.9",
     "@types/react-router-dom": "^4.3.5",
     "@types/react-transition-group": "^4.2.2",
