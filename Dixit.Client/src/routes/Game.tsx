@@ -31,24 +31,22 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
   }, []);
 
   return (
-    <div>
-      <div>
-        {/* <PlayerBoard /> */}
-        {/* <p>State: {gameState}</p> */}
-        {/* {gameState === GameState.InProgress ||
+    <>
+      {/* <PlayerBoard /> */}
+      {/* <p>State: {gameState}</p> */}
+      {/* {gameState === GameState.InProgress ||
           (gameState === GameState.Voting && <p>Story: {story}</p>)}
         Name:{name} */}
-        <Field />
-        {gameState === GameState.Story && (
-          <StoryState code={props.match.params.code} />
-        )}
-        {gameState === GameState.Voting && (
-          <VotingState code={props.match.params.code} />
-        )}
-        {gameState === GameState.InProgress && (
-          <InProgressState code={props.match.params.code} />
-        )}
-      </div>
-    </div>
+      <Field />
+      {gameState === GameState.Story && (
+        <StoryState code={props.match.params.code} />
+      )}
+      {gameState === GameState.Voting && (
+        <VotingState code={props.match.params.code} />
+      )}
+      {gameState === GameState.InProgress && (
+        <InProgressState code={props.match.params.code} />
+      )}
+    </>
   );
 };

@@ -1,6 +1,8 @@
 @import "../theme.scss";
 .app {
   text-align: center;
+  display: grid;
+  grid-template-rows: 68px auto;
 }
 
 .button {
@@ -54,6 +56,13 @@
     margin: 0.5em;
   }
   text-align: center;
+}
+
+.button--square {
+  background: $grey;
+  color: white;
+  width: 60px;
+  height: 60px;
 }
 
 .card__image {

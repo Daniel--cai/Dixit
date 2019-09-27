@@ -15,21 +15,21 @@ export const Modal: React.FC<Props> = props => {
   if (!props.show) return <></>;
   return (
     <div className="modal">
-      <div className="modal__content">
-        <div className="modal__content__message">{props.message}</div>
-        <img className="modal__content__card" src={Image1}></img>
-        <div className="input__wrapper">
-          <input className="input" placeholder="your story" />
-        </div>
-        <div className="button-group">
-          <button
-            onClick={() => props.hide()}
-            className="button button--secondary"
-          >
-            Back
-          </button>
-          <button className="button">okay</button>
-        </div>
+      <div className="modal__content__message">{props.message}</div>
+      <div className="input__wrapper">
+        <input className="input" placeholder="your story" />
+      </div>
+      <div className="modal__content__card">
+        <img src={Image1}></img>
+      </div>
+      <div className="button-group">
+        <button
+          onClick={() => props.hide()}
+          className="button button--secondary"
+        >
+          Back
+        </button>
+        <button className="button">okay</button>
       </div>
     </div>
   );
