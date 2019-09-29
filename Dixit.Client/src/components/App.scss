@@ -22,18 +22,31 @@
   color: white;
 }
 
+.button--round {
+  border-radius: 100%;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 1.25em;
+  padding: 0;
+  background: $color;
+  color: $main-color;
+  &.button--secondary {
+    background: $grey;
+  }
+}
+
 .input {
-  color: white;
+  color: $color;
   background: none;
   border: none;
   outline: none;
   border-bottom: 0.5px solid grey;
-  font-size: 2em;
+  font-size: 1.5em;
   padding: 0.2em;
   width: 100%;
   &:active,
   &:focus {
-    border-color: white;
+    border-color: $color;
   }
 }
 
@@ -65,6 +78,12 @@
   height: 60px;
 }
 
+.button--bare {
+  background: none;
+  color: $color;
+  font-size: 2em;
+}
+
 .card__image {
-  border-radius: $card-border-radius;
+  // border-radius: $card-border-radius;
 }

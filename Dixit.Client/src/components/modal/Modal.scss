@@ -6,9 +6,9 @@
   z-index: 1;
   opacity: 1;
   height: 100vh;
-  background: black;
+  background: $main-color;
   display: grid;
-  grid-template-rows: 10vh 10vh auto 60px;
+  grid-template-rows: auto 100px;
 }
 
 .modal__content {
@@ -17,8 +17,30 @@
     font-size: 1em;
   }
 }
-.input__wrapper {
+
+.input__modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: flex-end;
+  z-index: 2;
   padding: 2em 1em;
+}
+
+.input__wrapper {
+  width: 100%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  height: 40vh;
+  background: $main-color;
+  input,
+  textarea {
+    text-align: left;
+    padding: 0.5em;
+    border: none;
+  }
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
 }
 
 .modal__content__message {
@@ -33,8 +55,38 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  // filter: blur(5px) grayscale(50%);
+  filter: grayscale(75%);
   img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.modal__button__edit {
+  justify-self: right;
+  align-self: top;
+  margin: 0 1em;
+}
+
+.input-modal {
+  &-enter {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  &-enter-active {
+    transform: scaleY(1);
+    opacity: 100;
+    transition: all 0.25s ease;
+  }
+  &-exit {
+    transform: scaleY(1);
+    opacity: 100;
+  }
+  &-exit-active {
+    transform: scaleY(0);
+    opacity: 0;
+    transition: all 0.25s ease;
   }
 }

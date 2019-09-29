@@ -2,13 +2,13 @@
 
 .hand {
   display: grid;
-  grid-template-columns: auto auto auto;
-  width: 100%;
+  grid-template-columns: auto auto;
+  width: 100vw;
 }
 .hand__card {
   cursor: pointer;
   height: auto;
-  margin: 0.5em;
+  margin: 0 0.1em;
   &:hover {
     opacity: 0.85;
   }
@@ -23,7 +23,7 @@
 }
 
 .hand__card__image {
-  // max-width: 100%;
+  max-width: 100%;
   user-select: none;
 }
 

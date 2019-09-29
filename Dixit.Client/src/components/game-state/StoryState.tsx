@@ -10,6 +10,7 @@ import { Carousel } from "react-responsive-carousel";
 import { Breakpoint, BreakpointProvider } from "react-socks";
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
+  const [card, setCard] = useState(2);
   const name = useSelector((store: State) => store.name);
   const hand = useSelector((store: State) => store.hand);
   const storyTeller = useSelector((store: State) => store.storyTeller);
@@ -33,6 +34,10 @@ export const StoryState: React.FC<{ code: string }> = props => {
     });
   };
 
+  const changeIndex = (index: number, item: React.ReactNode) => {
+    setCard(index);
+  };
+
   return (
     <>
       <Modal
@@ -47,43 +52,27 @@ export const StoryState: React.FC<{ code: string }> = props => {
         )}
         {storyTeller === name && (
           <>
-            <Breakpoint small down>
-              <div className="carousel__wrapper">
-                <Carousel showThumbs={false} showStatus={false}>
-                  {hand.map(card => {
-                    return (
-                      <img
-                        className="hand__card__image card__image"
-                        src={Image1}
-                        alt={`image-${card}`}
-                      />
-                      // </div>
-                    );
-                  })}
-                </Carousel>
-              </div>
-            </Breakpoint>
-            <Breakpoint medium up>
-              <div className="hand">
-                {hand.map(card => {
-                  return (
-                    <div
-                      className="hand__card"
-                      key={card}
-                      onClick={pickCard(card)}
-                    >
-                      <img
-                        className="hand__card__image card__image"
-                        src={Image1}
-                        alt={`image-${card}`}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </Breakpoint>
+            <div className="hand">
+              {hand.map(card => {
+                return (
+                  <div
+                    className="hand__card"
+                    key={card}
+                    onClick={pickCard(card)}
+                  >
+                    <img
+                      className="hand__card__image card__image"
+                      src={Image1}
+                      alt={`image-${card}`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
             <div className="action">
-              <button className="button">Tell a story</button>
+              <button className="button" onClick={pickCard(card)}>
+                Tell a story {card}
+              </button>
             </div>
           </>
         )}
