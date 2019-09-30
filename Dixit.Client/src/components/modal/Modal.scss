@@ -14,7 +14,6 @@
 .modal__content {
   input {
     margin: 2em 0;
-    font-size: 1em;
   }
 }
 
@@ -23,24 +22,29 @@
   height: 100vh;
   position: fixed;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
   z-index: 2;
-  padding: 2em 1em;
 }
-
+.input__modal__caption {
+  font-size: 1.5em;
+  padding: 0.5em 0;
+  border-bottom: solid 0.05em $black;
+  display: grid;
+  grid-template-columns: 50px auto 50px;
+}
 .input__wrapper {
   width: 100%;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  height: 40vh;
+  // height: 40vh;
   background: $main-color;
   input,
   textarea {
     text-align: left;
     padding: 0.5em;
     border: none;
+    padding: 1em 1em;
   }
-  border-top-left-radius: $border-radius;
-  border-top-right-radius: $border-radius;
 }
 
 .modal__content__message {
@@ -72,20 +76,16 @@
 
 .input-modal {
   &-enter {
-    transform: scaleY(0);
     opacity: 0;
   }
   &-enter-active {
-    transform: scaleY(1);
     opacity: 100;
     transition: all 0.25s ease;
   }
   &-exit {
-    transform: scaleY(1);
     opacity: 100;
   }
   &-exit-active {
-    transform: scaleY(0);
     opacity: 0;
     transition: all 0.25s ease;
   }

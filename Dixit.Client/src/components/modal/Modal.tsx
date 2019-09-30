@@ -54,6 +54,13 @@ export const InputModal: React.FC<Props> = props => {
   return (
     <div className="input__modal">
       <div className="input__wrapper">
+        <div className="input__modal__caption">
+          <div></div>
+          <div>Tell a story</div>
+          <div>
+            <button onClick={props.hide}>Ok</button>
+          </div>
+        </div>
         <textarea className="input" placeholder="...tell a story" rows={10} />
       </div>
     </div>
