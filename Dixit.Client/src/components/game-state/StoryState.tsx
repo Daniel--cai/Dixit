@@ -69,11 +69,11 @@ export const StoryState: React.FC<{ code: string }> = props => {
                 );
               })}
             </div>
-            <div className="action">
+            {/* <div className="action">
               <button className="button" onClick={pickCard(card)}>
                 Tell a story {card}
               </button>
-            </div>
+            </div> */}
           </>
         )}
       </div>

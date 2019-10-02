@@ -35,7 +35,7 @@ export const Modal: React.FC<Props> = props => {
           <InputModal hide={hide} show={show} message={""} submit={""} />
         </CSSTransition>
         <div className="modal__content__card">
-          <img src={Image1}></img>
+          <img src={Image1} onClick={() => props.hide()}></img>
         </div>
 
         <button

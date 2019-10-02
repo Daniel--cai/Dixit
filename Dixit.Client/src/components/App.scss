@@ -1,8 +1,11 @@
 @import "../theme.scss";
 .app {
   text-align: center;
-  display: grid;
+  // display: grid;
   grid-template-rows: 68px auto;
+  background: url("../assets/images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .button {
