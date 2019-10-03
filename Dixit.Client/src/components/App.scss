@@ -3,21 +3,38 @@
   text-align: center;
   // display: grid;
   grid-template-rows: 68px auto;
-  background: url("../assets/images/bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background: url("../assets/images/bg.jpg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background: linear-gradient(210deg, #ff0000, #f2e260);
+  // background-size: 400% 400%;
+  // animation: backgroundAnimation 10s ease infinite;
+  background: rgba(0, 0, 0, 0) linear-gradient(130deg, #ff8443, #fe5e17) repeat
+    scroll 0 0;
 }
 
 .button {
-  background: $green;
+  background: transparent;
   color: white;
   outline: none;
-  border: none;
+  border: 2px solid #fff;
   padding: 0.75em 1.5em;
   font-size: 1em;
   border-radius: $border-radius;
   text-align: center;
   text-transform: lowercase;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: $orange;
+    color: #fff;
+    border-color: $orange;
+  }
+}
+
+.button--primary {
+  background: $orange;
+  border-color: $orange;
+  color: white;
 }
 
 .button--secondary {
@@ -89,4 +106,16 @@
 
 .card__image {
   // border-radius: $card-border-radius;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 24% 0%;
+  }
+  50% {
+    background-position: 77% 100%;
+  }
+  100% {
+    background-position: 24% 0%;
+  }
 }

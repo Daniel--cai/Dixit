@@ -5,7 +5,7 @@ import { Apiclient } from "../../api/api";
 import Image1 from "../../assets/cards/1.png";
 import "./GameState.scss";
 import classnames from "classnames";
-import { Modal } from "../modal/Modal";
+import { Modal, InputModal } from "../modal/Modal";
 import { Carousel } from "react-responsive-carousel";
 import { Breakpoint, BreakpointProvider } from "react-socks";
 export const StoryState: React.FC<{ code: string }> = props => {
@@ -40,7 +40,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
 
   return (
     <>
-      <Modal
+      <InputModal
         show={showModal}
         message={"...and tell a story"}
         submit={1}

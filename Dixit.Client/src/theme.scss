@@ -10,6 +10,7 @@
 
 //https://dribbble.com/shots/5308261-Card-Game-App-Companion
 //https://dribbble.com/shots/5006439-Bracket-generator-mobile
+//https://colorlib.com/preview/theme/appson/appson/index.html#
 
 // $main-color: #171717;
 // $color: #ffffff;
@@ -40,11 +41,11 @@ $green: #62a911;
 $yellow: #fde60a;
 $red: #f10125;
 $blue: #0fbaee;
-$black: #000000;
-$grey: #5a5a5a;
+$black: #444444;
+$grey: #ededed;
+$orange: #ff6818;
+$button-secondary: $orange;
 
-$button-secondary: #383838;
-
-$border-radius: 10px;
+$border-radius: 20px;
 $card-border-radius: 10px;
-$panel-text: #66a51e;
+$panel-text: $black;

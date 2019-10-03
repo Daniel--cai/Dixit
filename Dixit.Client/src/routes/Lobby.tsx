@@ -57,16 +57,13 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
           ))}
         </div>
         <div className="lobby-screen__actions">
-          <button className="button" onClick={startGame}>
+          <button className="button button--primary" onClick={startGame}>
             everyone's in
           </button>
         </div>
 
         <div className="lobby-screen__help">
-          <button
-            className="button__round button__round--red"
-            onClick={startGame}
-          >
+          <button className="button__round" onClick={startGame}>
             <i className="fas fa-camera" />
           </button>
           <button className="button__round" onClick={startGame}>

@@ -50,7 +50,7 @@ export const Modal: React.FC<Props> = props => {
 };
 
 export const InputModal: React.FC<Props> = props => {
-  // if (!props.show) return <></>;
+  if (!props.show) return <></>;
   return (
     <div className="input__modal">
       <div className="input__wrapper">
