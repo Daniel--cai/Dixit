@@ -52,6 +52,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
         )}
         {storyTeller === name && (
           <>
+            <div className="call-to-action">d;sfk</div>
             <div className="hand">
               {hand.map(card => {
                 return (

@@ -10,14 +10,26 @@ const App: React.FC<any> = ({ history }) => {
     <ConnectedRouter history={history}>
       <BreakpointProvider>
         <div className="app">
-          {/* <TopMenu /> */}
           <Route exact path="/" component={Lobby} />
-          <Route exact path="/lobby/:code" component={Lobby} />
-          <Route exact path="/game/:code" component={Game} />
+          <DefaultLayout exact path="/lobby/:code" component={Lobby} />
+          <DefaultLayout exact path="/game/:code" component={Game} />
         </div>
       </BreakpointProvider>
     </ConnectedRouter>
   );
 };
 
+const DefaultLayout: React.FC<any> = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={matchProps => (
+        <>
+          <TopMenu />
+          <Component {...matchProps} />
+        </>
+      )}
+    />
+  );
+};
 export default App;

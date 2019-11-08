@@ -2,7 +2,7 @@
 
 .hand {
   display: flex;
-  height: 100%;
+  // height: 100%;
   overflow-x: auto;
   padding: 1em;
   overflow-y: hidden;
@@ -46,6 +46,12 @@
   border-radius: $border-radius;
 }
 
+.call-to-action {
+  background: $nav-secondary;
+  color: white;
+  padding: 1em;
+}
+
 .enter-story {
   padding: 0.2em;
 }
@@ -69,7 +75,10 @@
 }
 
 .game-state {
-  height: 100%;
+  height: calc(100vh - #{$nav-height});
+  background: white;
+  display: grid;
+  grid-template-rows: $nav-height auto;
 }
 .game-state--blurred {
   // filter: blur(5px) grayscale(50%);
