@@ -5,19 +5,19 @@ import { Apiclient } from "../../api/api";
 import "./GameState.scss";
 
 export const VotingState: React.FC<{ code: string }> = props => {
-  const revealed = useSelector((store: State) => store.revealed);
-  const name = useSelector((store: State) => store.name);
+  const player = useSelector((store: State) => store.player);
+  const story = useSelector((store: State) => store.story);
   const voteCard = (card: number) => async () => {
     await Apiclient.voteCard({
       code: props.code,
       card: card,
-      player: name
+      player: player.name
     });
   };
 
   return (
     <div>
-      {revealed.sort().map(card => {
+      {story.revealed.sort().map(card => {
         return (
           <button key={card} onClick={voteCard(card)}>
             {card}

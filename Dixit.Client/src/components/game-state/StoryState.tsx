@@ -11,9 +11,9 @@ import { Breakpoint, BreakpointProvider } from "react-socks";
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
   const [card, setCard] = useState(2);
-  const name = useSelector((store: State) => store.name);
-  const hand = useSelector((store: State) => store.hand);
-  const storyTeller = useSelector((store: State) => store.storyTeller);
+  const player = useSelector((store: State) => store.player);
+  const story = useSelector((store: State) => store.story);
+  const storyTeller = story.currentStoryTeller;
   const disabled = storyInput === "";
   const [showModal, setShowModel] = useState(false);
 
@@ -30,7 +30,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
       code: props.code,
       story: storyInput,
       card: card,
-      storyTeller: name
+      storyTeller: player.name
     });
   };
 
@@ -47,14 +47,14 @@ export const StoryState: React.FC<{ code: string }> = props => {
         hide={hideModal}
       />
       <div className="game-state game-state--blurred">
-        {storyTeller !== name && (
+        {storyTeller !== player.name && (
           <p> {storyTeller} is currently telling a story</p>
         )}
-        {storyTeller === name && (
+        {storyTeller === player.name && (
           <>
             <div className="call-to-action">d;sfk</div>
             <div className="hand">
-              {hand.map(card => {
+              {player.hand.map(card => {
                 return (
                   <div
                     className="hand__card"

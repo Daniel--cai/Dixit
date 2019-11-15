@@ -38,12 +38,12 @@ export interface StoryRevealed extends Message {
   cards: number[];
 }
 
-export interface RoundFinished extends Message {
-  votes: Vote[];
-  playerUpdates: Scoreboard[];
-  nextStoryTeller: string;
-  storyCard: number;
-}
+// export interface RoundFinished extends Message {
+//   votes: Vote[];
+//   playerUpdates: Scoreboard[];
+//   nextStoryTeller: string;
+//   storyCard: number;
+// }
 
 export interface GameStarted extends Message {
   storyTeller: string;
@@ -58,28 +58,28 @@ export interface CodeUpdated {
   code: boolean;
 }
 
-export interface GameFetched {
-  players: Player[];
-  roundNumber: number;
-  gameState: GameState;
-  currentStoryTeller: string;
-  storyCard: number;
-  story: string;
-  cards: number[];
-  votes: Vote[];
-  hand: number[];
-}
+// export interface GameFetched {
+//   players: Player[];
+//   roundNumber: number;
+//   gameState: GameState;
+//   currentStoryTeller: string;
+//   storyCard: number;
+//   story: string;
+//   cards: number[];
+//   votes: Vote[];
+//   hand: number[];
+// }
 
 interface Player {
   name: string;
   score: number;
 }
 
-export interface Scoreboard {
-  name: string;
-  score: number;
-  scored?: number;
-}
+// export interface Scoreboard {
+//   name: string;
+//   score: number;
+//   scored?: number;
+// }
 
 export interface Vote {
   player: string;

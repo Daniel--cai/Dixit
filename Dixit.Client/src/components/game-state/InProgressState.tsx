@@ -5,30 +5,26 @@ import { Apiclient } from "../../api/api";
 import "./GameState.scss";
 
 export const InProgressState: React.FC<{ code: string }> = props => {
-  const name = useSelector((store: State) => store.name);
-  const hand = useSelector((store: State) => store.hand);
-
+  const player = useSelector((store: State) => store.player);
   const story = useSelector((store: State) => store.story);
-
-  const storyTeller = useSelector((store: State) => store.storyTeller);
 
   const playCard = (card: number) => async () => {
     await Apiclient.playCard({
       code: props.code,
       card: card,
-      player: name
+      player: player.name
     });
   };
 
   return (
     <div>
       <p>
-        Storyteller: {storyTeller}
+        Storyteller: {story.currentStoryTeller}
         <br /> Story: {story}
       </p>
-      {storyTeller !== name && (
+      {story.currentStoryTeller !== player.name && (
         <div>
-          {hand.map(card => {
+          {player.hand.map(card => {
             return (
               <button key={card} onClick={playCard(card)}>
                 {card}

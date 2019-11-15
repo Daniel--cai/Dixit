@@ -1,17 +1,17 @@
 import {
-  State,
-  lobbyJoinedAction,
-  lobbyLeftAction,
-  connectedAction,
-  gameStartedAction,
-  storyToldAction,
-  cardPlayedAction,
-  cardVotedAction,
-  roundFinishedAction,
-  storyRevealedAction,
-  cardDrawnAction,
-  fetchGameAction
-} from "../store";
+  lobbyJoined,
+  lobbyLeft,
+  connected,
+  gameStarted,
+  storyTold,
+  cardPlayed,
+  cardVoted,
+  roundFinished,
+  storyRevealed,
+  cardDrawn,
+  fetchGame
+} from "../store/events/actions";
+import { State } from "../store";
 import { MiddlewareAPI, Dispatch, Middleware, AnyAction } from "redux";
 import * as signalR from "@aspnet/signalr";
 import { push } from "connected-react-router";
@@ -30,25 +30,25 @@ export const signalRMiddleware: Middleware<Dispatch> = ({
   dispatch,
   getState
 }: MiddlewareAPI<any, State>) => next => async (action: AnyAction) => {
-  if (!getState().connected && action.type === "connect") {
+  if (!getState().player.connected && action.type === "connect") {
     const connectionHub = `/lobbyevents?name=${action.payload.name}&code=${action.payload.code}`;
     const connection: signalR.HubConnection = new signalR.HubConnectionBuilder()
       .withUrl(connectionHub)
       .build();
     await startSignalRConnection(connection);
-    dispatch(connectedAction({ success: true }));
+    dispatch(connected({ success: true }));
     dispatch(push(`/lobby/${action.payload.code}`));
-    dispatch(fetchGameAction(action.payload.code));
+    dispatch(fetchGame(action.payload.code));
 
-    connection.on("lobbyJoined", data => dispatch(lobbyJoinedAction(data)));
-    connection.on("lobbyLeft", data => dispatch(lobbyLeftAction(data)));
-    connection.on("lobbyStarted", data => dispatch(gameStartedAction(data)));
-    connection.on("storyTold", data => dispatch(storyToldAction(data)));
-    connection.on("cardDrawn", data => dispatch(cardDrawnAction(data)));
-    connection.on("cardPlayed", data => dispatch(cardPlayedAction(data)));
-    connection.on("cardVoted", data => dispatch(cardVotedAction(data)));
-    connection.on("roundFinished", data => dispatch(roundFinishedAction(data)));
-    connection.on("storyRevealed", data => dispatch(storyRevealedAction(data)));
+    connection.on("lobbyJoined", data => dispatch(lobbyJoined(data)));
+    connection.on("lobbyLeft", data => dispatch(lobbyLeft(data)));
+    connection.on("lobbyStarted", data => dispatch(gameStarted(data)));
+    connection.on("storyTold", data => dispatch(storyTold(data)));
+    connection.on("cardDrawn", data => dispatch(cardDrawn(data)));
+    connection.on("cardPlayed", data => dispatch(cardPlayed(data)));
+    connection.on("cardVoted", data => dispatch(cardVoted(data)));
+    connection.on("roundFinished", data => dispatch(roundFinished(data)));
+    connection.on("storyRevealed", data => dispatch(storyRevealed(data)));
   }
   return next(action);
 };

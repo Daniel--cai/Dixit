@@ -2,18 +2,17 @@ import React from "react";
 import { State } from "../../store";
 import { useSelector } from "react-redux";
 export const Field: React.FC = () => {
-  const votes = useSelector((store: State) => store.vote);
-  const storyCard = useSelector((store: State) => store.storyCard);
+  const story = useSelector((store: State) => store.story);
   return (
     <>
-      {votes.map(vote => (
+      {story.votes.map(vote => (
         <div>
-          {vote.card === storyCard && (
+          {vote.card === story.storyCard && (
             <b>
               {vote.player} - {vote.card}
             </b>
           )}
-          {vote.card !== storyCard && (
+          {vote.card !== story.storyCard && (
             <span>
               {vote.player} = {vote.card}
             </span>
