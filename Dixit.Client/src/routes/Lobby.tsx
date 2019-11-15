@@ -45,7 +45,7 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
         <div className="lobby-screen__player-list ">
           {game.players.map(player => (
             <div className="lobby-screen__player" key={player.name}>
-              <span>{player}</span>
+              <span>{player.name}</span>
             </div>
           ))}
           {new Array(remaining).fill(".").map(player => (
@@ -53,7 +53,7 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
               key={player}
               className="lobby-screen__player lobby-screen__player--empty"
             >
-              <span>{player}</span>
+              <span>{player.name}</span>
             </div>
           ))}
         </div>

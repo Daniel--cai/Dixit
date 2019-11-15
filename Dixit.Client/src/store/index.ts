@@ -8,7 +8,7 @@ import { storyReducer } from "./story/reducers";
 import { gameStateReducer } from "./game/reducers";
 
 import { createBrowserHistory } from "history";
-
+import { initialise } from "./initialise";
 export const history = createBrowserHistory();
 const rootReducer = combineReducers({
   player: playerReducer,
@@ -23,6 +23,7 @@ const createRootReducer = (history: any) => rootReducer;
 export function configureStore() {
   const store = createStore(
     createRootReducer(history),
+    initialise(),
     compose(applyMiddleware(routerMiddleware(history)))
   );
 
