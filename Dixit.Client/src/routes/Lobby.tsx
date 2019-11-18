@@ -8,6 +8,7 @@ import Axios from "axios";
 import { Apiclient } from "../api/api";
 import Logo from "../assets/images/logo.png";
 import { CSSTransition } from "react-transition-group";
+import { Button } from "../components/button/Button";
 import "./Lobby.scss";
 
 export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
@@ -58,9 +59,9 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
           ))}
         </div>
         <div className="lobby-screen__actions">
-          <button className="button button--primary" onClick={startGame}>
+          <Button primary onClick={startGame}>
             everyone's in
-          </button>
+          </Button>
         </div>
 
         <div className="lobby-screen__help">
