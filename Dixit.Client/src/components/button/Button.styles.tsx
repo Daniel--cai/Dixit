@@ -13,23 +13,22 @@ interface ButtonCssProps {
 
 export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
   let css: SxStyleProp = {
-    height: "2rem",
     border: "1px solid",
     borderColor: "primary",
+    backgroundColor: "primary",
     outline: "none",
-
-    borderRadius: "0.25rem",
     cursor: "pointer",
     padding: "0.75rem 1.5rem",
     fontSize: "1rem",
     textAlign: "center",
-    textTransform: "lowercase"
+    color: "white",
+    boxShadow: "base"
   };
 
   css[":hover"] = {
-    backgroundColor: "orange",
+    backgroundColor: "primaryLight",
     color: "white",
-    borderColor: "orange"
+    borderColor: "primaryLight"
   };
 
   if (props.fullWidth) {

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import { TopMenu } from "./top-menu";
+import { Navigation } from "./navigation";
 import { Lobby, Game } from "../routes";
 import { ConnectedRouter } from "connected-react-router";
 import { Route } from "react-router";
@@ -29,7 +29,7 @@ const DefaultLayout: React.FC<any> = ({ component: Component, ...rest }) => {
       {...rest}
       render={matchProps => (
         <>
-          <TopMenu />
+          <Navigation />
           <Component {...matchProps} />
         </>
       )}

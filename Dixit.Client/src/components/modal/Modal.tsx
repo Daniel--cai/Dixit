@@ -1,9 +1,12 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { State } from "../../store";
-import "./Modal.scss";
+import * as styles from "./Modal.styles";
 import Image1 from "../../assets/cards/1.png";
 import { CSSTransition } from "react-transition-group";
+import { Button } from "../button";
+import {TextArea} from "../textarea";
+import {Spacing} from "../spacing";
 
 interface Props {
   message: string;
@@ -17,7 +20,7 @@ export const Modal: React.FC<Props> = props => {
   const hide = () => {
     setShow(false);
   };
-  if (!props.show) return <></>;
+  if (!props.show) return <React.Fragment></React.Fragment>;
   return (
     <CSSTransition
       in={props.show}
@@ -25,7 +28,7 @@ export const Modal: React.FC<Props> = props => {
       classNames="input-modal"
       unmountOnExit
     >
-      <div className="modal">
+      <div sx={styles.modalCss}>
         <CSSTransition
           in={show}
           timeout={250}
@@ -34,7 +37,7 @@ export const Modal: React.FC<Props> = props => {
         >
           <InputModal hide={hide} show={show} message={""} submit={""} />
         </CSSTransition>
-        <div className="modal__content__card">
+        <div sx={styles.modalContentCss}>
           <img src={Image1} onClick={() => props.hide()}></img>
         </div>
 
@@ -50,18 +53,19 @@ export const Modal: React.FC<Props> = props => {
 };
 
 export const InputModal: React.FC<Props> = props => {
-  if (!props.show) return <></>;
+  if (!props.show) return <React.Fragment></React.Fragment>;
   return (
-    <div className="input__modal">
-      <div className="input__wrapper">
-        <div className="input__modal__caption">
-          <div></div>
+    <div sx={styles.inputModalCss} >
+      <div sx={styles.inputWrapperCss} >
+        <div sx={styles.inputWrapperCaptionCss}>
           <div>Tell a story</div>
-          <div>
-            <button onClick={props.hide}>Ok</button>
-          </div>
         </div>
-        <textarea className="input" placeholder="...tell a story" rows={10} />
+        <Spacing size="default">
+        <TextArea placeholder="...tell a story" rows={10} />
+        </Spacing>
+        <Spacing size="small">
+        <Button onClick={props.hide}>Send</Button>
+        </Spacing >
       </div>
     </div>
   );

@@ -26,13 +26,7 @@
   align-items: flex-start;
   z-index: 2;
 }
-.input__modal__caption {
-  font-size: 1.5em;
-  padding: 0.5em 0;
-  border-bottom: solid 0.05em $black;
-  display: grid;
-  grid-template-columns: 50px auto 50px;
-}
+
 .input__wrapper {
   width: 100%;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

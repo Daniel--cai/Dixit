@@ -8,6 +8,7 @@ import classnames from "classnames";
 import { Modal, InputModal } from "../modal/Modal";
 import { Carousel } from "react-responsive-carousel";
 import { Breakpoint, BreakpointProvider } from "react-socks";
+import { Banner } from "../banner/Banner";
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
   const [card, setCard] = useState(2);
@@ -52,7 +53,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
         )}
         {storyTeller === player.name && (
           <>
-            <div className="call-to-action">d;sfk</div>
+            <Banner>d;sfk</Banner>
             <div className="hand">
               {player.hand.map(card => {
                 return (

@@ -15,7 +15,6 @@ export interface ButtonProps
   fullWidth?: boolean;
   primary?: boolean;
   secondary?: boolean;
-
   onClick?: (e: React.SyntheticEvent) => any;
 }
 

@@ -8,7 +8,9 @@ import Axios from "axios";
 import { Apiclient } from "../api/api";
 import Logo from "../assets/images/logo.png";
 import { CSSTransition } from "react-transition-group";
-import { Button } from "../components/button/Button";
+import { Button } from "../components/button";
+import { Spacing } from "../components/spacing";
+
 import "./Lobby.scss";
 
 export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
@@ -34,9 +36,7 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
   };
 
   const remaining = 8 - game.players.length;
-
   const [inProp, setInProp] = useState(false);
-
   if (code != null && player.connected) {
     return (
       <div className="lobby-screen">
@@ -44,8 +44,8 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
           <div className="lobby-screen__code__text">1234</div>
         </div>
         <div className="lobby-screen__player-list ">
-          {game.players.map(player => (
-            <div className="lobby-screen__player" key={player.name}>
+          {game.players.map((player, index) => (
+            <div className="lobby-screen__player" key={index}>
               <span>{player.name}</span>
             </div>
           ))}
@@ -59,9 +59,11 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
           ))}
         </div>
         <div className="lobby-screen__actions">
-          <Button primary onClick={startGame}>
-            everyone's in
-          </Button>
+          <Spacing size="default">
+            <Button primary onClick={startGame}>
+              everyone's in
+            </Button>
+          </Spacing>
         </div>
 
         <div className="lobby-screen__help">

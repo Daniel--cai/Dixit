@@ -3,10 +3,11 @@
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 @import "./theme.scss";
-@import "./foundation.scss";
+// @import "./foundation.scss";
 body {
   margin: 0;
   font-family: "Karla", sans-serif;
+  font-size: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
