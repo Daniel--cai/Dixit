@@ -1,16 +1,17 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, SxStyleProp } from "theme-ui";
 
 import React from "react";
 import * as styles from "./Banner.styles";
 
 interface BannerProps {
     children?: React.ReactNode;
+    sx?: SxStyleProp
 }
 
-export const Banner: React.FC<BannerProps> = ({children, ...rest}) => {
+export const Banner: React.FC<BannerProps> = ({ children, ...rest }) => {
     return (
-        <div sx={styles.bannerCss} {...rest}>{children}</div>
+        <div sx={{ ...rest.sx || {}, ...styles.bannerCss }} {...rest}>{children}</div>
     );
 };
 

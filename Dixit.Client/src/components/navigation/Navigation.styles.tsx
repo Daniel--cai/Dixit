@@ -5,7 +5,7 @@ export const navigationBaseCss = {
     backgroundColor: "orange-dark-1",
     boxShadow: "base",
     margin: "0 auto",
-    height:"75px"
+    height: ["3rem", "3rem", "6rem"]
 }
 
 export const navigationCss: SxStyleProp = {

@@ -49,7 +49,8 @@ export const StoryState: React.FC<{ code: string }> = props => {
         submit={1}
         hide={hideModal}
       />
-      <Banner>d;sfk</Banner>
+
+      <Banner sx={{display: ["none", "block","block"]}}>1234</Banner>
       <div sx={{ width: ["100%", "85%", "30rem"], margin: "auto" }}>
         {storyTeller !== player.name && (
           <p> {storyTeller} is currently telling a story</p>

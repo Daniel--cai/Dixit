@@ -1,0 +1,31 @@
+.accordion-enter {
+  transform: translateX(-100%);
+}
+.accordion-enter.accordion-enter-active {
+  transform: translateX(0%);
+  transition: transform 200ms ease-in-out;
+}
+.accordion-exit {
+  transform: translateX(0%);
+}
+.accordion-exit.accordion-exit-active {
+  transform: translateX(-100%);
+  transition: transform 200ms ease-in-out;
+}
+
+.overlay {
+  &-enter {
+    opacity: 0;
+  }
+  &-enter-active {
+    opacity: 0.5;
+    transition: opacity 200ms ease-in-out;
+  }
+  &-exit {
+    opacity: 0.5;
+  }
+  &-exit-active {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+  }
+}
