@@ -1,5 +1,5 @@
 [build]
-  publish="Dixit.Client/build/"
+  publish="build/"
   base = "Dixit.Client/"
   command = "npm run build"
 
