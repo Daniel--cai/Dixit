@@ -9,7 +9,6 @@ import {ThemeProvider} from "theme-ui";
 const App: React.FC<any> = ({ history }) => {
   return (
     <ConnectedRouter history={history}>
-      <BreakpointProvider>
       <ThemeProvider theme={theme}>
         <div className="app">
           <Route exact path="/" component={Lobby} />
@@ -17,7 +16,6 @@ const App: React.FC<any> = ({ history }) => {
           <DefaultLayout exact path="/game/:code" component={Game} />
         </div>
         </ThemeProvider>
-      </BreakpointProvider>
     </ConnectedRouter>
   );
 };

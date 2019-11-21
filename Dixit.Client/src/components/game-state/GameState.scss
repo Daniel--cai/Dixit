@@ -60,9 +60,7 @@
 }
 
 .game-state {
-  background: white;
-  display: grid;
-  grid-template-rows: $nav-height auto;
+
 }
 .game-state--blurred {
   // filter: blur(5px) grayscale(50%);

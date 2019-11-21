@@ -7,6 +7,7 @@ import * as styles from "./Navigation.styles";
 interface NavigationProps {
 
 }
+
 export const Navigation: React.FC<NavigationProps> = (props) => {
   const [toggle, setToggle] = useState(false);
   return (

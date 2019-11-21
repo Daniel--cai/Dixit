@@ -9,7 +9,6 @@ import "./GameState.scss";
 import classnames from "classnames";
 import { Modal, InputModal } from "../modal/Modal";
 import { Carousel } from "react-responsive-carousel";
-import { Breakpoint, BreakpointProvider } from "react-socks";
 import { Banner } from "../banner/Banner";
 import { Card } from "../card/Card";
 export const StoryState: React.FC<{ code: string }> = props => {
