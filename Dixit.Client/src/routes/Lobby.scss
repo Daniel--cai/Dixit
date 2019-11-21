@@ -7,7 +7,7 @@
 .lobby-screen {
   display: grid;
   grid-template-rows: 100px auto 100px 50px;
-  height: 100%;
+  height: 100vh;
   background: $nav-secondary;
 }
 
