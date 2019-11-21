@@ -3,15 +3,14 @@
   text-align: center;
   // display: grid;
   grid-template-rows: $nav-height auto;
-  height: 100vh;
+  height: 100%;
   // background: url("../assets/images/bg.jpg");
   // background-repeat: no-repeat;
   // background-size: cover;
   // background: linear-gradient(210deg, #ff0000, #f2e260);
   // background-size: 400% 400%;
   // animation: backgroundAnimation 10s ease infinite;
-  background: rgba(0, 0, 0, 0) linear-gradient(130deg, #ff8443, #fe5e17) repeat
-    scroll 0 0;
+  // background: rgba(0, 0, 0, 0) linear-gradient(130deg, #ff8443, #fe5e17) repeat scroll 0 0;
 }
 
 .button {

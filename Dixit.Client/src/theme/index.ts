@@ -4,10 +4,19 @@ import { shadows } from "./foundation/shadows";
 
 export default {
   breakpoints: ["40em", "52em", "64em"],
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
+  fontSizes: [
+    "0.5rem",
+    "0.75rem",
+    "1rem",
+    "1.25rem",
+    "1.5rem",
+    "2rem",
+    "3rem",
+    "4rem"
+  ],
   colors,
   radii,
-  // space: [0, 4, 8, 16, 32, 64, 128, 256],
+  space: [0, "0.25rem", "0.5rem", "0.75rem", "1rem", "1.5rem", "2rem", "4rem"],
   fonts: {
     body: "system-ui, sans-serif",
     heading: "inherit",

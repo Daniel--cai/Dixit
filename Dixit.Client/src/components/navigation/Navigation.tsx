@@ -3,7 +3,6 @@ import { jsx } from "theme-ui";
 import React, { useState } from "react";
 import Logo from "../../assets/images/logo.png";
 import * as styles from "./Navigation.styles";
-import { width } from "styled-system";
 
 interface NavigationProps {
 
@@ -11,10 +10,11 @@ interface NavigationProps {
 export const Navigation: React.FC<NavigationProps> = (props) => {
   const [toggle, setToggle] = useState(false);
   return (
-    <div sx={{width: "100%"}}>
+    <div sx={{ width: "100%" }}>
+
       <nav sx={styles.navigationCss}>
         <a href="/" sx={styles.navigationLogoCss}>
-          <img sx={{width: "100px"}} src={Logo}></img>
+          <img sx={{ width: "100px" }} src={Logo}></img>
         </a>
         <div sx={styles.leftMenuCss}>
           <a href="/" sx={styles.leftMenuLinkCss}>
@@ -28,6 +28,11 @@ export const Navigation: React.FC<NavigationProps> = (props) => {
           </a>
         </div>
       </nav>
+
+      <nav sx={styles.navigationMobileCss}>
+        <i className="fas fa-bars" sx={{ fontSize: 5, padding: 5, color:"white" }} />
+      </nav>
+
     </div>
   );
 };

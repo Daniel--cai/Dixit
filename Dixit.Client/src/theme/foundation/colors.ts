@@ -62,7 +62,8 @@ const semantics = {
   "warning-light": "",
   danger:"",
   "error-light":"#F13C46",
-  info: "#0D69D1"
+  info: "#0D69D1",
+  muted: gray["gray-10"]
 }
 
 const primary = {

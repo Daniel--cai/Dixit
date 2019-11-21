@@ -31,7 +31,8 @@ export const inputModalCss: SxStyleProp = {
 }
 
 export const inputWrapperCss: SxStyleProp = {
-    width: "90%",
+    width: ["100%", "95%","90%"],
+    height: ["30rem"],
     boxShadow: "layer",
     // height: 40vh",
     backgroundColor: "white",
@@ -44,9 +45,12 @@ export const inputWrapperCss: SxStyleProp = {
     // }
 }
 export const inputWrapperCaptionCss: SxStyleProp = {
-    fontSize: "1.5em",
-    padding: "0.5em 0",
-    color:"primary"
+    fontSize: "4",
+    paddingTop: "3",
+    paddingBottom: "3",
+    color:"primary",
+    display: "grid",
+    gridTemplateColumns: "auto auto auto"
 }
         // img {
         //   width: auto;

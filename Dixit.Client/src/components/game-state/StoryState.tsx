@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../store";
@@ -9,6 +11,7 @@ import { Modal, InputModal } from "../modal/Modal";
 import { Carousel } from "react-responsive-carousel";
 import { Breakpoint, BreakpointProvider } from "react-socks";
 import { Banner } from "../banner/Banner";
+import { Card } from "../card/Card";
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
   const [card, setCard] = useState(2);
@@ -40,34 +43,50 @@ export const StoryState: React.FC<{ code: string }> = props => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <InputModal
         show={showModal}
         message={"...and tell a story"}
         submit={1}
         hide={hideModal}
       />
-      <div className="game-state game-state--blurred">
+      <Banner>d;sfk</Banner>
+      <div sx={{ width: ["100%", "85%", "30rem"], margin: "auto" }}>
         {storyTeller !== player.name && (
           <p> {storyTeller} is currently telling a story</p>
         )}
         {storyTeller === player.name && (
-          <>
-            <Banner>d;sfk</Banner>
-            <div className="hand">
+          <React.Fragment>
+            <div sx={{
+              display: "flex",
+              padding: "2",
+              flexWrap: "wrap",
+              ">:nth-child(n+3)": {
+                paddingTop: "2",
+              },
+              ">:nth-child(even)": {
+                paddingLeft: "1",
+              },
+              ">:nth-child(odd)": {
+                paddingRight: "1",
+              }
+            }}>
               {player.hand.map(card => {
                 return (
-                  <div
-                    className="hand__card"
-                    key={card}
-                    onClick={pickCard(card)}
-                  >
+                  <Card>
                     <img
-                      className="hand__card__image card__image"
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        userSelect: "none",
+                        boxShadow: "deep",
+                        borderRadius: "4px",
+                      }}
                       src={Image1}
                       alt={`image-${card}`}
+                      onClick={pickCard(card)}
                     />
-                  </div>
+                  </Card>
                 );
               })}
             </div>
@@ -76,9 +95,9 @@ export const StoryState: React.FC<{ code: string }> = props => {
                 Tell a story {card}
               </button>
             </div> */}
-          </>
+          </React.Fragment>
         )}
       </div>
-    </>
+    </React.Fragment>
   );
 };

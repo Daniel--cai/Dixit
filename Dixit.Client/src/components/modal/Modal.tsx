@@ -5,8 +5,8 @@ import * as styles from "./Modal.styles";
 import Image1 from "../../assets/cards/1.png";
 import { CSSTransition } from "react-transition-group";
 import { Button } from "../button";
-import {TextArea} from "../textarea";
-import {Spacing} from "../spacing";
+import { TextArea } from "../textarea";
+import { Spacing } from "../spacing";
 
 interface Props {
   message: string;
@@ -58,15 +58,25 @@ export const InputModal: React.FC<Props> = props => {
     <div sx={styles.inputModalCss} >
       <div sx={styles.inputWrapperCss} >
         <div sx={styles.inputWrapperCaptionCss}>
+          <div />
           <div>Tell a story</div>
+          <div
+            sx={{ justifySelf: "right", marginLeft: "3", marginRight: "3", cursor: "pointer" }}
+            onClick={props.hide}
+          >
+            <i className="fas fa-times" />
+          </div>
+
         </div>
         <Spacing size="default">
-        <TextArea placeholder="...tell a story" rows={10} />
+          <TextArea placeholder="...tell a story" rows={10} />
         </Spacing>
         <Spacing size="small">
-        <Button onClick={props.hide}>Send</Button>
+          {/* <div sx={{ ">:nth-child(n)": { margin: "5px" }, ">:last-child": { marginLeft: 0 } }}> */}
+          <Button onClick={props.hide}>Send</Button>
+          {/* </div> */}
         </Spacing >
       </div>
-    </div>
+    </div >
   );
 };

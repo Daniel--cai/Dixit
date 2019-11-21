@@ -1,15 +1,10 @@
 @import "../../theme.scss";
 
 .hand {
-  display: flex;
   // height: 100%;
-  overflow-x: auto;
-  padding: 1em;
-  overflow-y: hidden;
 }
 .hand__card {
   cursor: pointer;
-  height: auto;
   // &:nth-child(1) {
   //   transform: rotate(-5deg) scale(0.9) translateX(5px) translateY(50px);
   // }
@@ -31,12 +26,6 @@
   // &:nth-child(6) {
   //   transform: rotate(5deg) translateX(-5px) scale(0.9) translateY(-50px);
   // }
-}
-
-@media only screen and (max-width: 600px) {
-  .hand__card {
-    min-width: 100vw;
-  }
 }
 
 .hand__card__image {
@@ -71,7 +60,6 @@
 }
 
 .game-state {
-  height: calc(100vh - #{$nav-height});
   background: white;
   display: grid;
   grid-template-rows: $nav-height auto;
