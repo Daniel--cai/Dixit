@@ -1,7 +1,7 @@
 [build]
+  publish="Dixit.Client/build/"
+  base = "Dixit.Client/"
   command = "npm run build"
-  publish="Dixit.Client/build"
-  base = "Dixit.Client"
 
 [[redirects]]
   from = "/*"
