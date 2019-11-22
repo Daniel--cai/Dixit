@@ -9,7 +9,5 @@ export const cardCss = (props: CardCssProps): SxStyleProp => {
         width: "100%",
         flexBasis: ["50%", "50%", "33%"]
     };
-
-
     return css;
 };

@@ -5,7 +5,6 @@ import { RouteComponentProps } from "react-router";
 import { push } from "connected-react-router";
 import { GameState } from "../constants/GameState";
 import { Field } from "../components/field/Field";
-import { Modal } from "../components/modal/Modal";
 import {
   InProgressState,
   VotingState,

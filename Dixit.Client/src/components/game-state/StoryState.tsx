@@ -6,9 +6,7 @@ import { State } from "../../store";
 import { Apiclient } from "../../api/api";
 import Image1 from "../../assets/cards/1.png";
 import "./GameState.scss";
-import classnames from "classnames";
-import { Modal, InputModal } from "../modal/Modal";
-import { Carousel } from "react-responsive-carousel";
+import { InputModal } from "../modal/Modal";
 import { Banner } from "../banner/Banner";
 import { Card } from "../card/Card";
 export const StoryState: React.FC<{ code: string }> = props => {
@@ -80,7 +78,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
                         height: "100%",
                         userSelect: "none",
                         boxShadow: "deep",
-                        borderRadius: "4px",
+                        borderRadius: "soft",
                       }}
                       src={Image1}
                       alt={`image-${card}`}

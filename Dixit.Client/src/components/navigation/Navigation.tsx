@@ -4,21 +4,12 @@ import React, { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo.png";
 import { Overlay } from "../overlay/Overlay"
 import * as styles from "./Navigation.styles";
-import "./Navigation.scss";
 import { Transition } from "react-transition-group";
-
+import { useScrollLock } from "../../hooks/useScrollLock";
 
 export const Navigation: React.FC = () => {
   const [toggle, setToggle] = useState(false);
-  // useEffect(() => {
-  //   if (toggle) {
-  //     document.body.style.overflow = 'hidden';
-  //     document.body.style.position = 'relative'
-  //   } else {
-  //     document.body.style.overflow = 'unset';
-  //     document.body.style.position = 'unset'
-  //   }
-  // }, [toggle])
+  useScrollLock(toggle);
 
   return (
     <div sx={{ width: "100%" }}>

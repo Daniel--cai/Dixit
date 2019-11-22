@@ -1,12 +1,14 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, SxStyleProp } from "theme-ui";
 import React from "react";
 import * as styles from "./TextArea.styles";
-interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{
+import { StylesProps } from "styled-system";
+interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  sx?: SxStyleProp
 }
 
-export const TextArea: React.FC<Props> = props => {
+export const TextArea: React.FC<Props> = ({ sx, ...rest }) => {
   return (
-      <textarea sx={styles.textAreaCss} {...props}></textarea>
+    <textarea sx={{ ...sx!, ...styles.textAreaCss }} {...rest}></textarea>
   );
 };

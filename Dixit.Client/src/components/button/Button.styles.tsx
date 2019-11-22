@@ -20,12 +20,13 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
     cursor: "pointer",
     paddingTop: "3",
     paddingBottom: "3",
-    paddingLeft: "4",
-    paddingRight: "4",
+    paddingLeft: "5",
+    paddingRight: "5",
     fontSize: "1rem",
     textAlign: "center",
     color: "white",
-    boxShadow: "base"
+    boxShadow: "base",
+    borderRadius: "soft"
   };
 
   css[":hover"] = {

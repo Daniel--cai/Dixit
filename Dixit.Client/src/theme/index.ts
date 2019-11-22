@@ -39,5 +39,6 @@ export default {
       bg: "primary"
     }
   },
+  transitions: { default: "all 200ms ease-in-out" },
   shadows
 };

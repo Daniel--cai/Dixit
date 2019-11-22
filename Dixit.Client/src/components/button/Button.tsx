@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, SxStyleProp } from "theme-ui";
 import React from "react";
 
 import * as styles from "./Button.styles";
@@ -10,6 +10,7 @@ export type ButtonType = "primary" | "secondary" | "ghost";
 export interface ButtonProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
+  sx?: SxStyleProp;
   children?: React.ReactNode;
   className?: string;
   fullWidth?: boolean;
@@ -27,12 +28,13 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   fullWidth,
   type,
   disabled,
+  sx,
   ...rest
 }) => {
   return (
     <button
       disabled={disabled}
-      sx={styles.buttonCss({ buttonType: "primary", buttonSize: "large" })}
+      sx={{ ...sx!, ...styles.buttonCss({ buttonType: "primary", buttonSize: "large" }) }}
       className={className}
       onClick={onClick}
       type="button"
