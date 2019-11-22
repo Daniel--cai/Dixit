@@ -18,6 +18,8 @@ export interface Game {
   hand: number[];
 }
 
+
+
 export interface Player {
   name: string;
   score: number;

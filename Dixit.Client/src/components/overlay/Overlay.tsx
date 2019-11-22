@@ -1,10 +1,14 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, SxStyleProp } from "theme-ui";
 import React from "react";
 import * as styles from "./Overlay.styles";
 
-export const Overlay: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
+interface OverlayProps extends React.HTMLAttributes<HTMLDivElement> {
+    sx: SxStyleProp;
+}
+
+export const Overlay: React.FC<OverlayProps> = ({ sx, ...rest }) => {
     return (
-        <div sx={styles.overlayCss} {...props} />
+        <div sx={{ ...sx, ...styles.overlayCss, }} {...rest} />
     );
 };
