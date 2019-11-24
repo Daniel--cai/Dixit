@@ -31,7 +31,9 @@ export const Navigation: React.FC = () => {
       </nav>
 
       <nav sx={styles.navigationMobileCss}>
-        <i className="fas fa-bars" sx={{ fontSize: 3, padding: "4", color: "white" }} onClick={() => setToggle(true)} />
+        <i className="fas fa-bars" onClick={() => setToggle(true)} />
+        <div>Dixit</div>
+        <div />
       </nav>
 
       <Transition appear in={toggle} timeout={200} unmountOnExit>

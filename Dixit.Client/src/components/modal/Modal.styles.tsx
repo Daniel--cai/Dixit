@@ -10,26 +10,6 @@ export const opacityTransitionCss: { [key in TransitionStatus]: SxStyleProp } = 
     unmounted: { opacity: 0, transform: "translateY(-100%)" },
 }
 
-export const modalCss: SxStyleProp = {
-    position: "fixed",
-    width: "100%",
-    zIndex: 1,
-    opacity: 1,
-    height: "100vh",
-    background: "$main-color",
-    display: "grid",
-    gridTemplateRows: "auto 100px",
-
-}
-export const modalContentCss: SxStyleProp = {
-    // width: 50%;
-    borderRadius: "4px",
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    filter: "grayscale(75%)"
-}
-
 export const inputModalCss: SxStyleProp = {
     width: "100%",
     height: "100vh",
@@ -46,7 +26,7 @@ export const inputWrapperCss: SxStyleProp = {
     width: ["100%", "30rem", "35rem"],
     boxShadow: "layer",
     // height: 40vh",
-    backgroundColor: "blue-light-2",
+    backgroundColor: "white",
     display: "flex",
     alignSelf: "center",
     flexDirection: "column",
@@ -65,47 +45,10 @@ export const inputWrapperCaptionCss: SxStyleProp = {
     fontSize: "4",
     paddingTop: "3",
     paddingBottom: "3",
-    color: "primary",
+    color: "white",
     display: "grid",
     gridTemplateColumns: "3rem auto 3rem",
-    backgroundColor: "white",
+    backgroundColor: "primary",
     textAlign: "center"
 }
-        // img {
-        //   width: auto;
-        //   height: auto;
-        //   max-width: 100%;
-        //   max-height: 100%;
-        //   object-fit: cover;
-        // }
-
-        // .modal__button__edit {
-        //     justify-self: right;
-        //     align-self: top;
-        //     margin: 0 1em;
-        //   }
-        // }
-    //   .modal__content__message {
-    //     font-size: 2em;
-    //     margin: 1em;
-    //     color: $contrast;
-    //   }
-
-    //   .modal__content__card {
-    //     // width: 50%;
-    //     border-radius: $card-border-radius;
-    //     align-items: center;
-    //     justify-content: center;
-    //     display: flex;
-    //     // filter: blur(5px) grayscale(50%);
-    //     filter: grayscale(75%);
-    //     img {
-    //       width: auto;
-    //       height: auto;
-    //       max-width: 100%;
-    //       max-height: 100%;
-    //       object-fit: cover;
-    //     }
-    //   }
-
 

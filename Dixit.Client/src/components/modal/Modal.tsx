@@ -2,13 +2,10 @@
 import { jsx } from "theme-ui";
 import React, { useState } from "react";
 import * as styles from "./Modal.styles";
-import Image1 from "../../assets/cards/1.png";
 import { Transition } from "react-transition-group";
 import { Button } from "../button";
 import { TextArea } from "../textarea";
-import { Spacing } from "../spacing";
 import { createPortal } from "react-dom";
-import { useScrollLock } from "../../hooks/useScrollLock";
 interface Props {
   message: string;
   show: boolean;
@@ -16,36 +13,7 @@ interface Props {
   submit: any;
 }
 
-// export const Modal: React.FC<Props> = props => {
-//   const [show, setShow] = useState(false);
-//   const hide = () => {
-//     setShow(false);
-//   };
-//   return (
-
-//     <div
-//       sx={{
-//         ...styles.modalCss,
-//         ...styles.opacityTransitionCss[state]
-//       }} className={state}>
-//       <InputModal hide={hide} show={show} message={""} submit={""} />
-//       <div sx={styles.modalContentCss}>
-//         <img src={Image1} onClick={() => props.hide()}></img>
-//       </div>
-//       <button
-//         className=" modal__button__edit button button--round"
-//         onClick={() => setShow(true)}
-//       >
-//         <i className="fas fa-pen-nib" />
-//       </button>
-//     </div>
-//       }
-//     </Transition >
-//   );
-// };
-
 export const InputModal: React.FC<Props> = props => {
-  useScrollLock(props.show);
   return createPortal(
     <Transition
       appear
@@ -72,7 +40,7 @@ export const InputModal: React.FC<Props> = props => {
               padding: "2",
               textAlign: "center"
             }} >
-              <TextArea placeholder="...tell a story" rows={3} />
+              <TextArea placeholder="...something subtle yet creative" rows={3} />
             </div>
             {/* <div sx={{ ">:nth-child(n)": { margin: "5px" }, ">:last-child": { marginLeft: 0 } }}> */}
 

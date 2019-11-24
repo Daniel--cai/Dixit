@@ -1,15 +1,19 @@
+/** @jsx jsx */
+import { jsx, SxStyleProp } from "theme-ui";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "../store";
 import { RouteComponentProps } from "react-router";
 import { push } from "connected-react-router";
 import { GameState } from "../constants/GameState";
-import { Field } from "../components/field/Field";
+
 import {
   InProgressState,
   VotingState,
   StoryState
 } from "../components/game-state";
+import { PlayerBoard } from "../components/player-board/PlayerBoard";
+import { Banner } from "../components/banner/Banner";
 
 export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
   const player = useSelector((store: State) => store.player);
@@ -25,22 +29,29 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
   }, []);
 
   return (
-    <>
-      {/* <PlayerBoard /> */}
-      {/* <p>State: {gameState}</p> */}
-      {/* {gameState === GameState.InProgress ||
-          (gameState === GameState.Voting && <p>Story: {story}</p>)}
-        Name:{name} */}
-      <Field />
-      {game.gameState === GameState.Story && (
-        <StoryState code={props.match.params.code} />
-      )}
-      {game.gameState === GameState.Voting && (
-        <VotingState code={props.match.params.code} />
-      )}
-      {game.gameState === GameState.InProgress && (
-        <InProgressState code={props.match.params.code} />
-      )}
-    </>
+    <React.Fragment>
+      <div sx={{ display: "grid", padding: "2", paddingTop:"0" }}>
+        <Banner sx={{ width: ["100%", "85%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
+          <div>
+            You are the storyteller.
+        </div>
+          <div>
+            <b>Pick a card</b> and tell a story.
+          </div>
+        </Banner>
+        <div />
+        {game.gameState === GameState.Story && (
+          <StoryState code={props.match.params.code} />
+        )}
+        {game.gameState === GameState.Voting && (
+          <VotingState code={props.match.params.code} />
+        )}
+        {game.gameState === GameState.InProgress && (
+          <InProgressState code={props.match.params.code} />
+        )}
+        <PlayerBoard />
+
+      </div>
+    </React.Fragment>
   );
 };

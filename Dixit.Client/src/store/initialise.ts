@@ -3,11 +3,11 @@ import { GameState } from "./game/models";
 export const initialise = () => {
   const initialState: State = {
     story: {
-      cards: [],
-      story: "",
-      storyCard: 0,
-      revealed: [],
-      votes: [],
+      cards: [1, 2, 3, 4, 5, 6],
+      story: "Hither to the shakespeare",
+      storyCard: 2,
+      revealed: [1, 2, 3, 4, 5, 6],
+      votes: [{ player: "bob", card: 1 }],
       currentStoryTeller: "bob"
     },
     player: {

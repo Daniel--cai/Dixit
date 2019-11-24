@@ -7,7 +7,7 @@ export const navigationBaseCss = {
     backgroundColor: "orange-dark-1",
     boxShadow: "base",
     margin: "0 auto",
-    height: ["3rem", "3rem", "6rem"]
+    height: ["3rem", "3rem", "4rem"]
 }
 
 export const navigationCss: SxStyleProp = {
@@ -29,8 +29,7 @@ export const leftMenuCss: SxStyleProp = {
     '& a': {
         padding: "10px",
         margin: "0 15px",
-        fontSize: "2rem",
-        fontWeight: "300",
+        fontSize: "3",
         letterSpacing: "0.5px",
         textDecoration: "none",
         color: "white",
@@ -45,8 +44,15 @@ export const leftMenuCss: SxStyleProp = {
 
 export const navigationMobileCss: SxStyleProp = {
     ...navigationBaseCss,
-    gridTemplateColumns: "auto 1fr auto",
-    display: ["grid", "grid", "none"]
+    gridTemplateColumns: "3rem auto 3rem",
+    display: ["grid", "grid", "none"],
+    fontSize: 3,
+    fontWeight: "bold",
+    color: "white",
+    '> *': {
+        padding: "3"
+    }
+
 };
 
 export const navigationLinkMobileCss: SxStyleProp = {

@@ -9,9 +9,9 @@ interface BannerProps {
     sx?: SxStyleProp
 }
 
-export const Banner: React.FC<BannerProps> = ({ children, ...rest }) => {
+export const Banner: React.FC<BannerProps> = ({ children, sx, ...rest }) => {
     return (
-        <div sx={{ ...rest.sx || {}, ...styles.bannerCss }} {...rest}>{children}</div>
+        <div sx={{ ...sx!, ...styles.bannerCss }} {...rest}>{children}</div>
     );
 };
 

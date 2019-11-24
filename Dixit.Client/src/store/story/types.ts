@@ -6,10 +6,9 @@ import {
   StoryToldEvent,
   GameFetchedEvent
 } from "../events/types";
-import { FetchGameAction } from "../game/types";
 
 export interface StoryState {
-  cards: [];
+  cards: number[];
   currentStoryTeller: string;
   storyCard: number;
   story: string;

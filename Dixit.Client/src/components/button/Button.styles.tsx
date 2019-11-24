@@ -30,9 +30,9 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
   };
 
   css[":hover"] = {
-    backgroundColor: "primaryLight",
+    backgroundColor: "orange-light-1",
     color: "white",
-    borderColor: "primaryLight"
+    borderColor: "orange-light-1"
   };
 
   if (props.fullWidth) {

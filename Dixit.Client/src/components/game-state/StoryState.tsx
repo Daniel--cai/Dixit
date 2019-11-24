@@ -26,7 +26,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
     setShowModel(false);
   };
 
-  const tellStory = (card: number) => async () => {
+  const tellStory = () => async () => {
     await Apiclient.tellStory({
       code: props.code,
       story: storyInput,
@@ -44,11 +44,9 @@ export const StoryState: React.FC<{ code: string }> = props => {
       <InputModal
         show={showModal}
         message={"...and tell a story"}
-        submit={1}
+        submit={() => tellStory()}
         hide={hideModal}
       />
-
-      <Banner sx={{ display: ["none", "block", "block"] }}>1234</Banner>
       <div sx={{ width: ["100%", "85%", "30rem"], margin: "auto" }}>
         {storyTeller !== player.name && (
           <p> {storyTeller} is currently telling a story</p>
@@ -56,18 +54,10 @@ export const StoryState: React.FC<{ code: string }> = props => {
         {storyTeller === player.name && (
           <React.Fragment>
             <div sx={{
-              display: "flex",
-              padding: "2",
-              flexWrap: "wrap",
-              ">:nth-child(n+3)": {
-                paddingTop: "2",
-              },
-              ">:nth-child(even)": {
-                paddingLeft: "1",
-              },
-              ">:nth-child(odd)": {
-                paddingRight: "1",
-              }
+              display: "grid",
+              gridTemplateColumns: ["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"],
+              gridRowGap: "2",
+              gridColumnGap: "2"
             }}>
               {player.hand.map(card => {
                 return (

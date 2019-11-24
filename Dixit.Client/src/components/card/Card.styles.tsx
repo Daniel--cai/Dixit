@@ -5,9 +5,14 @@ interface CardCssProps {
 
 export const cardCss = (props: CardCssProps): SxStyleProp => {
     let css: SxStyleProp = {
-        padding: ["0", "0", "1"],
+        // padding: ["0", "0", "1"],
         width: "100%",
-        flexBasis: ["50%", "50%", "33%"]
+        height: "100%",
+        cursor: "pointer",
+        ":hover": {
+            boxShadow: "deep",
+            opacity: 0.75
+        }
     };
     return css;
 };
