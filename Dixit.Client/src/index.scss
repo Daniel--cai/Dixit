@@ -12,8 +12,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   width: 100%;
-  background: $main-color;
+  background-color: #eceef0;
   color: $color;
+  // backgroundColor: "gray-20"
 }
 
 #root,
