@@ -7,7 +7,6 @@ import { Apiclient } from "../../api/api";
 import Image1 from "../../assets/cards/1.png";
 import "./GameState.scss";
 import { InputModal } from "../modal/Modal";
-import { Banner } from "../banner/Banner";
 import { Card } from "../card/Card";
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");

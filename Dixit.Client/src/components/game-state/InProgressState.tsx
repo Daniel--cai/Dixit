@@ -65,7 +65,7 @@ export const InProgressState: React.FC<{ code: string }> = props => {
                     borderRadius: "soft",
                   }}
                   src={Image1}
-                  alt={`image-${card}`}
+                  alt={`${card}`}
                   onClick={playCard(card)}
                 />
               </Card>

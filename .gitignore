@@ -266,3 +266,6 @@ __pycache__/
 terraform.tfvars
 staging_issuer.yml
 prod_issuer.yml
+
+# Mac
+.DS_Store

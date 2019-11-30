@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Reflection;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Dixit.Application.Commands;
 using Dixit.Application.Events;
 using Dixit.Application.Services;
-using Dixit.Application.SharedKernel;
 using Dixit.Domain.Interfaces;
 using Dixit.Domain.Services;
 using Dixit.Domain.Services.Rules;
+using Dixit.Infrastructure.Configuration;
 using Dixit.Infrastructure.Services;
 using Dixit.Server.RealTime;
 using MediatR;
@@ -35,6 +32,7 @@ namespace Dixit.Server
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddHealthChecks();
+            services.Configure<FaunaDbConfig>(Configuration);
             services.AddSignalR();
             services.AddScoped<IAwsDynamodbClient, AwsDynamodbClient>();
             services.AddScoped<IAwsDynamodbService, AwsDynamodbService>();
@@ -44,23 +42,6 @@ namespace Dixit.Server
             services.AddTransient<IScoreService, ScoreService>();
             services.AddMediatR(typeof (CreateLobbyCommand), typeof(LobbyJoinedEvent),typeof(LobbyEventsClientDispatcher));
 
-        }
-
-        private static IServiceProvider BuildDependencyInjectionProvider(IServiceCollection services)
-        {
-            var builder = new ContainerBuilder();
-
-            // Populate the container using the service collection
-            builder.Populate(services);
-
-            // TODO: Add Registry Classes to eliminate reference to Infrastructure
-            Assembly webAssembly = Assembly.GetExecutingAssembly();
-            Assembly coreAssembly = Assembly.GetAssembly(typeof(BaseEntity));
-            //Assembly infrastructureAssembly = Assembly.GetAssembly(typeof(EfRepository)); // TODO: Move to Infrastucture Registry
-            //builder.RegisterAssemblyTypes(webAssembly, coreAssembly, infrastructureAssembly).AsImplementedInterfaces();
-
-            IContainer applicationContainer = builder.Build();
-            return new AutofacServiceProvider(applicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

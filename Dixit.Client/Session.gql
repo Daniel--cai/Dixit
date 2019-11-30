@@ -1,0 +1,46 @@
+
+type Query {
+   allSession: [Session!]
+   sessionByCode(code: String!): Session
+}
+
+type Session {
+   code: String!
+   rounds: [Round!]! @relation
+   deck: [Card!]! @relation
+   players: [Player!]! @relation
+   gameState: String!
+   dateCreated: String
+}
+
+type Card {
+    id: Int!
+    owner: String
+    discarded: Boolean
+    roundSubmitted: Int
+    session: Session!
+}
+
+type Round {
+    counter: Int
+    storyTeller: String
+    story: String
+    storyTellerCard: Card
+    votes: [Vote!]! @relation
+    session: Session!
+}
+
+type Player {
+    name: String!
+    identifier: String!
+    score: Int
+    connected: Boolean
+    id: String
+    session: Session!
+}
+
+type Vote { 
+    player: String!
+    card: Int!
+    round: Round!
+}

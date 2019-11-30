@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dixit.Infrastructure.Services
 {
-    public class AwsDynamodbService : IAwsDynamodbService
+    public class AwsDynamodbService : IRepository
     {
 
         public static List<Lobby> Lobbies = new List<Lobby>();

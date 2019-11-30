@@ -31,7 +31,9 @@ export const inputWrapperCss: SxStyleProp = {
     alignSelf: "center",
     flexDirection: "column",
     margin: ["unset", "auto", "auto"],
-    position: "relative"
+    position: "relative",
+    borderRadius: "soft",
+
     // input,
     // textarea {
     //   text-align: left",
@@ -49,6 +51,8 @@ export const inputWrapperCaptionCss: SxStyleProp = {
     display: "grid",
     gridTemplateColumns: "3rem auto 3rem",
     backgroundColor: "primary",
-    textAlign: "center"
+    textAlign: "center",
+    borderTopLeftRadius:"soft",
+    borderTopRightRadius:"soft"
 }
 
