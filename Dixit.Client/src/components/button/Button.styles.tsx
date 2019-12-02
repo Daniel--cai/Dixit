@@ -18,8 +18,8 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
     backgroundColor: "primary",
     outline: "none",
     cursor: "pointer",
-    paddingTop: "3",
-    paddingBottom: "3",
+    paddingTop: "2",
+    paddingBottom: "2",
     paddingLeft: "5",
     paddingRight: "5",
     fontSize: "1rem",
@@ -30,9 +30,9 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
   };
 
   css[":hover"] = {
-    backgroundColor: "orange-light-1",
+    backgroundColor: "primary-light",
     color: "white",
-    borderColor: "orange-light-1"
+    borderColor: "primary-light"
   };
 
   if (props.fullWidth) {

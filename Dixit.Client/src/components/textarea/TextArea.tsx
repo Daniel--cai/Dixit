@@ -2,7 +2,6 @@
 import { jsx, SxStyleProp } from "theme-ui";
 import React from "react";
 import * as styles from "./TextArea.styles";
-import { StylesProps } from "styled-system";
 interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   sx?: SxStyleProp
 }

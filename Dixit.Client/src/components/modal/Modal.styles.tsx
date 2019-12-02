@@ -24,7 +24,7 @@ export const inputModalCss: SxStyleProp = {
 
 export const inputWrapperCss: SxStyleProp = {
     width: ["100%", "30rem", "35rem"],
-    boxShadow: "layer",
+    boxShadow: "base",
     // height: 40vh",
     backgroundColor: "white",
     display: "flex",
@@ -44,15 +44,36 @@ export const inputWrapperCss: SxStyleProp = {
 
 }
 export const inputWrapperCaptionCss: SxStyleProp = {
-    fontSize: "4",
-    paddingTop: "3",
-    paddingBottom: "3",
-    color: "white",
+    fontSize: "2",
+    fontWeight: "bold",
+    paddingTop: "2",
+    paddingBottom: "2",
+    color: "primary",
     display: "grid",
     gridTemplateColumns: "3rem auto 3rem",
-    backgroundColor: "primary",
+    backgroundColor: "white",
     textAlign: "center",
-    borderTopLeftRadius:"soft",
-    borderTopRightRadius:"soft"
+    borderTopLeftRadius: "soft",
+    borderTopRightRadius: "soft",
+    "& div": {
+        color: "gray-50"
+    }
+}
+
+export const inputWrapperSubCaptionCss: SxStyleProp = {
+    fontSize: "2",
+    fontWeight: "bold",
+    paddingTop: "2",
+    paddingBottom: "2",
+    color: "primary",
+    display: "grid",
+    gridTemplateColumns: "3rem auto 3rem",
+    backgroundColor: "white",
+    textAlign: "center",
+    borderTopLeftRadius: "soft",
+    borderTopRightRadius: "soft",
+    "& div": {
+        color: "gray-50"
+    }
 }
 

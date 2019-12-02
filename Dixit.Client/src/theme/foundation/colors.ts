@@ -5,9 +5,9 @@ const gray = {
   black: "rgb(0, 0, 0)",
   white: "rgb(255, 255, 255)",
   transparent: "rgba(0, 0, 0, 0.4)",
-  "gray-10": "#f9f9fa",
-  "gray-20": "#eceef0",
-  "gray-30": "#ced3d9",
+  "gray-10": "#FAFBFD",
+  "gray-20": "#F0F3F7",
+  "gray-30": "#C2C7D2",
   "gray-40": "#bdc5cc",
   "gray-50": "#abb4be",
   "gray-60": "#98a1a8",
@@ -24,11 +24,11 @@ const others = {
   "green-dark-2": "#057e05",
 
   "blue-light-3": "#e0efff",
-  "blue-light-2": "#c9e4ff",
-  "blue-light-1": "#93c9ff",
-  blue: "#71b8ff",
-  "blue-dark-1": "#49a4ff",
-  "blue-dark-2": "#1288ff",
+  "blue-light-2": "#F2F8FE",
+  "blue-light-1": "#8BB9F7",
+  blue: "#3375F6",
+  "blue-dark-1": "#2961CC",
+  "blue-dark-2": "#0B2349",
   "blue-dark-3": "#086bce",
 
   "violet-light-2": "#ecdaff",
@@ -68,9 +68,13 @@ const semantics = {
 };
 
 const primary = {
-  primary: others.orange,
-  "primary-light": others["orange-light-2"],
-  "primary-dark": others["orange-dark-2"]
+  primary: others.blue,
+  "primary-light": others["blue-light-1"],
+  "primary-dark": others["blue-dark-2"],
+  "nav-primary": "#3375F6",
+  "nav-secondary": "#C2C5C9",
+  "bg-primary": gray["gray-10"],
+  "bg-secondary": gray["gray-20"]
 };
 
 export const colors = { ...gray, ...others, ...primary, ...semantics };

@@ -26,9 +26,12 @@ export const InputModal: React.FC<Props> = props => {
           <div sx={styles.inputWrapperCss} >
             <div sx={styles.inputWrapperCaptionCss}>
               <div />
-              <div>Tell a story</div>
+              <div>
+                Tell a story
+                <div>Something subtle yet creative</div>
+                </div>
               <div
-                sx={{ color: "gray-50", justifySelf: "right", marginLeft: "3", marginRight: "3", cursor: "pointer" }}
+                sx={{ color: "white", justifySelf: "right", marginLeft: "3", marginRight: "3", cursor: "pointer" }}
                 onClick={props.hide}
               >
                 <i className="fas fa-times" />
@@ -40,7 +43,7 @@ export const InputModal: React.FC<Props> = props => {
               padding: "2",
               textAlign: "center"
             }} >
-              <TextArea placeholder="...something subtle yet creative" rows={3} />
+              <TextArea rows={3} />
             </div>
             {/* <div sx={{ ">:nth-child(n)": { margin: "5px" }, ">:last-child": { marginLeft: 0 } }}> */}
 

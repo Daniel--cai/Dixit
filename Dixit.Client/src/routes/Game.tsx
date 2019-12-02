@@ -30,15 +30,8 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
 
   return (
     <React.Fragment>
-      <div sx={{ display: "grid", padding: "2", paddingTop:"0" }}>
-        <Banner sx={{ width: ["100%", "85%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
-          <div>
-            You are the storyteller.
-        </div>
-          <div>
-            <b>Pick a card</b> and tell a story.
-          </div>
-        </Banner>
+      <div sx={{ display: "grid", padding: "2", paddingTop: "0" }}>
+    
         <div />
         {game.gameState === GameState.Story && (
           <StoryState code={props.match.params.code} />

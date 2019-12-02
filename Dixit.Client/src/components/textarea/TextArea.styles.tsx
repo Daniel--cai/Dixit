@@ -1,8 +1,9 @@
 import { SxStyleProp } from "theme-ui";
+import { backgroundColor } from "styled-system";
 
 export const textAreaCss: SxStyleProp = {
     width: "90%",
-    borderRadius: "none",
+    borderRadius: "soft",
     border: "1px solid",
     borderColor: "gray-20",
     padding: "4",
@@ -10,11 +11,14 @@ export const textAreaCss: SxStyleProp = {
     outline: "none",
     resize: "none",
     backgroundColor: "white",
+    color: "primary",
     "WebkitAppearance": "none",
     ':hover': {
         borderColor: "gray-30"
     },
     ':focus': {
-        borderColor: "orange-light-1"
+        borderColor: "primary",
+   
+        backgroundColor: "blue-light-2"
     },
 };

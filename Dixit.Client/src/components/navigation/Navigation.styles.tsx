@@ -4,8 +4,8 @@ import { flex } from "styled-system";
 
 export const navigationBaseCss = {
     width: "100%",
-    backgroundColor: "orange-dark-1",
-    boxShadow: "base",
+    backgroundColor: "white",
+    boxShadow: "faint",
     margin: "0 auto",
     height: ["3rem", "3rem", "4rem"]
 }
@@ -32,9 +32,9 @@ export const leftMenuCss: SxStyleProp = {
         fontSize: "3",
         letterSpacing: "0.5px",
         textDecoration: "none",
-        color: "white",
+        color: "gray-30",
         ':hover': {
-            color: "orange-light-2",
+            color: "primary",
         },
         '& span': {
             display: "inline-block",
@@ -48,7 +48,7 @@ export const navigationMobileCss: SxStyleProp = {
     display: ["grid", "grid", "none"],
     fontSize: 3,
     fontWeight: "bold",
-    color: "white",
+    color: "primary",
     '> *': {
         padding: "3"
     }

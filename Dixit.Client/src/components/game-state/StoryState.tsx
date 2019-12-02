@@ -8,6 +8,7 @@ import Image1 from "../../assets/cards/1.png";
 import "./GameState.scss";
 import { InputModal } from "../modal/Modal";
 import { Card } from "../card/Card";
+import { Banner } from "../banner/Banner";
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
   const [card, setCard] = useState(2);
@@ -47,6 +48,16 @@ export const StoryState: React.FC<{ code: string }> = props => {
         hide={hideModal}
       />
       <div sx={{ width: ["100%", "85%", "30rem"], margin: "auto" }}>
+        {storyTeller === player.name && (
+          <Banner sx={{ width: ["100%", "85%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
+            <div>
+              You are the storyteller.
+          </div>
+            <div>
+              <b>Pick a card</b> and tell a story.
+          </div>
+          </Banner>
+        )}
         {storyTeller !== player.name && (
           <p> {storyTeller} is currently telling a story</p>
         )}
