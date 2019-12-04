@@ -6,7 +6,7 @@ const gray = {
   white: "rgb(255, 255, 255)",
   transparent: "rgba(0, 0, 0, 0.4)",
   "gray-10": "#FAFBFD",
-  "gray-20": "#F0F3F7",
+  "gray-20": "#E8E9EB",
   "gray-30": "#C2C7D2",
   "gray-40": "#bdc5cc",
   "gray-50": "#abb4be",
@@ -72,7 +72,7 @@ const primary = {
   "primary-light": others["blue-light-1"],
   "primary-dark": others["blue-dark-2"],
   "nav-primary": "#3375F6",
-  "nav-secondary": "#C2C5C9",
+  "nav-secondary": "#FAFBFD",
   "bg-primary": gray["gray-10"],
   "bg-secondary": gray["gray-20"]
 };

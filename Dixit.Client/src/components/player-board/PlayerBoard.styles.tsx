@@ -1,13 +1,24 @@
 import { SxStyleProp } from "theme-ui";
+import { lineHeight } from "styled-system";
 
 export const playerBoardCss: SxStyleProp = {
-    backgroundColor: "primary",
+    // backgroundColor: "primary",
     padding: "0.5em",
     margin: "0.5em",
     borderRadius: "soft",
     "& div": {
+        display: "flex"
+    },
+    display: ["none", "none", "unset"]
+}
 
-    }
+export const playerBoardRankCss: SxStyleProp = {
+    border: "1px solid",
+    borderRadius: "soft",
+    borderColor: "primary",
+    lineHeight: "1rem",
+    width:"3rem",
+    textAlign: "center"
 }
 
 

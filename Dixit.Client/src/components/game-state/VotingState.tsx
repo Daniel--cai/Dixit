@@ -20,7 +20,7 @@ export const VotingState: React.FC<{ code: string }> = props => {
   };
   return (
     <React.Fragment>
-      <Banner sx={{ width: ["100%", "85%", "30rem"],  marginLeft: "auto", marginRight: "auto"  }}>
+      <Banner sx={{ width: ["100%", "100%", "30rem"],  marginLeft: "auto", marginRight: "auto"  }}>
         <div>
           <i>"{story.story}"</i>
         </div>
@@ -35,7 +35,7 @@ export const VotingState: React.FC<{ code: string }> = props => {
           }
         </div>
       </Banner>
-      <div sx={{ width: ["100%", "85%", "30rem"], margin: "auto" }}>
+      <div sx={{ width: ["100%", "100%", "30rem"], margin: "auto" }}>
         <div sx={{
           display: "flex",
           padding: "2",

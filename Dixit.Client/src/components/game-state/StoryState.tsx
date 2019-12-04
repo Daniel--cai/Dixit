@@ -47,7 +47,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
         submit={() => tellStory()}
         hide={hideModal}
       />
-      <div sx={{ width: ["100%", "85%", "30rem"], margin: "auto" }}>
+      <div sx={{ width: ["100%", "100%", "30rem"], margin: "auto" }}>
         {storyTeller === player.name && (
           <Banner sx={{ width: ["100%", "85%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
             <div>

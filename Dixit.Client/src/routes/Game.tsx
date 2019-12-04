@@ -6,7 +6,7 @@ import { State } from "../store";
 import { RouteComponentProps } from "react-router";
 import { push } from "connected-react-router";
 import { GameState } from "../constants/GameState";
-
+import * as styles from "./Game.styles";
 import {
   InProgressState,
   VotingState,
@@ -29,22 +29,19 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div sx={{ display: "grid", padding: "2", paddingTop: "0" }}>
-    
-        <div />
-        {game.gameState === GameState.Story && (
-          <StoryState code={props.match.params.code} />
-        )}
-        {game.gameState === GameState.Voting && (
-          <VotingState code={props.match.params.code} />
-        )}
-        {game.gameState === GameState.InProgress && (
-          <InProgressState code={props.match.params.code} />
-        )}
-        <PlayerBoard />
+    <div sx={styles.gameCss}>
+      <div />
+      {game.gameState === GameState.Story && (
+        <StoryState code={props.match.params.code} />
+      )}
+      {game.gameState === GameState.Voting && (
+        <VotingState code={props.match.params.code} />
+      )}
+      {game.gameState === GameState.InProgress && (
+        <InProgressState code={props.match.params.code} />
+      )}
+      <PlayerBoard />
 
-      </div>
-    </React.Fragment>
+    </div>
   );
 };

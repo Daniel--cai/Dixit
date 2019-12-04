@@ -3,11 +3,11 @@ import { TransitionStatus } from "react-transition-group/Transition";
 import { backgroundColor, textAlign } from "styled-system";
 
 export const opacityTransitionCss: { [key in TransitionStatus]: SxStyleProp } = {
-    entering: { opacity: 0, transform: "translateY(-100%)" },
+    entering: { opacity: 0, transform: "translateY(-5%)" },
     entered: { opacity: 1, transform: "translateY(0%)" },
-    exiting: { opacity: 0, transform: "translateY(-100%)" },
-    exited: { opacity: 0, transform: "translateY(-100%)" },
-    unmounted: { opacity: 0, transform: "translateY(-100%)" },
+    exiting: { opacity: 0, transform: "translateY(-5%)" },
+    exited: { opacity: 0, transform: "translateY(-5%)" },
+    unmounted: { opacity: 0, transform: "translateY(-5%)" },
 }
 
 export const inputModalCss: SxStyleProp = {
