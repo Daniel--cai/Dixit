@@ -1,11 +1,13 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, SxStyleProp } from "theme-ui";
 import React, { useState } from "react";
 import * as styles from "./Modal.styles";
 import { Transition } from "react-transition-group";
 import { Button } from "../button";
 import { TextArea } from "../textarea";
 import { createPortal } from "react-dom";
+import Image1 from "../../assets/cards/1.png";
+
 interface Props {
   message: string;
   show: boolean;
@@ -14,6 +16,11 @@ interface Props {
 }
 
 export const InputModal: React.FC<Props> = props => {
+  const backgroundImageStyles: SxStyleProp = {
+    background: `url(${Image1}) no-repeat`,
+    backgroundSize: "cover",
+    margin: "4"
+  }
   return createPortal(
     <Transition
       appear
@@ -25,13 +32,14 @@ export const InputModal: React.FC<Props> = props => {
         <div sx={{ ...styles.inputModalCss, ...styles.opacityTransitionCss[state] }} >
           <div sx={styles.inputWrapperCss} >
             <div sx={styles.inputWrapperCaptionCss}>
-              <div />
-              <div>
-                Tell a story
-                <div>Something subtle yet creative</div>
-                </div>
+
+              <div sx={{ gridColumnStart: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <div sx={{ ...styles.inputWrapperImageCss, ...backgroundImageStyles }} />
+                <div sx={{ padding: "2", color: "primary" }}> Tell a story</div>
+                <div sx={{ padding: "2", color: "gray-50" }}>Something subtle yet creative. If nobody or everybody finds your card, you get 0 points </div>
+              </div>
               <div
-                sx={{ color: "white", justifySelf: "right", marginLeft: "3", marginRight: "3", cursor: "pointer" }}
+                sx={{ color: "gray-50", justifySelf: "right", marginLeft: "3", marginRight: "3", cursor: "pointer" }}
                 onClick={props.hide}
               >
                 <i className="fas fa-times" />
@@ -40,16 +48,13 @@ export const InputModal: React.FC<Props> = props => {
 
             <div sx={{
               flex: 1,
-              padding: "2",
-              textAlign: "center"
+              textAlign: "center",
+              margin: "3"
+
             }} >
-              <TextArea rows={3} />
+              <TextArea rows={3} placeholder= "A quick brown fox jumped over the lazy cat"/>
             </div>
-            {/* <div sx={{ ">:nth-child(n)": { margin: "5px" }, ">:last-child": { marginLeft: 0 } }}> */}
-
-            <Button sx={{ margin: "2", alignSelf: "center" }} onClick={props.hide}>Send</Button>
-
-            {/* </div> */}
+            <Button sx={{ margin: "6", alignSelf: "center" }} disabled={true} onClick={props.hide}>Send</Button>
           </div>
         </div >
       )

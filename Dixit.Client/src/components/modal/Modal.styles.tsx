@@ -33,7 +33,6 @@ export const inputWrapperCss: SxStyleProp = {
     margin: ["unset", "auto", "auto"],
     position: "relative",
     borderRadius: "soft",
-
     // input,
     // textarea {
     //   text-align: left",
@@ -43,6 +42,13 @@ export const inputWrapperCss: SxStyleProp = {
     // }
 
 }
+
+export const inputWrapperImageCss: SxStyleProp = {
+    borderRadius:"circle",
+    width: "8rem",
+    height: "8rem"
+}
+
 export const inputWrapperCaptionCss: SxStyleProp = {
     fontSize: "2",
     fontWeight: "bold",
@@ -55,9 +61,7 @@ export const inputWrapperCaptionCss: SxStyleProp = {
     textAlign: "center",
     borderTopLeftRadius: "soft",
     borderTopRightRadius: "soft",
-    "& div": {
-        color: "gray-50"
-    }
+   
 }
 
 export const inputWrapperSubCaptionCss: SxStyleProp = {

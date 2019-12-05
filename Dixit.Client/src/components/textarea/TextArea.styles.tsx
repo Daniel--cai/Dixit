@@ -11,14 +11,12 @@ export const textAreaCss: SxStyleProp = {
     outline: "none",
     resize: "none",
     backgroundColor: "white",
-    color: "primary",
     "WebkitAppearance": "none",
     ':hover': {
         borderColor: "gray-30"
     },
     ':focus': {
         borderColor: "primary",
-   
-        backgroundColor: "blue-light-2"
+        //backgroundColor: "blue-light-2"
     },
 };

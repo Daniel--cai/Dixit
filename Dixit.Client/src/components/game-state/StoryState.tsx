@@ -49,7 +49,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
       />
       <div sx={{ width: ["100%", "100%", "30rem"], margin: "auto" }}>
         {storyTeller === player.name && (
-          <Banner sx={{ width: ["100%", "85%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
+          <Banner sx={{ width: ["100%", "100%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
             <div>
               You are the storyteller.
           </div>
