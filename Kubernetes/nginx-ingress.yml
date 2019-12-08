@@ -8,10 +8,10 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
-            backend:
-              serviceName: dixit-client
-              servicePort: 80
+          #- path: /
+          #  backend:
+          #    serviceName: dixit-client
+          #    servicePort: 80
           - path: /
             backend:
               serviceName: dixit-server
