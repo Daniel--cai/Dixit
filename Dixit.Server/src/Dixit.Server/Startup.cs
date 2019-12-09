@@ -35,7 +35,7 @@ namespace Dixit.Server
             services.Configure<FaunaDbConfig>(Configuration);
             services.AddSignalR();
             services.AddScoped<IAwsDynamodbClient, AwsDynamodbClient>();
-            services.AddScoped<IAwsDynamodbService, AwsDynamodbService>();
+            services.AddScoped<IRepository, AwsDynamodbService>();
             services.AddTransient<IScoringRule, BonusRule>();
             services.AddTransient<IScoringRule, StoryTellerRule>();
             services.AddTransient<IScoringRule, CorrectRule>();

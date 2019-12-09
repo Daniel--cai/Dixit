@@ -14,9 +14,9 @@ namespace Dixit.Application.Handlers
     public class LeaveLobbyCommandHandler : INotificationHandler<PlayerDisconnectedEvent>
     {
         private readonly IMediator _mediator;
-        private readonly IAwsDynamodbService _awsDynamodbService;
+        private readonly IRepository _awsDynamodbService;
 
-        public LeaveLobbyCommandHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
+        public LeaveLobbyCommandHandler(IMediator mediator, IRepository awsDynamodbService)
         {
             _mediator = mediator;
             _awsDynamodbService = awsDynamodbService;

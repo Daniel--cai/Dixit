@@ -11,9 +11,9 @@ namespace Dixit.Application.Handlers
     public class PlayCardCommandHandler : IRequestHandler<PlayCardCommand>
     {
         private readonly IMediator _mediator;
-        private readonly IAwsDynamodbService _awsDynamodbService;
+        private readonly IRepository _awsDynamodbService;
 
-        public PlayCardCommandHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
+        public PlayCardCommandHandler(IMediator mediator, IRepository awsDynamodbService)
         {
             _mediator = mediator;
             _awsDynamodbService = awsDynamodbService;

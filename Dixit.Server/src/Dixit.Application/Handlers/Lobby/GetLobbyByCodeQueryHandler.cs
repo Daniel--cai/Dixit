@@ -12,9 +12,9 @@ namespace Dixit.Application.Handlers
 {
     public class GetLobbyByCodeQueryHandler : IRequestHandler<GetLobbyByCodeQuery, Lobby>
     {
-        private readonly IAwsDynamodbService _awsDynamodbService;
+        private readonly IRepository _awsDynamodbService;
 
-        public GetLobbyByCodeQueryHandler(IAwsDynamodbService awsDynamodbService)
+        public GetLobbyByCodeQueryHandler(IRepository awsDynamodbService)
         {
             _awsDynamodbService = awsDynamodbService;
         }

@@ -19,9 +19,9 @@ namespace Dixit.Infrastructure.Services
             return new FaunaClient(endpoint: _config.Endpoint, secret: _config.Secret);
         }
 
-        public GraphQl CreateGraphQlClient()
-        {
-            return new FaunaClient(endpoint: _config.Endpoint, secret: _config.Secret);
-        }
+        //public GraphQl CreateGraphQlClient()
+        //{
+        //    return new FaunaClient(endpoint: _config.Endpoint, secret: _config.Secret);
+        //}
     }
 }

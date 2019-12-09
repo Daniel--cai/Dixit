@@ -14,9 +14,9 @@ namespace Dixit.Application.Handlers
     public class JoinLobbyCommandHandler : INotificationHandler<PlayerConnectedEvent>
     {
         private readonly IMediator _mediator;
-        private readonly IAwsDynamodbService _awsDynamodbService;
+        private readonly IRepository _awsDynamodbService;
 
-        public JoinLobbyCommandHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
+        public JoinLobbyCommandHandler(IMediator mediator, IRepository awsDynamodbService)
         {
             _mediator = mediator;
             _awsDynamodbService = awsDynamodbService;

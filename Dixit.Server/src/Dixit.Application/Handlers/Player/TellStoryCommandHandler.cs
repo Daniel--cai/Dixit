@@ -15,9 +15,9 @@ namespace Dixit.Application.Handlers
     public class TellStoryCommandHandler : IRequestHandler<TellStoryCommand>
     {
         private readonly IMediator _mediator;
-        private readonly IAwsDynamodbService _awsDynamodbService;
+        private readonly IRepository _awsDynamodbService;
 
-        public TellStoryCommandHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
+        public TellStoryCommandHandler(IMediator mediator, IRepository awsDynamodbService)
         {
             _mediator = mediator;
             _awsDynamodbService = awsDynamodbService;

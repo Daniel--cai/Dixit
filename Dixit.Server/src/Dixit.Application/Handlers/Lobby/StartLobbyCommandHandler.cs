@@ -14,9 +14,9 @@ namespace Dixit.Application.Handlers
     public class StartLobbyCommandHandler : IRequestHandler<StartLobbyCommand>
     {
         private readonly IMediator _mediator;
-        private readonly IAwsDynamodbService _awsDynamodbService;
+        private readonly IRepository _awsDynamodbService;
 
-        public StartLobbyCommandHandler(IMediator mediator, IAwsDynamodbService awsDynamodbService)
+        public StartLobbyCommandHandler(IMediator mediator, IRepository awsDynamodbService)
         {
             _awsDynamodbService = awsDynamodbService;
             _mediator = mediator;

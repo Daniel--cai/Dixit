@@ -14,9 +14,9 @@ namespace Dixit.Application.Handlers
     {
         private readonly IMediator _mediator;
         private readonly IScoreService _scoreService;
-        private readonly IAwsDynamodbService _awsDynamodbService;
+        private readonly IRepository _awsDynamodbService;
 
-        public VoteCardCommandHandler(IMediator mediator, IScoreService scoreService, IAwsDynamodbService awsDynamodbService)
+        public VoteCardCommandHandler(IMediator mediator, IScoreService scoreService, IRepository awsDynamodbService)
         {
             _mediator = mediator;
             _scoreService = scoreService;
