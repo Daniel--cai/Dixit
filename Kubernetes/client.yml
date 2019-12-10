@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
         - name: dixit-client
-          image: danielcaihobby/boardgamehub:dixit-client-1.0.0
+          image: danielcaihobby/boardgamehub:dixit-client-1.0.1
           ports:
-            - containerPort: 80
+            - containerPort: 5000
       imagePullSecrets:
         - name: regcred
 
@@ -33,4 +33,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 5000

@@ -1,17 +1,25 @@
-
-resource "google_container_cluster" "default" {
-  name                     = "${var.cluster_name}"
-  project                  = "${var.project_name}"
-  location                 = "us-central1"
-  initial_node_count       = "${var.gcp_cluster_count}"
+resource "google_container_cluster" "main" {
+  name = "main"
+  project = "${var.project_name}"
+  zone = "us-central1"
   remove_default_node_pool = true
 
-  master_auth {
-    username = ""
-    password = ""
+  lifecycle {
+    ignore_changes = ["node_pool"]
+  }
 
-    client_certificate_config {
-      issue_client_certificate = false
+  node_pool {
+    name = "default-pool"
+  }
+  addons_config {
+    http_load_balancing {
+      disabled = true
+    }
+
+    horizontal_pod_autoscaling {
+      disabled = true
     }
   }
 }
+
+

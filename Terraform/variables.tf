@@ -17,6 +17,11 @@ variable "cluster_name" {
   description = "Cluster name for the GCP Cluster."
 }
 
+variable "cluster_zone" {
+  type        = "string"
+  description = "Cluster zone for the GCP Cluster."
+}
+
 variable "project_name" {
   type        = "string"
   description = "Cluster name for the GCP Cluster."

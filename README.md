@@ -26,8 +26,15 @@ The game ends when the deck is empty or if a player scores 30 points. In either 
 `
 kubectl create secret generic regcred --from-file=.dockerconfigjson=<path/to/.docker config.json> --type=kubernetes.io/dockerconfigjson
 `
-2. Install Ingress-Nginx using your flavour of choice (this project uses Docker for Mac + NodePort). https://kubernetes.github.io/ingress-nginx/deploy/ 
-3. Build docker containers in Client and Server 
-4. `kubectl apply -f Kubernetes`
-5. (If exposing ingress through NodePort) Get the NodePort allocated to the ingress service  
+1. Install Ingress-Nginx for local development using your flavour of choice (this project uses Docker for Mac & NodePort). https://kubernetes.github.io/ingress-nginx/deploy/ 
+2. Build docker containers in Client and Server 
+3. `kubectl apply -f Kubernetes`
+4. (If exposing ingress through default NodePort configuration) Get the NodePort allocated to the ingress service  
 `kubectl -n ingress-nginx get svc`
+6. (If using loadbalancer.yml config) check the nodeport configurations (80:30000, 443:30001)
+
+## Deployment
+- 1 preemptible node + 1 node taint for ingress controller
+- [kubeip](https://kubeip.com/) for static external IP on node
+- For info: https://devonblog.com/containers/affordable-kubernetes-cluster/
+

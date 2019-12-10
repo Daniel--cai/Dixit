@@ -6,7 +6,7 @@ import {
   VoteCardCommand,
   PlayCardCommand
 } from "./request";
-const baseUrl = "http://localhost:3000/api";
+const baseUrl = "http://api.danielcai.test/api";
 
 export class Apiclient {
   public static createLobby(command: CreateLobbyCommand) {
