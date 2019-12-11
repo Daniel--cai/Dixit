@@ -2,8 +2,8 @@
 //https://palx.jxnblk.com/
 
 const gray = {
-  black: "rgb(0, 0, 0)",
-  white: "rgb(255, 255, 255)",
+  black: "#333333",
+  white: "#ffffff",
   transparent: "rgba(0, 0, 0, 0.4)",
   "gray-10": "#FAFBFD",
   "gray-20": "#E8E9EB",

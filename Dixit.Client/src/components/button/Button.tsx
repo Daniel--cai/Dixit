@@ -29,12 +29,13 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   type,
   disabled,
   sx,
+  secondary,
   ...rest
 }) => {
   return (
     <button
       disabled={disabled}
-      sx={{ ...sx!, ...styles.buttonCss({ buttonType: "primary", buttonSize: "large" }) }}
+      sx={{ ...sx!, ...styles.buttonCss({ buttonType: "primary", buttonSize: "large" ,secondary}) }}
       className={className}
       onClick={onClick}
       type="button"

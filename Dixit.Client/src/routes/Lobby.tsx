@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/** @jsx jsx */
+import { jsx, SxStyleProp } from "theme-ui";
+import React, { useState, useCallback } from "react";
 // import logo from "../assets/images/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../store/player/actions";
@@ -12,9 +14,11 @@ import { Button } from "../components/button";
 import { Spacing } from "../components/spacing";
 
 import "./Lobby.scss";
+import * as styles from "./Lobby.styles"
+import { Input } from "../components/input/Input";
 
 export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
-  var [name, setName] = useState("");
+  var [name, setName] = useState("test");
   var [code, setCode] = useState("");
   const dispatch = useDispatch();
 
@@ -24,41 +28,41 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
   const createAndConnect = async () => {
     var createLobbyCommand = {};
     var response = await Apiclient.createLobby(createLobbyCommand);
-    dispatch(connect(name, response.data));
+    dispatch(connect(response.data, name));
   };
 
   const joinGame = async () => {
-    dispatch(connect(name, code));
+    dispatch(connect(code, name));
   };
 
   const startGame = async () => {
     await Axios.post("/api/lobby/startGame", { code: props.match.params.code });
   };
 
+  console.log(game.players)
+
   const remaining = 8 - game.players.length;
-  const [inProp, setInProp] = useState(false);
+  const [inProp, setInProp] = useState(true);
+  const disconnectPlayer = useCallback(() => {
+    //dispatch(removePlayer())
+    console.log("sdf");
+  }, [])
   if (code != null && player.connected) {
     return (
-      <div className="lobby-screen">
-        <div className="lobby-screen__code">
-          <div className="lobby-screen__code__text">1234</div>
+      <div sx={styles.lobbyScreenCss}>
+        <div sx={styles.codeCss}>
+          <div>{player.code}</div>
         </div>
-        <div className="lobby-screen__player-list ">
+        {/* className="lobby-screen__player-list " */}
+        <div sx={styles.segmentCss} >
           {game.players.map((player, index) => (
-            <div className="lobby-screen__player" key={index}>
-              <span>{player.name}</span>
-            </div>
-          ))}
-          {new Array(remaining).fill(".").map(player => (
-            <div
-              key={player}
-              className="lobby-screen__player lobby-screen__player--empty"
-            >
-              <span>{player.name}</span>
+            <div key={index} sx={styles.segmentLineCss}>
+              <div sx={styles.textCss}><i className="fas fa-circle" sx={styles.indicatorCss} /> {player.name}</div>
+              <div sx={styles.closeCss}><i className="fas fa-times" onClick={disconnectPlayer} /></div>
             </div>
           ))}
         </div>
-        <div className="lobby-screen__actions">
+        <div className="">
           <Spacing size="default">
             <Button primary onClick={startGame}>
               everyone's in
@@ -66,14 +70,14 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
           </Spacing>
         </div>
 
-        <div className="lobby-screen__help">
+        {/* <div className="lobby-screen__help">
           <button className="button__round" onClick={startGame}>
             <i className="fas fa-camera" />
           </button>
           <button className="button__round" onClick={startGame}>
             ?
           </button>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -83,36 +87,42 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
       <img className="landing-screen__logo" src={Logo}></img>
       <CSSTransition in={!inProp} timeout={0} classNames="t" unmountOnExit>
         <div className="landing-screen__actions">
-          <div onClick={() => setInProp(true)}> play </div>
-          <div onClick={() => setInProp(false)}> how to play </div>
+          <Button onClick={() => setInProp(true)}> play </Button>
+          <Button onClick={() => setInProp(false)}> how to play </Button>
         </div>
       </CSSTransition>
       <CSSTransition in={inProp} timeout={0} classNames="" unmountOnExit>
-        <>
+        <React.Fragment>
           <div className="landing-screen__input">
             <label className="label">name</label>
-            <input
+            <Input
               className="input"
               value={name}
               onChange={e => setName(e.target.value)}
             />
             <label className="label">code</label>
-            <input
+            <Input
               className="input"
               value={code}
               onChange={e => setCode(e.target.value)}
               maxLength={4}
             />
             <div className="button-group">
-              <button className="button button--secondary" onClick={joinGame}>
+              <Button
+                secondary
+                onClick={joinGame}
+                disabled={code === ""}>
                 Join
-              </button>
-              <button className="button" onClick={createAndConnect}>
+              </Button>
+              <Button
+                onClick={createAndConnect}
+                disabled={code !== ""}
+              >
                 Create
-              </button>
+              </Button>
             </div>
           </div>
-        </>
+        </React.Fragment>
       </CSSTransition>
     </div>
   );

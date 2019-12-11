@@ -23,7 +23,7 @@ export const initialise = () => {
         { name: "jones", score: 0 },
         { name: "pear", score: 0 }
       ],
-      gameState: GameState.Story,
+      gameState: GameState.Lobby,
       roundNumber: 0,
       score: [
         { name: "bob", score: 0, scored: 0 },

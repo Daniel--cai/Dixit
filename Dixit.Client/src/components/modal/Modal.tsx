@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, SxStyleProp } from "theme-ui";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, RefObject } from "react";
 import * as styles from "./Modal.styles";
 import { Transition } from "react-transition-group";
 import { Button } from "../button";
@@ -21,6 +21,7 @@ export const InputModal: React.FC<Props> = props => {
     backgroundSize: "cover",
     margin: "4"
   }
+
   return createPortal(
     <Transition
       appear
@@ -52,7 +53,7 @@ export const InputModal: React.FC<Props> = props => {
               margin: "3"
 
             }} >
-              <TextArea rows={3} placeholder= "A quick brown fox jumped over the lazy cat"/>
+              <TextArea rows={3} placeholder="A quick brown fox jumped over the lazy cat" />
             </div>
             <Button sx={{ margin: "6", alignSelf: "center" }} disabled={true} onClick={props.hide}>Send</Button>
           </div>

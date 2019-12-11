@@ -6,7 +6,7 @@ import {
   VoteCardCommand,
   PlayCardCommand
 } from "./request";
-const baseUrl = "http://api.danielcai.test/api";
+const baseUrl = "https://dixit-api.danielcai.test:5001/api";
 
 export class Apiclient {
   public static createLobby(command: CreateLobbyCommand) {

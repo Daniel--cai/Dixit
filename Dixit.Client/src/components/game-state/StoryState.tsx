@@ -38,7 +38,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
   const changeIndex = (index: number, item: React.ReactNode) => {
     setCard(index);
   };
-
+  
   return (
     <React.Fragment>
       <InputModal
@@ -58,6 +58,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
           </div>
           </Banner>
         )}
+        <div>{player.name} s</div>
         {storyTeller !== player.name && (
           <p> {storyTeller} is currently telling a story</p>
         )}

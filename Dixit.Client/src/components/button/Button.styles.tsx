@@ -8,6 +8,7 @@ interface ButtonCssProps {
   disabled?: boolean;
   fullWidth?: boolean;
   active?: boolean;
+  secondary?: boolean;
   icon?: boolean;
 }
 
@@ -25,7 +26,7 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
     fontSize: "1rem",
     textAlign: "center",
     color: "white",
-    boxShadow: "base",
+    
     borderRadius: "soft"
   };
 
@@ -38,6 +39,19 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
   if (props.fullWidth) {
     css.width = "100%";
     css.display = "flex";
+  }
+  if (props.secondary){
+    css.backgroundColor = "white";
+    css.color = "black";
+    css.borderColor= "gray-20";
+    
+    css[":hover"] = {
+      backgroundColor: "gray-20",
+      borderColor: "gray-30"
+    };
+  }
+  if (props.disabled) {
+    css.cursor= "stop"
   }
 
   return css;

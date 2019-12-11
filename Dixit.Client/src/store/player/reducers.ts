@@ -19,7 +19,7 @@ export function playerReducer(
       return { ...state, connected: true };
     }
     case CONNECT: {
-      return { ...state, code: action.code };
+      return { ...state, code: action.code, name: action.name };
     }
     case CARD_DRAWN:
       console.log("cardDrawn");

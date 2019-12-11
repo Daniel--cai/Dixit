@@ -4,7 +4,9 @@ import {
   StoryToldEvent,
   StoryRevealedEvent,
   RoundFinishedEvent,
-  GameFetchedEvent
+  GameFetchedEvent,
+  LobbyJoinedEvent,
+  LobbyLeftEvent
 } from "../events/types";
 import { Scoreboard } from "../events/models";
 
@@ -35,4 +37,6 @@ export type GameStateActionTypes =
   | GameStartedEvent
   | StoryToldEvent
   | StoryRevealedEvent
-  | RoundFinishedEvent;
+  | RoundFinishedEvent
+  | LobbyLeftEvent
+  | LobbyJoinedEvent;

@@ -5,7 +5,9 @@ import {
   STORY_TOLD,
   STORY_REVEALED,
   ROUND_FINISHED,
-  GAME_FETCHED
+  GAME_FETCHED,
+  LOBBY_JOINED,
+  LOBBY_LEFT
 } from "../events/types";
 
 import { GameState } from "./models";
@@ -59,8 +61,22 @@ export function gameStateReducer(
       return {
         ...state,
         gameState: action.payload.gameState,
-        score: action.payload.players
+        players: action.payload.players,
+        roundNumber: action.payload.roundNumber,
       };
+    }
+    case LOBBY_JOINED: {
+      return {
+        ...state,
+        players: [...state.players, { name: action.payload.player, score: 0 }]
+      }
+    }
+
+    case LOBBY_LEFT: {
+      return {
+        ...state,
+        players: state.players.filter(player => player.name !== action.payload.player)
+      }
     }
 
     default:

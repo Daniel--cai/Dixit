@@ -1,8 +1,13 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, SxStyleProp } from "theme-ui";
 import React from "react";
-
-export interface Input extends React.InputHTMLAttributes<HTMLInputElement> {
-  id?: string;
-  children?: React.ReactNode;
+import * as styles from "./Input.styles";
+interface Props extends React.TextareaHTMLAttributes<HTMLInputElement> {
+  sx?: SxStyleProp
 }
+
+export const Input: React.FC<Props> = ({ sx, ...rest }) => {
+  return (
+    <input type="input" sx={{ ...sx!, ...styles.textAreaCss }} {...rest}></input>
+  );
+};

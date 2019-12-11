@@ -31,14 +31,17 @@ export const signalRMiddleware: Middleware<Dispatch> = ({
   getState
 }: MiddlewareAPI<any, State>) => next => async (action: AnyAction) => {
   if (!getState().player.connected && action.type === "connect") {
-    const connectionHub = `/lobbyevents?name=${action.payload.name}&code=${action.payload.code}`;
+    const name = action.name;
+    const code = action.code;
+    const connectionHub = `/lobbyevents?name=${name}&code=${code}`;
     const connection: signalR.HubConnection = new signalR.HubConnectionBuilder()
       .withUrl(connectionHub)
       .build();
     await startSignalRConnection(connection);
+
     dispatch(connected({ success: true }));
-    dispatch(push(`/lobby/${action.payload.code}`));
-    dispatch(fetchGame(action.payload.code));
+    dispatch(push(`/lobby/${code}`));
+    dispatch(fetchGame(code));
 
     connection.on("lobbyJoined", data => dispatch(lobbyJoined(data)));
     connection.on("lobbyLeft", data => dispatch(lobbyLeft(data)));

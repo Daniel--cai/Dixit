@@ -12,11 +12,7 @@
 }
 
 .lobby-screen__code {
-  align-self: center;
-  justify-content: center;
-  display: inline-block;
-  border-radius: 4px;
-  height: 55px;
+
 }
 
 .lobby-screen__code__text {
@@ -26,28 +22,11 @@
 }
 
 .lobby-screen__player-list {
-  display: inline-grid;
-  grid-gap: 0.5em;
-  background: $grey;
-  padding: 1rem 0;
+
 }
 
 .lobby-screen__player {
-  height: 100%;
-  background: white;
-  color: $panel-text;
-  font-weight: bold;
-  // box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  border-radius: 5px;
-  align-items: center;
-  margin: 0 1rem;
-  span {
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-  }
+ 
 }
 
 .lobby-screen__player--empty {
