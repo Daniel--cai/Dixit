@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aspnet/signalr": "^1.1.4",
     "@babel/core": "7.5.5",
     "@emotion/core": "^10.0.22",
     "@mdx-js/react": "^1.5.1",
+    "@microsoft/signalr": "^3.1.0",
     "@svgr/webpack": "4.3.2",
     "@theme-ui/components": "^0.2.49",
     "@types/jest": "24.0.18",

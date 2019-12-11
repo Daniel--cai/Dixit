@@ -1,4 +1,4 @@
-export interface CreateLobbyCommand {}
+export interface CreateLobbyCommand { }
 
 export interface JoinLobbyCommand {
   name: string;
@@ -23,4 +23,8 @@ export interface VoteCardCommand {
   code: string;
   player: string;
   card: number;
+}
+
+export interface StartGameCommand {
+  code: string
 }

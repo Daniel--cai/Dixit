@@ -6,7 +6,7 @@ import {
   VoteCardCommand,
   PlayCardCommand
 } from "./request";
-const baseUrl = "https://dixit-api.danielcai.test:5001/api";
+const baseUrl = "http://dixit.danielcai.test:30000/app/api";
 
 export class Apiclient {
   public static createLobby(command: CreateLobbyCommand) {
@@ -14,7 +14,7 @@ export class Apiclient {
   }
 
   public static startLobby(command: StartLobbyCommand) {
-    return Apiclient.post("/lobby/startLobby", command);
+    return Apiclient.post("/lobby/startGame", command);
   }
 
   public static playCard(command: PlayCardCommand) {

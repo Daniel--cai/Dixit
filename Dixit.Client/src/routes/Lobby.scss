@@ -12,7 +12,11 @@
 }
 
 .lobby-screen__code {
-
+  align-self: center;
+  justify-content: center;
+  display: inline-block;
+  border-radius: 4px;
+  height: 55px;
 }
 
 .lobby-screen__code__text {

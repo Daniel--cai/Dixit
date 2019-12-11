@@ -36,7 +36,7 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
   };
 
   const startGame = async () => {
-    await Axios.post("/api/lobby/startGame", { code: props.match.params.code });
+    Apiclient.startLobby({ code: props.match.params.code })
   };
 
   console.log(game.players)

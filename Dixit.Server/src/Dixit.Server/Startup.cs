@@ -11,9 +11,9 @@ using Dixit.Server.RealTime;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 
 namespace Dixit.Server
@@ -30,7 +30,7 @@ namespace Dixit.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddHealthChecks();
             services.Configure<FaunaDbConfig>(Configuration);
             services.AddSignalR();
@@ -49,10 +49,16 @@ namespace Dixit.Server
                        .AllowAnyHeader();
             }));
 
+            services.AddSignalR()
+            .AddJsonProtocol(options =>
+            {
+                options.PayloadSerializerOptions.WriteIndented = false;
+            });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -64,13 +70,18 @@ namespace Dixit.Server
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseSignalR(route =>
+            app.UsePathBase("/app");
+            app.UseRouting();
+            app.UseEndpoints(endpoint =>
             {
-                route.MapHub<LobbyEventsClientHub>("/lobbyevents");
+                endpoint.MapControllers();
+                endpoint.MapHealthChecks("/health");
+                endpoint.MapHub<LobbyEventsClientHub>("/lobbyevents");
             });
+            
             app.UseHttpsRedirection();
-            app.UseHealthChecks("/health");
-            app.UseMvc();
+
+  
         }
     }
 }

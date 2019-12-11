@@ -13,7 +13,7 @@ import {
 } from "../store/events/actions";
 import { State } from "../store";
 import { MiddlewareAPI, Dispatch, Middleware, AnyAction } from "redux";
-import * as signalR from "@aspnet/signalr";
+import * as signalR from "@microsoft/signalr";
 import { push } from "connected-react-router";
 
 // interface SignalrHubConnection extends Omit<signalR.HubConnection, "on"> {
@@ -33,7 +33,7 @@ export const signalRMiddleware: Middleware<Dispatch> = ({
   if (!getState().player.connected && action.type === "connect") {
     const name = action.name;
     const code = action.code;
-    const connectionHub = `/lobbyevents?name=${name}&code=${code}`;
+    const connectionHub = `http://dixit.danielcai.test:30000/app/lobbyevents?name=${name}&code=${code}`;
     const connection: signalR.HubConnection = new signalR.HubConnectionBuilder()
       .withUrl(connectionHub)
       .build();
