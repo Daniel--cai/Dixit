@@ -3,6 +3,24 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+  name: boardgame-server
+spec:
+  rules:
+    - host: dixit.danielcai.test
+      http:
+        paths:
+        - path: /app
+          backend:
+            serviceName: dixit-server
+            servicePort: 80
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
   name: boardgame-client
 spec:
   rules:
@@ -14,19 +32,3 @@ spec:
             serviceName: dixit-client
             servicePort: 80
 
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-  name: boardgame-server
-spec:
-  rules:
-    - host: dixit-api.danielcai.test
-      http:
-        paths:
-        - path: /
-          backend:
-            serviceName: dixit-server
-            servicePort: 80
