@@ -41,7 +41,7 @@
 
 .landing-screen {
   display: grid;
-  grid-template-rows: 50% auto;
+  grid-template-rows: 10rem auto;
   // background: url("../assets/images/cover-full.jpg");
   background-size: cover;
   background-position: center;
@@ -57,7 +57,7 @@
 }
 
 .landing-screen__logo {
-  width: 350px;
+  height: 7rem;
   align-self: end;
   justify-self: center;
 }
