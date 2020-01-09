@@ -52,8 +52,8 @@ export const inputWrapperImageCss: SxStyleProp = {
 export const inputWrapperCaptionCss: SxStyleProp = {
     fontSize: "2",
     fontWeight: "bold",
-    paddingTop: "2",
-    paddingBottom: "2",
+    paddingTop: "sm",
+    paddingBottom: "sm",
     color: "primary",
     display: "grid",
     gridTemplateColumns: "3rem auto 3rem",

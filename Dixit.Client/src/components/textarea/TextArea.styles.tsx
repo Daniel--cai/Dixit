@@ -6,7 +6,7 @@ export const textAreaCss: SxStyleProp = {
     borderRadius: "soft",
     border: "1px solid",
     borderColor: "gray-20",
-    padding: "4",
+    padding: "md",
     fontSize: "4",
     outline: "none",
     resize: "none",

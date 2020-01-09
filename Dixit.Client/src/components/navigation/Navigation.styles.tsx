@@ -50,7 +50,7 @@ export const navigationMobileCss: SxStyleProp = {
     fontWeight: "bold",
     color: "primary",
     '> *': {
-        padding: "3",
+        padding: "0.75rem",
         lineHeight: "1.5rem"
     }
 

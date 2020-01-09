@@ -24,7 +24,7 @@ const createRootReducer = (history: any) => rootReducer;
 export function configureStore() {
   const store = createStore(
     createRootReducer(history),
-    // initialise(),
+    initialise(),
     compose(applyMiddleware(routerMiddleware(history), thunk, signalRMiddleware))
   );
 

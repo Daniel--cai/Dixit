@@ -12,7 +12,7 @@ export const Navigation: React.FC = () => {
   useScrollLock(toggle);
 
   return (
-    <div sx={{ width: "100%" }}>
+    <nav sx={{ width: "100%" }}>
       <nav sx={styles.navigationCss}>
         <a href="/" sx={styles.navigationLogoCss}>
           <img sx={{ width: "100px" }} src={Logo}></img>
@@ -66,6 +66,6 @@ export const Navigation: React.FC = () => {
         )}
       </Transition>
 
-    </div >
+    </nav >
   );
 };

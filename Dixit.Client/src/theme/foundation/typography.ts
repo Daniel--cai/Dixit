@@ -1,6 +1,6 @@
 
 //realign font size baseline with typographical design system
-const rowHeight: number = 8; 
+const rowHeight: number = 4;
 const baseFontSize: number = 16;
 const descenderScale: number = 0.15;
 const baseOffset: number = descenderScale * baseFontSize;
@@ -15,17 +15,18 @@ const baseline = (scale: number, rowSpan: number) => {
 
 //scales (em), height (row spans)
 const bodyScale = 1;
-const bodyHeight = 3;
+const bodyHeight = 6;
 
 const headingScale = 1.75;
-const headingHeight= 5;
+const headingHeight = 5;
 
 const subHeadingScale = 0.75;
-const subHeadingHeight= 2;
+const subHeadingHeight = 2;
 
 const labelScale = 1.25;
-const labelHeight= 1;
+const labelHeight = 1;
 
+console.log(baseline(bodyScale, bodyHeight))
 export const typography = {
     fontSizes: [
         "0.5rem",
@@ -38,15 +39,31 @@ export const typography = {
         "4rem"
     ],
     lineHeights: {
-        body: bodyHeight,
-        heading: headingHeight,
-        subHeading: subHeadingHeight,
-        label: labelHeight
+        body: `${bodyHeight * rowHeight / 16}rem`,
+        heading: `${headingHeight}rem`,
+        subHeading: `${subHeadingHeight}rem`,
+        label: `${labelHeight}`
     },
-    offsetTransforms: {
-        body: baseline(bodyScale, bodyHeight),
-        heading: baseline(headingScale, headingHeight),
-        subHeading: baseline(subHeadingScale, subHeadingHeight),
-        label: baseline(labelScale, labelHeight)
+    typography: {
+        heading: {
+            transform: baseline(headingScale, headingHeight),
+            lineHeight: `${headingHeight}rem`,
+            fontSize: `${headingScale}rem`
+        },
+        body: {
+            transform: `translateY(${baseline(bodyScale, bodyHeight)}px)`,
+            lineHeight: `${bodyHeight * rowHeight / 16}rem`,
+            fontSize: `${bodyScale}rem`
+        },
+        subheading: {
+            transform: baseline(subHeadingScale, subHeadingHeight),
+            lineHeight: `${subHeadingHeight}rem`,
+            fontSize: `${subHeadingScale}rem`
+        },
+        label: {
+            transform: baseline(labelScale, labelHeight),
+            lineHeight: `${labelHeight}`,
+            fontSize: `${labelScale}rem`
+        }
     }
 }

@@ -9,6 +9,7 @@ import "./GameState.scss";
 import { InputModal } from "../modal/Modal";
 import { Card } from "../card/Card";
 import { Banner } from "../banner/Banner";
+import { Carousel } from "../carousel/Carousel";
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
   const [card, setCard] = useState(2);
@@ -38,7 +39,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
   const changeIndex = (index: number, item: React.ReactNode) => {
     setCard(index);
   };
-  
+
   return (
     <React.Fragment>
       <InputModal
@@ -58,18 +59,19 @@ export const StoryState: React.FC<{ code: string }> = props => {
           </div>
           </Banner>
         )}
-        <div>{player.name} s</div>
+
         {storyTeller !== player.name && (
           <p> {storyTeller} is currently telling a story</p>
         )}
         {storyTeller === player.name && (
           <React.Fragment>
-            <div sx={{
+            {/* <div sx={{
               display: "grid",
               gridTemplateColumns: ["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"],
-              gridRowGap: "2",
-              gridColumnGap: "2"
-            }}>
+              gridRowGap: "sm",
+              gridColumnGap: "sm",
+            }}> */}
+            <Carousel>
               {player.hand.map(card => {
                 return (
                   <Card>
@@ -88,7 +90,8 @@ export const StoryState: React.FC<{ code: string }> = props => {
                   </Card>
                 );
               })}
-            </div>
+              </Carousel>
+            {/* </div> */}
             {/* <div className="action">
               <button className="button" onClick={pickCard(card)}>
                 Tell a story {card}

@@ -7,7 +7,7 @@ export const bannerCss: SxStyleProp = {
   borderColor: "gray-20",
   backgroundColor: "white",
   borderRadius: "soft",
-  padding: "4",
-  margin: "3",
-  marginBottom: "2"
+  padding: "sm",
+  margin: "sm",
+  marginBottom: "sm"
 };

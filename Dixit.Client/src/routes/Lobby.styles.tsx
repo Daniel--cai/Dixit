@@ -10,7 +10,7 @@ export const lobbyScreenCss: SxStyleProp = {
     gridTemplateRows: "100px auto 100px",
     height: "calc(100vh - 3rem)",
     minHeight: ["0", "0", "750px"],
-    background: "secondary",
+    background: "secondary"
 }
 
 export const segmentCss: SxStyleProp = {
@@ -30,7 +30,7 @@ export const segmentLineCss: SxStyleProp = {
     boxShadow: "base",
     borderRadius: "soft",
     margin: "0 1rem",
-    padding: "4",
+    padding: "md",
     "> div": {
         flex: "1",
         alignItems: "center",
@@ -40,7 +40,7 @@ export const segmentLineCss: SxStyleProp = {
 
 export const indicatorCss: SxStyleProp = {
     // justifyContent: "flex-start",
-    marginRight:"4",
+    marginRight:"md",
     color:"green"
 }
 

@@ -8,7 +8,14 @@ export default {
   breakpoints: ["40em", "52em", "64em"],
   colors,
   radii,
-  space: [0, "0.25rem", "0.5rem", "0.75rem", "1rem", "1.5rem", "2rem", "4rem"],
+  space: {
+    none: 0,
+    xs: "0.25rem",
+    sm: "0.5rem",
+    md: "1rem",
+    lg: "1.5rem",
+    xl: "2rem"
+  },
   fonts: {
     body: "system-ui, sans-serif",
     heading: "inherit",
@@ -20,7 +27,6 @@ export default {
     bold: 700
   },
 
-  variants: {},
   text: {},
   buttons: {
     primary: {
@@ -33,3 +39,5 @@ export default {
   rowHeight: 9,
   ...typography
 };
+
+console.log(typography)
