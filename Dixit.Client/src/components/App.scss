@@ -1,8 +1,8 @@
 @import "../theme.scss";
 .app {
   text-align: center;
-  // display: grid;
-  grid-template-rows: $nav-height auto;
+  display: grid;
+  grid-template-rows: auto 1fr;
 
   // background: url("../assets/images/bg.jpg");
   // background-repeat: no-repeat;

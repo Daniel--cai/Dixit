@@ -10,6 +10,7 @@ import { InputModal } from "../modal/Modal";
 import { Card } from "../card/Card";
 import { Banner } from "../banner/Banner";
 import { Carousel } from "../carousel/Carousel";
+import * as styles from "./GameState.styles";
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
   const [card, setCard] = useState(2);
@@ -48,7 +49,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
         submit={() => tellStory()}
         hide={hideModal}
       />
-      <div sx={{ width: ["100%", "100%", "30rem"], margin: "auto" }}>
+      <div sx={styles.storyStateCss}>
         {storyTeller === player.name && (
           <Banner sx={{ width: ["100%", "100%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
             <div>
@@ -74,23 +75,31 @@ export const StoryState: React.FC<{ code: string }> = props => {
             <Carousel>
               {player.hand.map(card => {
                 return (
-                  <Card>
-                    <img
+                  <Card 
+                    sx={{
+                      height: "100%", 
+                      backgroundImage: `url(${Image1})`, 
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "contain",
+                      backgroundPosition: "center"
+                    }} 
+                    onClick={pickCard(card)}>
+                    {/* <img
                       sx={{
                         width: "100%",
                         height: "100%",
-                        userSelect: "none",
+
                         boxShadow: "deep",
                         borderRadius: "soft",
                       }}
                       src={Image1}
                       alt={`image-${card}`}
-                      onClick={pickCard(card)}
-                    />
+
+                    /> */}
                   </Card>
                 );
               })}
-              </Carousel>
+            </Carousel>
             {/* </div> */}
             {/* <div className="action">
               <button className="button" onClick={pickCard(card)}>

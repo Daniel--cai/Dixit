@@ -9,10 +9,10 @@ export const cardCss = (props: CardCssProps): SxStyleProp => {
         width: "100%",
         height: "100%",
         cursor: "pointer",
-        ":hover": {
-            boxShadow: "deep",
-            opacity: 0.75
-        }
+        // ":hover": {
+        //     boxShadow: "deep",
+        //     opacity: 0.75
+        // }
     };
     return css;
 };

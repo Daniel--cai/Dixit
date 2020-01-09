@@ -8,6 +8,4 @@ export const bannerCss: SxStyleProp = {
   backgroundColor: "white",
   borderRadius: "soft",
   padding: "sm",
-  margin: "sm",
-  marginBottom: "sm"
 };

@@ -30,7 +30,6 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
 
   return (
     <div sx={styles.gameCss}>
-      <div />
       {game.gameState === GameState.Story && (
         <StoryState code={props.match.params.code} />
       )}
