@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ValueObjects\Deck.cs" />
+    <Compile Remove="ValueObjects\Hand.cs" />
+    <Compile Remove="ValueObjects\ScoreCard.cs" />
+    <Compile Remove="ValueObjects\Round.cs" />
+    <Compile Remove="ValueObjects\Vote.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Entities\" />
+    <Folder Include="ValueObjects\" />
+    <Folder Include="Aggregates\" />
+    <Folder Include="AcquireTargetService\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+</Project>

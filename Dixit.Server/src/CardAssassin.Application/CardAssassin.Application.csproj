@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="FaunaDB.Client" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CardAssassin.Domain\CardAssassin.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Responses\Game\" />
+    <Folder Include="Responses\Player\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\IFaunaDbService.cs" />
+    <Compile Remove="Services\IFaunaDbService.cs" />
+    <Compile Remove="Services\IFaunaDbService.cs" />
+    <Compile Remove="Services\IAwsDynamodbService.cs" />
+    <Compile Remove="Events\Game\RoundFinishedEvent.cs" />
+  </ItemGroup>
+</Project>
