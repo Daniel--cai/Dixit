@@ -5,10 +5,8 @@ using System.Text;
 
 namespace Dixit.Infrastructure.Data.Model
 {
-    [DynamoDBTable("lobby")]
     public class Lobby : IEquatable<Lobby>
     {
-        [DynamoDBHashKey]
         public int Id  { get; set; }
         public string Code { get; set; }
         public List<Round> Rounds { get; set; } = new List<Round>();

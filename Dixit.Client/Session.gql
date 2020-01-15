@@ -4,6 +4,13 @@ type Query {
    sessionByCode(code: String!): Session
 }
 
+mutation CreateLobby($code: String!, $rounds: [Round!]!, $deck: [Card!]! ,$players: [Player!]! ,$gameSate: String!, $dateCreated: String) {
+     createSession(data: {code: $code, rounds: $rounds, deck: $deck, players :$players, gameState :$gameState, dateCreated : $dateCreated} ) {
+         code
+     }
+}
+
+
 type Session {
    code: String!
    rounds: [Round!]! @relation
@@ -44,3 +51,4 @@ type Vote {
     card: Int!
     round: Round!
 }
+
