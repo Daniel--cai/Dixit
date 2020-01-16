@@ -32,10 +32,12 @@ namespace Dixit.Server
         {
 
             services.AddHealthChecks();
-            services.Configure<FaunaDbConfig>(Configuration);
+            services.Configure<FirestoreConfig>(Configuration.GetSection("Firestore"));
             services.AddSignalR();
-            services.AddScoped<IAwsDynamodbClient, AwsDynamodbClient>();
-            services.AddScoped<IRepository, AwsDynamodbService>();
+
+            services.AddScoped(typeof(INoSqlClient<>), typeof(FirestoreClient<>));
+            services.AddScoped<IRepository, FirestoreService>();
+
             services.AddTransient<IScoringRule, BonusRule>();
             services.AddTransient<IScoringRule, StoryTellerRule>();
             services.AddTransient<IScoringRule, CorrectRule>();

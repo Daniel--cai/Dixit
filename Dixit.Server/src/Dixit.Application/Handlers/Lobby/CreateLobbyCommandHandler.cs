@@ -20,16 +20,16 @@ namespace Dixit.Application.Handlers
             _awsDynamodbService = awsDynamodbService;
         }
 
-        public Task<CreateLobbyResponse> Handle(CreateLobbyCommand request, CancellationToken cancellationToken)
+        public async Task<CreateLobbyResponse> Handle(CreateLobbyCommand request, CancellationToken cancellationToken)
         {
             var lobby = new Lobby();
             //var player = new Domain.Entities.Player(request.Name);
             //lobby.Players.Add(player);
-            _awsDynamodbService.AddLobby(lobby);
-            return Task.FromResult(new CreateLobbyResponse
+            var code = await _awsDynamodbService.AddLobby(lobby);
+            return new CreateLobbyResponse
             {
-                Code = lobby.Code
-            });
+                Code = code
+            };
         }
     }
 }

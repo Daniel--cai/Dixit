@@ -8,7 +8,7 @@ namespace Dixit.Application.Services
 {
     public interface IRepository
     {
-        void AddLobby(Lobby lobby);
+        Task<string> AddLobby(Lobby lobby);
         Task<Lobby> GetLobbyByCode(string code);
         Task<PlayerConnection> GetPlayerConnectionByIdentifier(string identifier);
         Task AddPlayerConnection(string name, string identifier, string code);

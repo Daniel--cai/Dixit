@@ -22,6 +22,7 @@
       "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "/Users/daniel/Documents/GitHub/Secret/firestore.json",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"

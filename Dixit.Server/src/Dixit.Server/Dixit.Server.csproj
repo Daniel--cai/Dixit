@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.3" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
@@ -19,6 +19,7 @@
     <Folder Include="Api\" />
     <Folder Include="ApiModels\" />
     <Folder Include="Filters\" />
+    <Folder Include="Configurations\" />
   </ItemGroup>
 
   <ItemGroup>

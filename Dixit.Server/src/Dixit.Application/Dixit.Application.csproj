@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="7.0.0" />
-    <PackageReference Include="FaunaDB.Client" Version="2.10.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,10 +18,4 @@
     <Folder Include="Responses\Player\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Services\IFaunaDbService.cs" />
-    <Compile Remove="Services\IFaunaDbService.cs" />
-    <Compile Remove="Services\IFaunaDbService.cs" />
-    <Compile Remove="Services\IAwsDynamodbService.cs" />
-  </ItemGroup>
 </Project>

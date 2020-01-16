@@ -21,7 +21,7 @@ namespace Dixit.Domain.Aggregates
 
         public Lobby()
         {
-            Code = Guid.NewGuid().ToString().Substring(0, 4);
+            Code = "";
             Rounds = new List<Round>();
             Deck = InitializeDeck();
             Players = new List<Player>();
@@ -55,6 +55,8 @@ namespace Dixit.Domain.Aggregates
         public string CurrentStory => CurrentRound?.Story;
 
         public List<Card> CurrentPlayedCards => Deck.Cards.Where(card => card.RoundSubmitted != 0 && card.RoundSubmitted == RoundNumber).ToList();
+
+        public List<Card> GetCardsInRound(int roundNumber) => Deck.Cards.Where(card => card.RoundSubmitted != 0 && card.RoundSubmitted == roundNumber).ToList();
 
         public List<Vote> CurrentVotes => CurrentRound?.Votes;
 

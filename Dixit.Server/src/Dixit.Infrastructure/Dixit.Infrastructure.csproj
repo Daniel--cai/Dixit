@@ -5,15 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.3" />
-    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.101.43" />
-    <PackageReference Include="FaunaDB.Client" Version="2.10.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.0" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.104.18" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.1" />
+    <PackageReference Include="Google.Cloud.Firestore" Version="1.1.0" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dixit.Application\Dixit.Application.csproj" />
     <ProjectReference Include="..\Dixit.Domain\Dixit.Domain.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Folder Include="Profiles\" />
+  </ItemGroup>
 </Project>
