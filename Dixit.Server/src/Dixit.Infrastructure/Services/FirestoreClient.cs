@@ -34,7 +34,7 @@ namespace Dixit.Infrastructure.Services
             return snapshot.Exists ? snapshot.ConvertTo<T>() : default;
         }
 
-        public Task<T> UpdateDocument(T document)
+        public Task UpdateDocument(T document)
         {
             throw new NotImplementedException();
         }

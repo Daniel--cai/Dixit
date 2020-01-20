@@ -36,6 +36,7 @@ namespace Dixit.Server
             services.AddSignalR();
 
             services.AddScoped(typeof(INoSqlClient<>), typeof(FirestoreClient<>));
+            
             services.AddScoped<IRepository, FirestoreService>();
 
             services.AddTransient<IScoringRule, BonusRule>();

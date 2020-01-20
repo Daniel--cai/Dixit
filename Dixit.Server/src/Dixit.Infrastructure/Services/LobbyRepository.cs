@@ -10,13 +10,11 @@ using Microsoft.Extensions.Options;
 
 namespace Dixit.Infrastructure.Services
 {
-    public class FirestoreService : IRepository
+    public class LobbyRepository : IRepository
     {
-        private readonly FirestoreConfig _config;
-
         private readonly INoSqlClient<Data.Model.Lobby> _client;
 
-        public FirestoreService(INoSqlClient<Data.Model.Lobby> client)
+        public LobbyRepository(INoSqlClient<Data.Model.Lobby> client)
         {
             _client = client;
         }
