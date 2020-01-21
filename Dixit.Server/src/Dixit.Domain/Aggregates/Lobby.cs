@@ -27,6 +27,7 @@ namespace Dixit.Domain.Aggregates
             Players = new List<Player>();
             GameState = State.Lobby;
             RoundNumber = 0;
+            DateCreated = DateTime.UtcNow;
         }
 
         private Deck InitializeDeck()
@@ -44,7 +45,7 @@ namespace Dixit.Domain.Aggregates
 
         //aggregate getters
 
-        public Round CurrentRound => RoundNumber > 0 ? Rounds[RoundNumber - 1] : null;
+        public Round CurrentRound => Rounds.Last();
 
         public Player NextStoryTeller => Players[Rounds.Count % Players.Count];
 

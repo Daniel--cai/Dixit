@@ -23,5 +23,7 @@ namespace Dixit.Infrastructure.Data.Model
         public List<Player> Players { get; set; }
         [FirestoreProperty]
         public string GameState { get; set; }
+        [FirestoreProperty]
+        public DateTime DateCreated { get; set; }
     }
 }

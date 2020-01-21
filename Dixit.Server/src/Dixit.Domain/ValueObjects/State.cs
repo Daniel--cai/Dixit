@@ -9,8 +9,8 @@ namespace Dixit.Domain.ValueObjects
         public static readonly State Voting = new State(3, "Voting");
         public static readonly State GameOver = new State(4, "GameOver");
 
-        protected State() { }
-        protected State(int value, string displayName) : base(value, displayName) { }
+        public State() { }
+        public State(int value, string displayName) : base(value, displayName) { }
     };
 
     public class LobbyState : State

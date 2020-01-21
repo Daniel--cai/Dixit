@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using Dixit.Application.Commands;
 using Dixit.Application.Events;
 using Dixit.Application.Services;
@@ -6,6 +7,8 @@ using Dixit.Domain.Interfaces;
 using Dixit.Domain.Services;
 using Dixit.Domain.Services.Rules;
 using Dixit.Infrastructure.Configuration;
+using Dixit.Infrastructure.Mapper;
+using Dixit.Infrastructure.Profiles;
 using Dixit.Infrastructure.Services;
 using Dixit.Server.RealTime;
 using MediatR;
@@ -37,13 +40,19 @@ namespace Dixit.Server
 
             services.AddScoped(typeof(INoSqlClient<>), typeof(FirestoreClient<>));
             
-            services.AddScoped<IRepository, FirestoreService>();
+            services.AddScoped<IRepository, LobbyRepository>();
 
             services.AddTransient<IScoringRule, BonusRule>();
             services.AddTransient<IScoringRule, StoryTellerRule>();
             services.AddTransient<IScoringRule, CorrectRule>();
             services.AddTransient<IScoreService, ScoreService>();
             services.AddMediatR(typeof (CreateLobbyCommand), typeof(LobbyJoinedEvent),typeof(LobbyEventsClientDispatcher));
+
+            //mapper
+            services.AddAutoMapper(typeof(LobbyProfile));
+
+            services.AddTransient<ILobbyMapper, LobbyMapper>();
+            services.AddTransient<IMapper<Domain.Aggregates.Lobby,Infrastructure.Data.Model.Lobby>, LobbyMapper>();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {

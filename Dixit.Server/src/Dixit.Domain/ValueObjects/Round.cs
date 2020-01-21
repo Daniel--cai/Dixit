@@ -12,6 +12,7 @@ namespace Dixit.Domain.ValueObjects
         public Card StoryTellerCard { get; set; }
         public List<Vote> Votes { get; set; }
 
+
         public Round(int roundNumber, Player storyTeller)
         {
             Counter = roundNumber;

@@ -5,7 +5,7 @@ using Dixit.Application.Services;
 using Dixit.Domain.Aggregates;
 using Dixit.Infrastructure.Configuration;
 using Dixit.Infrastructure.Data.Model;
-
+using Dixit.Infrastructure.Mapper;
 using Microsoft.Extensions.Options;
 
 namespace Dixit.Infrastructure.Services
@@ -13,34 +13,22 @@ namespace Dixit.Infrastructure.Services
     public class LobbyRepository : IRepository
     {
         private readonly INoSqlClient<Data.Model.Lobby> _client;
+        private readonly ILobbyMapper _mapper;
 
-        public LobbyRepository(INoSqlClient<Data.Model.Lobby> client)
+
+        public LobbyRepository(INoSqlClient<Data.Model.Lobby> client, ILobbyMapper mapper)
         {
             _client = client;
+            _mapper = mapper;
         }
 
         public async Task<string> AddLobby(Domain.Aggregates.Lobby lobby)
         {
-            var lobbyDto = new Data.Model.Lobby
-            {
-                Code = "",
-                Rounds = new List<Round> { },
-                RoundNumber = 0,
-                Deck = new List<int> { 1,2,3,4,5,6,7,8,9,10 },
-                Discard = new List<int> { },
-                Players = new List<Player> { },
-                GameState = "Lobby"
-
-            };
+            var lobbyDto = _mapper.Map(lobby);
             var id = await _client.CreateDocument(lobbyDto);
             return id;
-
         }
 
-        public Task AddPlayerConnection(string name, string identifier, string code)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<Domain.Aggregates.Lobby> GetLobbyByCode(string code)
         {
@@ -51,7 +39,12 @@ namespace Dixit.Infrastructure.Services
                 throw new Exception($"Lobby {code} not found");
             }
 
-            return new Domain.Aggregates.Lobby();
+            return _mapper.Map(lobby);
+        }
+
+        public Task AddPlayerConnection(string name, string identifier, string code)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<PlayerConnection> GetPlayerConnectionByIdentifier(string identifier)

@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.1" />
     <PackageReference Include="Google.Cloud.Firestore" Version="1.1.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,5 +19,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Profiles\" />
+    <Folder Include="Mapper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Mapper\LobbyDataModel.cs" />
+    <Compile Remove="Mapper\DomainModel.cs" />
+    <Compile Remove="Mapper\LobbyDomainModel.cs" />
   </ItemGroup>
 </Project>

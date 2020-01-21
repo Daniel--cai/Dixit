@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper;
-using Dixit.Domain.Aggregates;
-using Dixit.Infrastructure.Data.Model;
+using Dixit.Infrastructure;
 
 namespace Dixit.Infrastructure.Profiles
 {
@@ -16,14 +15,14 @@ namespace Dixit.Infrastructure.Profiles
                 .ForMember(dest => dest.Code, opt => opt.MapFrom(src => src.Code))
                 .ForMember(dest => dest.RoundNumber, opt => opt.MapFrom(src => src.RoundNumber))
                 .ForMember(dest => dest.Rounds, opt => opt.MapFrom(src => src.Rounds.Select(round =>
-                    new Round
+                    new Data.Model.Round
                     {
                         Counter = round.Counter,
                         StoryTeller = round.StoryTeller.Name,
                         Story = round.Story,
                         Cards = src.GetCardsInRound(round.Counter).Select(card => card.Id).ToList(),
                         StoryTellerCard = round.StoryTellerCard.Id,
-                        Votes = round.Votes.Select(vote => new Vote
+                        Votes = round.Votes.Select(vote => new Data.Model.Vote
                         {
                             Player = vote.Player.Name,
                             Card = vote.Card.Id
@@ -34,14 +33,14 @@ namespace Dixit.Infrastructure.Profiles
                     card.Discarded).Select(card => card.Id)))
 
                 .ForMember(dest => dest.Players, opt => opt.MapFrom(src => src.Players.Select(player =>
-                    new Player
+                    new Data.Model.Player
                     {
                         PlayerName = player.Name,
                         ConnectionId = player.Identifier,
                         Score = player.Score,
                         Hand = src.Deck.Hand(src.GetPlayerByName(player.Name)).Select(card => card.Id).ToList()
                     }
-                )));
+                )));           
         }
     }
 }

@@ -15,6 +15,7 @@
     <PackageReference Include="Shouldly" Version="3.0.2" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="FluentAssertions" Version="5.10.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,4 +24,14 @@
     <ProjectReference Include="..\..\src\Dixit.Server\Dixit.Server.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\Infrastructure\" />
+    <Folder Include="Core\Infrastructure\Mapper\" />
+    <Folder Include="Core\Fixture\" />
+    <Folder Include="Core\Builders\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Core\Fixture\LobbyFixture.cs" />
+    <Compile Remove="Core\Fixture\LobbyFixture.cs" />
+  </ItemGroup>
 </Project>

@@ -31,12 +31,22 @@ namespace Dixit.Infrastructure.Services
             var collection = db.Collection(_config.LobbyCollection).Document(documentId);
 
             var snapshot = await collection.GetSnapshotAsync();
-            return snapshot.Exists ? snapshot.ConvertTo<T>() : default;
+            if (snapshot.Exists)
+            {
+                var document = snapshot.ConvertTo<T>();
+                document.Id = documentId;
+                return document;
+            }
+            return default;
         }
 
-        public Task UpdateDocument(T document)
+        public async Task UpdateDocument(T document)
         {
-            throw new NotImplementedException();
+            FirestoreDb db = FirestoreDb.Create(_config.ProjectId);
+            var collection = db.Collection(_config.LobbyCollection).Document(document.Id);
+
+            await collection.SetAsync(document);
         }
+
     }
 }

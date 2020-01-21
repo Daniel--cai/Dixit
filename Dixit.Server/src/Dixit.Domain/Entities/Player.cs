@@ -12,6 +12,8 @@ namespace Dixit.Domain.Entities
         public bool Connected { get; set; }
         public int Id { get; set; }
 
+        public Player() { }
+
         public Player(string name, string identifier)
         {
             Name = name;
@@ -54,5 +56,9 @@ namespace Dixit.Domain.Entities
             return !(lhs == rhs);
         }
 
+        public static implicit operator Player(string v)
+        {
+            return new Player(v, v);
+        }
     }
 }

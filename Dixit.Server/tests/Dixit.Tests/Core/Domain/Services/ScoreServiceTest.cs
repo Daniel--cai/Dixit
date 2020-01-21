@@ -23,7 +23,7 @@ namespace Dixit.Tests.Core.Domain.Services
 
         public ScoreServiceTest()
         {
-            var fixture = new Fixture();
+            var fixture = new AutoFixture.Fixture();
 
             player1 = fixture.Create<Player>();
             player2 = fixture.Create<Player>();
