@@ -33,7 +33,7 @@ export const signalRMiddleware: Middleware<Dispatch> = ({
   if (!getState().player.connected && action.type === "connect") {
     const name = action.name;
     const code = action.code;
-    const connectionHub = `http://dixit.danielcai.test:30000/app/lobbyevents?name=${name}&code=${code}`;
+    const connectionHub = `${process.env.API_HOST}/app/lobbyevents?name=${name}&code=${code}`;
     const connection: signalR.HubConnection = new signalR.HubConnectionBuilder()
       .withUrl(connectionHub)
       .build();

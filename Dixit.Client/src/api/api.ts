@@ -1,4 +1,4 @@
-import Axios from "axios";
+import Axios, { AxiosRequestConfig } from "axios";
 import {
   TellStoryCommand,
   CreateLobbyCommand,
@@ -6,7 +6,12 @@ import {
   VoteCardCommand,
   PlayCardCommand
 } from "./request";
-const baseUrl = "http://dixit.danielcai.test:30000/app/api";
+// const baseUrl = "http://dixit.danielcai.test:30000/app/api";
+const baseUrl = `${process.env.API_HOST}/app/api`;
+
+const config: AxiosRequestConfig = {
+  withCredentials: false
+}
 
 export class Apiclient {
   public static createLobby(command: CreateLobbyCommand) {
@@ -30,10 +35,10 @@ export class Apiclient {
   }
 
   public static get(url: string) {
-    return Axios.get(`${baseUrl}${url}`);
+    return Axios.get(`${baseUrl}${url}`, config);
   }
 
   public static post(url: string, body: any) {
-    return Axios.post(`${baseUrl}${url}`, body);
+    return Axios.post(`${baseUrl}${url}`, body, config);
   }
 }

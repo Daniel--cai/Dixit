@@ -45,7 +45,7 @@ namespace Dixit.Domain.Aggregates
 
         //aggregate getters
 
-        public Round CurrentRound => Rounds.Last();
+        public Round CurrentRound => Rounds.LastOrDefault();
 
         public Player NextStoryTeller => Players[Rounds.Count % Players.Count];
 
