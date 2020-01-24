@@ -11,23 +11,23 @@ namespace Dixit.Application.Handlers
     public class PlayCardCommandHandler : IRequestHandler<PlayCardCommand>
     {
         private readonly IMediator _mediator;
-        private readonly IRepository _awsDynamodbService;
+        private readonly ILobbyRepository _lobbyRepository;
 
-        public PlayCardCommandHandler(IMediator mediator, IRepository awsDynamodbService)
+        public PlayCardCommandHandler(IMediator mediator, ILobbyRepository lobbyRepository)
         {
             _mediator = mediator;
-            _awsDynamodbService = awsDynamodbService;
+            _lobbyRepository = lobbyRepository;
         }
 
         public async Task<Unit> Handle(PlayCardCommand request, CancellationToken cancellationToken)
         {
-            var lobby = await _awsDynamodbService.GetLobbyByCode(request.Code);
+            var lobby = await _lobbyRepository.GetLobbyByCode(request.Code);
 
             var player = lobby.GetPlayerByName(request.Player);
             var card = lobby.GetCard(request.Card);
             lobby.PlayerPlayCard(player, card);
 
-            await _awsDynamodbService.SaveLobby(lobby);
+            await _lobbyRepository.SaveLobby(lobby);
 
             if (lobby.GameState == State.Voting)
             {

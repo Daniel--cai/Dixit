@@ -15,23 +15,23 @@ namespace Dixit.Application.Handlers
     public class TellStoryCommandHandler : IRequestHandler<TellStoryCommand>
     {
         private readonly IMediator _mediator;
-        private readonly IRepository _awsDynamodbService;
+        private readonly ILobbyRepository _lobbyRepository;
 
-        public TellStoryCommandHandler(IMediator mediator, IRepository awsDynamodbService)
+        public TellStoryCommandHandler(IMediator mediator, ILobbyRepository lobbyRepository)
         {
             _mediator = mediator;
-            _awsDynamodbService = awsDynamodbService;
+            _lobbyRepository = lobbyRepository;
         }
 
         public async Task<Unit> Handle(TellStoryCommand request, CancellationToken cancellationToken)
         {
-            var lobby = await _awsDynamodbService.GetLobbyByCode(request.Code);
+            var lobby = await _lobbyRepository.GetLobbyByCode(request.Code);
            
             var player = lobby.GetPlayerByName(request.StoryTeller);
             var card = lobby.GetCard(request.Card);
             lobby.PlayerTellStory(player, request.Story, card);
            
-            await _awsDynamodbService.SaveLobby(lobby);
+            await _lobbyRepository.SaveLobby(lobby);
             await _mediator.Publish(new StoryToldEvent
             {
                 Story = request.Story,

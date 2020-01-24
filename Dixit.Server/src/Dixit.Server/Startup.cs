@@ -38,9 +38,10 @@ namespace Dixit.Server
             services.Configure<FirestoreConfig>(Configuration.GetSection("Firestore"));
             services.AddSignalR();
 
-            services.AddScoped(typeof(INoSqlClient<>), typeof(FirestoreClient<>));
+            services.AddTransient(typeof(INoSqlClient<>), typeof(FirestoreClient<>));
             
-            services.AddScoped<IRepository, LobbyRepository>();
+            services.AddScoped<ILobbyRepository, LobbyRepository>();
+            services.AddScoped<IPlayerConnectionRepository, PlayerConnectionRepository>();
 
             services.AddTransient<IScoringRule, BonusRule>();
             services.AddTransient<IScoringRule, StoryTellerRule>();
@@ -49,17 +50,10 @@ namespace Dixit.Server
             services.AddMediatR(typeof (CreateLobbyCommand), typeof(LobbyJoinedEvent),typeof(LobbyEventsClientDispatcher));
 
             //mapper
-            services.AddAutoMapper(typeof(LobbyProfile));
+            services.AddAutoMapper(typeof(LobbyProfile), typeof(PlayerConnectionProfile));
 
             services.AddTransient<ILobbyMapper, LobbyMapper>();
             services.AddTransient<IMapper<Domain.Aggregates.Lobby,Infrastructure.Data.Model.Lobby>, LobbyMapper>();
-
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-            {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
-            }));
 
             services.AddSignalR()
             .AddJsonProtocol(options =>
@@ -75,7 +69,6 @@ namespace Dixit.Server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseCors("MyPolicy");
             }
             else
             {

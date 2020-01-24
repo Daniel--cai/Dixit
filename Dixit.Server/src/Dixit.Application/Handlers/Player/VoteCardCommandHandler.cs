@@ -14,17 +14,17 @@ namespace Dixit.Application.Handlers
     {
         private readonly IMediator _mediator;
         private readonly IScoreService _scoreService;
-        private readonly IRepository _awsDynamodbService;
+        private readonly ILobbyRepository _lobbyRepository;
 
-        public VoteCardCommandHandler(IMediator mediator, IScoreService scoreService, IRepository awsDynamodbService)
+        public VoteCardCommandHandler(IMediator mediator, IScoreService scoreService, ILobbyRepository lobbyRepository)
         {
             _mediator = mediator;
             _scoreService = scoreService;
-            _awsDynamodbService = awsDynamodbService;
+            _lobbyRepository = lobbyRepository;
         }
         public async Task<Unit> Handle(VoteCardCommand request, CancellationToken cancellationToken)
         {
-            var lobby = await _awsDynamodbService.GetLobbyByCode(request.Code);
+            var lobby = await _lobbyRepository.GetLobbyByCode(request.Code);
 
             var card = lobby.GetCard(request.Card);
             var player = lobby.GetPlayerByName(request.Player);
@@ -57,7 +57,7 @@ namespace Dixit.Application.Handlers
                 await _mediator.Publish(roundFinishedEvent);
 
             }
-            await _awsDynamodbService.SaveLobby(lobby);
+            await _lobbyRepository.SaveLobby(lobby);
             return Unit.Value;
         }
     }

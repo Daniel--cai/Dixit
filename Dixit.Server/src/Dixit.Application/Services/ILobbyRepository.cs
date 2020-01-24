@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Dixit.Application.Services
 {
-    public interface IRepository
+    public interface ILobbyRepository
     {
         Task<string> AddLobby(Lobby lobby);
         Task<Lobby> GetLobbyByCode(string code);
-        Task<PlayerConnection> GetPlayerConnectionByIdentifier(string identifier);
-        Task AddPlayerConnection(string name, string identifier, string code);
-        Task RemovePlayerConnection(string identifier);
         Task SaveLobby(Lobby lobby);
     }
 }

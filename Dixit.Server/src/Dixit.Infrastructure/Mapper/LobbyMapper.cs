@@ -34,6 +34,7 @@ namespace Dixit.Infrastructure.Mapper
                 GameState = Enumeration.FromDisplayName<State>(data.GameState),
                 RoundNumber = data.RoundNumber,
                 DateCreated = data.DateCreated,
+                Code = data.Code,
             };
 
             domain.Players = data.Players.Select(player =>

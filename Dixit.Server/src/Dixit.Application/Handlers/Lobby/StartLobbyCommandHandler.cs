@@ -14,19 +14,19 @@ namespace Dixit.Application.Handlers
     public class StartLobbyCommandHandler : IRequestHandler<StartLobbyCommand>
     {
         private readonly IMediator _mediator;
-        private readonly IRepository _awsDynamodbService;
+        private readonly ILobbyRepository _lobbyRepository;
 
-        public StartLobbyCommandHandler(IMediator mediator, IRepository awsDynamodbService)
+        public StartLobbyCommandHandler(IMediator mediator, ILobbyRepository lobbyRepository)
         {
-            _awsDynamodbService = awsDynamodbService;
+            _lobbyRepository = lobbyRepository;
             _mediator = mediator;
         }
         public async Task<Unit> Handle(StartLobbyCommand request, CancellationToken cancellationToken)
         {
-            var lobby = await _awsDynamodbService.GetLobbyByCode(request.Code);
+            var lobby = await _lobbyRepository.GetLobbyByCode(request.Code);
             lobby.NewRound();
             lobby.DealDeck();
-            await _awsDynamodbService.SaveLobby(lobby);
+            await _lobbyRepository.SaveLobby(lobby);
             await _mediator.Publish(
                 new LobbyStartedEvent
                 {

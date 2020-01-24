@@ -14,21 +14,23 @@ namespace Dixit.Application.Handlers
     public class LeaveLobbyCommandHandler : INotificationHandler<PlayerDisconnectedEvent>
     {
         private readonly IMediator _mediator;
-        private readonly IRepository _awsDynamodbService;
+        private readonly ILobbyRepository _lobbyRepository;
+        private readonly IPlayerConnectionRepository _playerConnectionRepository;
 
-        public LeaveLobbyCommandHandler(IMediator mediator, IRepository awsDynamodbService)
+        public LeaveLobbyCommandHandler(IMediator mediator, ILobbyRepository lobbyRepository, IPlayerConnectionRepository playerConnectionRepository)
         {
             _mediator = mediator;
-            _awsDynamodbService = awsDynamodbService;
+            _lobbyRepository = lobbyRepository;
+            _playerConnectionRepository = playerConnectionRepository;
         }
 
         public async Task Handle(PlayerDisconnectedEvent notification, CancellationToken cancellationToken)
         {
-            var connection = await _awsDynamodbService.GetPlayerConnectionByIdentifier(notification.Identifier);
-            var lobby = await _awsDynamodbService.GetLobbyByCode(connection.Code);
+            var connection = await _playerConnectionRepository.GetPlayerConnectionByIdentifier(notification.Identifier);
+            var lobby = await _lobbyRepository.GetLobbyByCode(connection.Code);
             var disconnected = lobby.PlayerDisconnected(connection.Name);
-            await _awsDynamodbService.SaveLobby(lobby);
-            await _awsDynamodbService.RemovePlayerConnection(notification.Identifier);
+            await _lobbyRepository.SaveLobby(lobby);
+            await _playerConnectionRepository.RemovePlayerConnection(notification.Identifier);
             await _mediator.Publish(new LobbyLeaveEvent { Player = disconnected, Code = lobby.Code });
             
         }

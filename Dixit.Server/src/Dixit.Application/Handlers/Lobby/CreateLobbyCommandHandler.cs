@@ -12,12 +12,12 @@ namespace Dixit.Application.Handlers
     public class CreateLobbyCommandHandler : IRequestHandler<CreateLobbyCommand, CreateLobbyResponse>
     {
         private readonly IMediator _mediator;
-        private readonly IRepository _awsDynamodbService;
+        private readonly ILobbyRepository _lobbyRepository;
 
-        public CreateLobbyCommandHandler(IMediator mediator, IRepository awsDynamodbService)
+        public CreateLobbyCommandHandler(IMediator mediator, ILobbyRepository lobbyRepository)
         {
             _mediator = mediator;
-            _awsDynamodbService = awsDynamodbService;
+            _lobbyRepository = lobbyRepository;
         }
 
         public async Task<CreateLobbyResponse> Handle(CreateLobbyCommand request, CancellationToken cancellationToken)
@@ -25,7 +25,7 @@ namespace Dixit.Application.Handlers
             var lobby = new Lobby();
             //var player = new Domain.Entities.Player(request.Name);
             //lobby.Players.Add(player);
-            var code = await _awsDynamodbService.AddLobby(lobby);
+            var code = await _lobbyRepository.AddLobby(lobby);
             return new CreateLobbyResponse
             {
                 Code = code

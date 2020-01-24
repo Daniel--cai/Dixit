@@ -1,5 +1,5 @@
 const proxy = require("http-proxy-middleware");
-const URI = "http://dixit.danielcai.test:30000";
+const URI = "https://localhost:5001";
 module.exports = function(app) {
   const apiProxy = proxy("/app/api", {
     target: URI,

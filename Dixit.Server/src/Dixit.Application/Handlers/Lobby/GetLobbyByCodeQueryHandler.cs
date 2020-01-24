@@ -12,15 +12,15 @@ namespace Dixit.Application.Handlers
 {
     public class GetLobbyByCodeQueryHandler : IRequestHandler<GetLobbyByCodeQuery, Lobby>
     {
-        private readonly IRepository _awsDynamodbService;
+        private readonly ILobbyRepository _lobbyRepository;
 
-        public GetLobbyByCodeQueryHandler(IRepository awsDynamodbService)
+        public GetLobbyByCodeQueryHandler(ILobbyRepository lobbyRepository)
         {
-            _awsDynamodbService = awsDynamodbService;
+            _lobbyRepository = lobbyRepository;
         }
         public async Task<Lobby> Handle(GetLobbyByCodeQuery request, CancellationToken cancellationToken)
         {
-            return await _awsDynamodbService.GetLobbyByCode(request.Code);
+            return await _lobbyRepository.GetLobbyByCode(request.Code);
         }
     }
 }

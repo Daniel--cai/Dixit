@@ -1,7 +1,9 @@
 FROM mhart/alpine-node AS build
 WORKDIR /app
-COPY . .
+COPY package.json .
+COPY package-lock.json .
 RUN npm install
+COPY . .
 RUN npm run build
 
 #serve the built app

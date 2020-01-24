@@ -105,7 +105,6 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
               className="input"
               value={code}
               onChange={e => setCode(e.target.value)}
-              maxLength={4}
             />
             <div className="button-group">
               <Button

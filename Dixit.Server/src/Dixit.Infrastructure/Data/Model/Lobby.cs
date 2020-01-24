@@ -9,7 +9,7 @@ namespace Dixit.Infrastructure.Data.Model
     {
         [FirestoreProperty]
         public string Id  { get; set; }
-        [FirestoreProperty]
+        [FirestoreDocumentId]
         public string Code { get; set; }
         [FirestoreProperty]
         public List<Round> Rounds { get; set; } = new List<Round>();

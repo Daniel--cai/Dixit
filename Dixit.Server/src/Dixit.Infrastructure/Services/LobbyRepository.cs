@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 
 namespace Dixit.Infrastructure.Services
 {
-    public class LobbyRepository : IRepository
+    public class LobbyRepository : ILobbyRepository
     {
         private readonly INoSqlClient<Data.Model.Lobby> _client;
         private readonly ILobbyMapper _mapper;
@@ -38,28 +38,16 @@ namespace Dixit.Infrastructure.Services
             {
                 throw new Exception($"Lobby {code} not found");
             }
+            lobby.Code = code;
+            lobby.Id = code;
 
             return _mapper.Map(lobby);
         }
 
-        public Task AddPlayerConnection(string name, string identifier, string code)
+        public async Task SaveLobby(Domain.Aggregates.Lobby lobby)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<PlayerConnection> GetPlayerConnectionByIdentifier(string identifier)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RemovePlayerConnection(string identifier)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveLobby(Domain.Aggregates.Lobby lobby)
-        {
-            throw new NotImplementedException();
+            var lobbyDto = _mapper.Map(lobby);
+            await _client.UpdateDocument(lobbyDto);
         }
     }
 }

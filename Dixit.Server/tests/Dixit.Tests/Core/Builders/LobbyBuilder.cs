@@ -16,6 +16,7 @@ namespace Dixit.Tests.Core.Builders
         public LobbyBuilder()
         {
             _lobby = new Lobby();
+            _lobby.Code = "testcode";
         }
 
         public Lobby Build()

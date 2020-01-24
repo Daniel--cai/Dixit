@@ -14,22 +14,23 @@ namespace Dixit.Application.Handlers
     public class JoinLobbyCommandHandler : INotificationHandler<PlayerConnectedEvent>
     {
         private readonly IMediator _mediator;
-        private readonly IRepository _awsDynamodbService;
+        private readonly ILobbyRepository _lobbyRepository;
+        private readonly IPlayerConnectionRepository _playerConnectionRepository;
 
-        public JoinLobbyCommandHandler(IMediator mediator, IRepository awsDynamodbService)
+        public JoinLobbyCommandHandler(IMediator mediator, ILobbyRepository lobbyRepository, IPlayerConnectionRepository playerConnectionRepository)
         {
             _mediator = mediator;
-            _awsDynamodbService = awsDynamodbService;
+            _lobbyRepository = lobbyRepository;
+            _playerConnectionRepository = playerConnectionRepository;
         }
 
         public async Task Handle(PlayerConnectedEvent notification, CancellationToken cancellationToken)
         {
-            var lobby = await _awsDynamodbService.GetLobbyByCode(notification.Code);
+            var lobby = await _lobbyRepository.GetLobbyByCode(notification.Code);
             
             var connected = lobby.PlayerConnected(notification.Player, notification.Identifier);
-            var player = _awsDynamodbService.GetPlayerConnectionByIdentifier(notification.Identifier);
-            await _awsDynamodbService.SaveLobby(lobby);
-            await _awsDynamodbService.AddPlayerConnection(notification.Player, notification.Identifier, notification.Code);
+            await _playerConnectionRepository.AddPlayerConnection(notification.Player, notification.Identifier, notification.Code);
+            await _lobbyRepository.SaveLobby(lobby);
 
             await _mediator.Publish(new LobbyJoinedEvent { Player = connected, Code = notification.Code });
         }
