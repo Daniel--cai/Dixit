@@ -39,7 +39,7 @@ namespace Dixit.Infrastructure.Profiles
                         PlayerName = player.Name,
                         ConnectionId = player.Identifier,
                         Score = player.Score,
-                        Hand = src.Deck.Hand(src.GetPlayerByName(player.Name)).Select(card => card.Id).ToList()
+                        Hand = src.Deck.OwnedCards(src.GetPlayerByName(player.Name)).Select(card => card.Id).ToList()
                     }
                 ))));           
         }

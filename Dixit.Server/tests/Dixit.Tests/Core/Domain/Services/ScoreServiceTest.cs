@@ -4,6 +4,7 @@ using Dixit.Domain.Interfaces;
 using Dixit.Domain.Services;
 using Dixit.Domain.Services.Rules;
 using Dixit.Domain.ValueObjects;
+using FluentAssertions;
 using System.Collections.Generic;
 using Xunit;
 
@@ -54,11 +55,10 @@ namespace Dixit.Tests.Core.Domain.Services
             var player2Score = scoreBoard.Find(board => board.Player == player2);
             var player3Score = scoreBoard.Find(board => board.Player == player3);
             var player4Score = scoreBoard.Find(board => board.Player == player4);
-
-            Assert.Null(player1Score);
-            Assert.Equal(5, player2Score.Score);
-            Assert.Null(player3Score);
-            Assert.Equal(3, player4Score.Score);
+            player1Score.Should().BeNull();
+            player2Score.Score.Should().Equals(5);
+            player3Score.Should().BeNull();
+            player4Score.Score.Should().Equals(3);
         }
 
         [Fact]
@@ -77,11 +77,10 @@ namespace Dixit.Tests.Core.Domain.Services
             var player2Score = scoreBoard.Find(board => board.Player == player2);
             var player3Score = scoreBoard.Find(board => board.Player == player3);
             var player4Score = scoreBoard.Find(board => board.Player == player4);
-
-            Assert.Equal(1, player1Score.Score);
-            Assert.Equal(1, player2Score.Score);
-            Assert.Equal(1, player3Score.Score);
-            Assert.Equal(0, player4Score.Score);
+            player1Score.Score.Should().Be(1);
+            player2Score.Score.Should().Be(1);
+            player3Score.Score.Should().Be(1);
+            player4Score.Score.Should().Be(0);
         }
 
         [Fact]
@@ -101,10 +100,16 @@ namespace Dixit.Tests.Core.Domain.Services
             var player3Score = scoreBoard.Find(board => board.Player == player3);
             var player4Score = scoreBoard.Find(board => board.Player == player4);
 
-            Assert.Equal(2, player1Score.Score);
-            Assert.Equal(2, player2Score.Score);
-            Assert.Equal(2, player3Score.Score);
-            Assert.Null(player4Score);
+            player1Score.Score.Should().Be(2);
+            player2Score.Score.Should().Be(2);
+            player3Score.Score.Should().Be(2);
+            player4Score.Should().BeNull();
+        }
+
+        [Fact]
+        public void GameStateShouldBeGameOverWhenPlayerReaches30()
+        {
+
         }
     }
 }

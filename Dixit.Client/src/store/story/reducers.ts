@@ -3,11 +3,11 @@ import {
   GAME_STARTED,
   ROUND_FINISHED,
   STORY_TOLD,
-  GAME_FETCHED
+  GAME_FETCHED,
+  STORY_REVEALED
 } from "../events/types";
 
 const initialState: StoryState = {
-  cards: [],
   currentStoryTeller: "",
   storyCard: 0,
   story: "",
@@ -41,6 +41,20 @@ export function storyReducer(
     }
     case STORY_TOLD: {
       return { ...state, story: action.payload.story };
+    }
+    
+    case STORY_REVEALED: {
+      return { ...state, revealed: action.payload.cards };
+    }
+    case GAME_FETCHED: {
+      return {
+        ...state,
+        revealed: action.payload.cards,
+        votes: action.payload.votes || []
+      };
+    }
+    case ROUND_FINISHED: {
+      return { ...state, votes: action.payload.votes };
     }
 
     default:

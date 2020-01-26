@@ -50,7 +50,8 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
             var lobby = new LobbyBuilder()
                             .WithPlayers(_players)
                             .WithRoundOne()
-                            .WithRoundTwo()
+                            .WithPlayedCards()
+                            .WithVotedCards()
                             .Build();
 
             //act
@@ -59,7 +60,9 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
 
             //assert
             lobby.Should().BeEquivalentTo(lobbyReversed);
-            lobby.Rounds.Count.Should().Be(2);
+            lobby.Rounds.Count.Should().Be(1);
+            lobby.CurrentStoryCard.Owner.Should().NotBeNull();
+            lobby.CurrentStoryCard.Owner.Should().BeEquivalentTo(lobby.CurrentStoryTeller);
         }
 
         [Fact]
@@ -70,6 +73,8 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
             var lobby = new LobbyBuilder()
                             .WithPlayers(_players)
                             .WithRoundOne()
+                            .WithPlayedCards()
+                            .WithVotedCards()
                             .WithRoundTwo()
                             .Build();
             var data = lobbyMapper.Map(lobby);
@@ -89,6 +94,8 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
             var lobby = new LobbyBuilder()
                             .WithPlayers(_players)
                             .WithRoundOne()
+                            .WithPlayedCards()
+                            .WithVotedCards()
                             .Build();
             //act
             var data = lobbyMapper.Map(lobby);
@@ -105,6 +112,8 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
             var lobby = new LobbyBuilder()
                             .WithPlayers(_players)
                             .WithRoundOne()
+                            .WithPlayedCards()
+                            .WithVotedCards()
                             .WithRoundTwo()
                             .Build();
 
@@ -116,6 +125,29 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
             round.Story.Should().Equals(lobby.CurrentRound.Story);
             round.StoryTeller.Should().Equals(lobby.CurrentRound.StoryTeller);
             round.StoryTellerCard.Should().Equals(lobby.CurrentRound.StoryTellerCard);
+            round.StoryTellerCard.Should().Equals(lobby.CurrentRound.StoryTellerCard);
+        }
+
+        [Fact]
+        public void AggregateLobbyStoryTellerShouldEqualDataStoryTellerOwner()
+        {
+            //arrange
+            var lobbyMapper = new LobbyMapper(_mapperFixture.GetLobbyMapper());
+            var lobby = new LobbyBuilder()
+                            .WithPlayers(_players)
+                            .WithRoundOne()
+                            .WithPlayedCards()
+                            .Build();
+
+            //act
+            var lobbyReversed = lobbyMapper.Map(lobbyMapper.Map(lobby));
+
+            //assert
+            lobbyReversed.CurrentRound.Story.Should().Equals(lobby.CurrentRound.Story);
+            lobbyReversed.CurrentRound.StoryTeller.Should().Equals(lobby.CurrentRound.StoryTeller);
+            lobbyReversed.CurrentRound.StoryTellerCard.Should().Equals(lobby.CurrentRound.StoryTellerCard);
+            lobbyReversed.CurrentRound.StoryTellerCard.Owner.Should().Be(lobby.CurrentRound.StoryTeller);
+            lobbyReversed.CurrentRound.StoryTellerCard.Owner.Should().NotBeNull();
         }
     }
 }

@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../store";
 import { Apiclient } from "../../api/api";
-import Image1 from "../../assets/cards/1.png";
+import { Images } from "../card-images";
 import "./GameState.scss";
 import { InputModal } from "../modal/Modal";
 import { Card } from "../card/Card";
 import { Banner } from "../banner/Banner";
 import { Carousel } from "../carousel/Carousel";
 import * as styles from "./GameState.styles";
+
 export const StoryState: React.FC<{ code: string }> = props => {
   const [storyInput, setStoryInput] = useState("");
   const [card, setCard] = useState(2);
@@ -50,7 +51,7 @@ export const StoryState: React.FC<{ code: string }> = props => {
       />
       <div sx={styles.storyStateCss}>
         {storyTeller === player.name && (
-          <Banner sx={{ width: ["100%", "100%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
+          <Banner >
             <div>
               You are the storyteller.
           </div>
@@ -64,49 +65,17 @@ export const StoryState: React.FC<{ code: string }> = props => {
           <p> {storyTeller} is currently telling a story</p>
         )}
         {storyTeller === player.name && (
-          <React.Fragment>
-            {/* <div sx={{
-              display: "grid",
-              gridTemplateColumns: ["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"],
-              gridRowGap: "sm",
-              gridColumnGap: "sm",
-            }}> */}
-            <Carousel>
-              {player.hand.map(card => {
-                return (
-                  <Card
-                    key={card}
-                    sx={{
-                      height: "100%",
-                      backgroundImage: `url(${Image1})`,
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "contain",
-                      backgroundPosition: "center"
-                    }}
-                    onClick={pickCard(card)}>
-                    {/* <img
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-
-                        boxShadow: "deep",
-                        borderRadius: "soft",
-                      }}
-                      src={Image1}
-                      alt={`image-${card}`}
-
-                    /> */}
-                  </Card>
-                );
-              })}
-            </Carousel>
-            {/* </div> */}
-            {/* <div className="action">
-              <button className="button" onClick={pickCard(card)}>
-                Tell a story {card}
-              </button>
-            </div> */}
-          </React.Fragment>
+          <Carousel>
+            {player.hand.map(card => {
+              return (
+                <Card
+                  key={card}
+                  src={Images[card % 6]}
+                  onClick={pickCard(card)}>
+                </Card>
+              );
+            })}
+          </Carousel>
         )}
       </div>
     </React.Fragment>

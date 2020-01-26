@@ -32,6 +32,10 @@ namespace Dixit.Domain.ValueObjects
             return Cards.Where(card => card.Owner == player && card.Discarded == false).ToList();
         }
 
+        public List<Card> OwnedCards(Player player)
+        {
+            return Cards.Where(card => card.Owner == player).ToList();
+        }
 
         public Deck Shuffle()
         {

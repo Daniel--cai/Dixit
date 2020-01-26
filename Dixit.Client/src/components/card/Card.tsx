@@ -9,17 +9,19 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
     className?: string;
     sx?: SxStyleProp
+    src: string
 }
 
 export const Card: React.FunctionComponent<CardProps> = ({
     children,
     className,
     sx,
+    src,
     ...rest
 }) => {
     return (
         <div
-            sx={{ ...sx!, ...styles.cardCss({}) }}
+            sx={{ ...sx!, ...styles.cardCss({ src }) }}
             className={className}
             {...rest}
         >

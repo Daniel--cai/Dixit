@@ -45,7 +45,16 @@ namespace Dixit.Tests.Core.Builders
             _lobby.NewRound();
             _lobby.DealDeck();
 
-            _lobby.PlayerTellStory(_lobby.CurrentStoryTeller, _story, _lobby.Deck.Hand(_lobby.CurrentStoryTeller).First());
+            var storyTeller = _lobby.GetPlayerByName(_playerNames[0]);
+            var storyCard = _lobby.GetCard(_lobby.Deck.Hand(storyTeller).Last().Id);
+
+            _lobby.PlayerTellStory(storyTeller, _story, storyCard);
+            return this;
+        }
+
+
+        public LobbyBuilder WithPlayedCards()
+        {
             foreach (var playerName in _playerNames)
             {
                 if (_lobby.CurrentStoryTeller.Name == playerName) continue;
@@ -53,6 +62,11 @@ namespace Dixit.Tests.Core.Builders
                 _lobby.PlayerPlayCard(player, _lobby.Deck.Hand(player).First());
             }
 
+            return this;
+        }
+
+        public LobbyBuilder WithVotedCards()
+        {
             foreach (var playerName in _playerNames)
             {
                 if (_lobby.CurrentStoryTeller.Name == playerName) continue;

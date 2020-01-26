@@ -6,7 +6,7 @@ import { Transition } from "react-transition-group";
 import { Button } from "../button";
 import { TextArea } from "../textarea";
 import { createPortal } from "react-dom";
-import Image1 from "../../assets/cards/1.png";
+import { Images } from "../card-images";
 
 interface Props {
   message: string;
@@ -19,7 +19,7 @@ interface Props {
 
 export const InputModal: React.FC<Props> = props => {
   const backgroundImageStyles: SxStyleProp = {
-    background: `url(${Image1}) no-repeat`,
+    background: `url(${Images[1 % 6]}) no-repeat`,
     backgroundSize: "cover",
     margin: "md"
   }

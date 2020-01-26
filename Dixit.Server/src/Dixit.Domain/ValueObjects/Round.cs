@@ -54,9 +54,9 @@ namespace Dixit.Domain.ValueObjects
 
             if (card.Owner != player)
                 throw new InvalidOperationException($"Player {player.Name} does not hold card {card.Id}.");
-
             Story = story;
-            StoryTellerCard = card;            
+            StoryTellerCard = card;
+            
         }
     }
 }

@@ -6,8 +6,9 @@ import { State } from "../../store";
 import { Apiclient } from "../../api/api";
 import { Card } from "../card/Card";
 import { Banner } from "../banner/Banner";
-import Image1 from "../../assets/cards/1.png";
-
+import { Carousel } from "../carousel/Carousel";
+import * as styles from "./GameState.styles";
+import { Images } from "../card-images";
 export const InProgressState: React.FC<{ code: string }> = props => {
   const player = useSelector((store: State) => store.player);
   const story = useSelector((store: State) => store.story);
@@ -21,59 +22,34 @@ export const InProgressState: React.FC<{ code: string }> = props => {
   };
 
   return (
-    <React.Fragment>
-      <Banner sx={{ width: ["100%", "100%", "30rem"], marginLeft: "auto", marginRight: "auto" }}>
+    <div sx={styles.storyStateCss}>
+      <Banner >
         <div>
           <i>"{story.story}"</i>
         </div>
         <div>
           {
-            story.currentStoryTeller !== player.name &&
+            story.currentStoryTeller === player.name &&
             <React.Fragment>Other players are still <b>deciding</b></React.Fragment>
           }
           {
-            story.currentStoryTeller === player.name &&
+            story.currentStoryTeller !== player.name &&
             <React.Fragment><b>Pick a card</b> that best matches {story.currentStoryTeller}'s story</React.Fragment>
           }
 
         </div>
       </Banner>
-      <div sx={{ width: ["100%", "100%", "30rem"], margin: "auto" }}>
-        <div sx={{
-          display: "flex",
-          padding: "2",
-          flexWrap: "wrap",
-          ">:nth-child(n+3)": {
-            paddingTop: "2",
-          },
-          ">:nth-child(even)": {
-            paddingLeft: "1",
-          },
-          ">:nth-child(odd)": {
-            paddingRight: "1",
-          }
-        }}>
-          {story.revealed.sort().map(card => {
-            return (
-              <Card>
-                <img
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    userSelect: "none",
-                    boxShadow: "deep",
-                    borderRadius: "soft",
-                  }}
-                  src={Image1}
-                  alt={`${card}`}
-                  onClick={playCard(card)}
-                />
-              </Card>
-            );
-          })}
-        </div>
-      </div>
-
-    </React.Fragment>
+      <Carousel>
+        {player.hand.map(card => {
+          return (
+            <Card
+              key={card}
+              src={Images[card % 6]}
+              onClick={playCard(card)}
+            />
+          );
+        })}
+      </Carousel>
+    </div>
   );
 };
