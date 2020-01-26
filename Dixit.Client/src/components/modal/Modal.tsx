@@ -12,7 +12,9 @@ interface Props {
   message: string;
   show: boolean;
   hide: any;
-  submit: any;
+  submit: () => void;
+  story: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const InputModal: React.FC<Props> = props => {
@@ -20,6 +22,10 @@ export const InputModal: React.FC<Props> = props => {
     background: `url(${Image1}) no-repeat`,
     backgroundSize: "cover",
     margin: "md"
+  }
+
+  const  handleClick = () => {
+    props.submit();
   }
 
   return createPortal(
@@ -40,14 +46,14 @@ export const InputModal: React.FC<Props> = props => {
                 <div sx={{ padding: "sm", color: "gray-50" }}>Something subtle yet creative. If nobody or everybody finds your card, you get 0 points </div>
               </div>
               <div
-                sx={{ 
-                  color: "gray-50", 
-                justifySelf: "right", 
-                marginLeft: "sm", 
-                marginRight: "sm", 
+                sx={{
+                  color: "gray-50",
+                  justifySelf: "right",
+                  marginLeft: "sm",
+                  marginRight: "sm",
                 }}
               >
-                <i onClick={props.hide} sx={{cursor: "pointer"}} className="fas fa-times" />
+                <i onClick={props.hide} sx={{ cursor: "pointer" }} className="fas fa-times" />
               </div>
             </div>
 
@@ -56,9 +62,9 @@ export const InputModal: React.FC<Props> = props => {
               textAlign: "center",
 
             }} >
-              <TextArea rows={3} placeholder="A quick brown fox jumped over the lazy cat" />
+              <TextArea rows={3} placeholder="A quick brown fox jumped over the lazy cat" value={props.story} onChange={props.onChange} />
             </div>
-            <Button sx={{ margin: "md", alignSelf: "center" }} disabled={true} onClick={props.hide}>Send</Button>
+            <Button sx={{ margin: "md", alignSelf: "center" }} onClick={handleClick}>Send</Button>
           </div>
         </div >
       )

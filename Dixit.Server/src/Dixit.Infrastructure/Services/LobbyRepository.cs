@@ -47,6 +47,7 @@ namespace Dixit.Infrastructure.Services
         public async Task SaveLobby(Domain.Aggregates.Lobby lobby)
         {
             var lobbyDto = _mapper.Map(lobby);
+            lobbyDto.Id = lobby.Code;
             await _client.UpdateDocument(lobbyDto);
         }
     }

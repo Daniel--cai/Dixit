@@ -29,7 +29,7 @@ namespace Dixit.Tests.Core.Builders
             _playerNames = playerNames;
             foreach (var player in playerNames)
             {
-                _lobby.Players.Add(new Player(player, "one"));
+                _lobby.Players.Add(new Player(player, player));
             }
 
             return this;

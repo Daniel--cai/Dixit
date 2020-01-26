@@ -40,7 +40,7 @@ namespace Dixit.Infrastructure.Services
         {
             FirestoreDb db = FirestoreDb.Create(_config.ProjectId);
             var collection = db.Collection(typeof(T).Name)
-                                .WhereGreaterThan(field, value)
+                                .WhereEqualTo(field, value)
                                 .Limit(limit);
 
             var documentSnapshots = await collection.GetSnapshotAsync();

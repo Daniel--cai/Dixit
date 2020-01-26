@@ -6,6 +6,7 @@ using Dixit.Domain.Aggregates;
 using Dixit.Domain.Entities;
 using Dixit.Domain.ValueObjects;
 using Dixit.Infrastructure.Data.Model;
+using Newtonsoft.Json;
 
 namespace Dixit.Infrastructure.Mapper
 {
@@ -28,6 +29,9 @@ namespace Dixit.Infrastructure.Mapper
 
         public Domain.Aggregates.Lobby Map(Data.Model.Lobby data)
         {
+            var rounds = data.Rounds != null ? JsonConvert.DeserializeObject<List<Data.Model.Round>>(data.Rounds) : new List<Data.Model.Round>();
+            var players = data.Players != null ? JsonConvert.DeserializeObject<List<Data.Model.Player>>(data.Players) : new List<Data.Model.Player>();
+
             var domain = new Domain.Aggregates.Lobby
             {
 
@@ -37,7 +41,7 @@ namespace Dixit.Infrastructure.Mapper
                 Code = data.Code,
             };
 
-            domain.Players = data.Players.Select(player =>
+            domain.Players = players.Select(player =>
                   new Domain.Entities.Player
                   {
                       Name = player.PlayerName,
@@ -49,16 +53,17 @@ namespace Dixit.Infrastructure.Mapper
 
             domain.Deck = new Deck(data.Deck.Select(id =>
             {
+                var owner = players.FirstOrDefault(player => player.Hand.Contains(id));
                 var card = new Card(id)
                 {
                     Discarded = data.Discard.Contains(id),
-                    Owner = data.Players.FirstOrDefault(player => player.Hand.Contains(id))?.PlayerName ?? null,
-                    RoundSubmitted = data.Rounds.FirstOrDefault(round => round.Cards.Contains(id) || id == round.StoryTellerCard)?.Counter ?? -1
+                    Owner = owner != null ? domain.GetPlayerByName(owner.PlayerName) : null,
+                    RoundSubmitted = rounds.FirstOrDefault(round => round.Cards.Contains(id) || id == round.StoryTellerCard)?.Counter ?? 0
                 };
                 return card;
             }).ToList());
 
-            domain.Rounds = data.Rounds.Select(round =>
+            domain.Rounds = rounds.Select(round =>
             {
                 var newRound = new Domain.ValueObjects.Round(round.Counter, domain.GetPlayerByName(round.StoryTeller))
                 {

@@ -9,18 +9,18 @@ namespace Dixit.Infrastructure.Data.Model
     {
         [FirestoreProperty]
         public string Id  { get; set; }
-        [FirestoreDocumentId]
+        [FirestoreProperty]
         public string Code { get; set; }
         [FirestoreProperty]
-        public List<Round> Rounds { get; set; } = new List<Round>();
+        public string Rounds { get; set; }
         [FirestoreProperty]
         public int RoundNumber { get; set; }
         [FirestoreProperty]
-        public List<int> Deck { get; set; } = new List<int>();
+        public List<int> Deck { get; set; } 
         [FirestoreProperty]
-        public List<int> Discard { get; set; } = new List<int>();
+        public List<int> Discard { get; set; } 
         [FirestoreProperty]
-        public List<Player> Players { get; set; }
+        public string Players { get; set; }
         [FirestoreProperty]
         public string GameState { get; set; }
         [FirestoreProperty]

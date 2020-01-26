@@ -5,6 +5,7 @@ using Xunit;
 using FluentAssertions;
 using Dixit.Tests.Core.Builders;
 using System.Linq;
+using Dixit.Infrastructure.Data.Model;
 
 namespace Dixit.Tests.Core.Infrastructure.Mapper
 {
@@ -20,6 +21,28 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
         }
 
         [Fact]
+        public void ReverseMapAggregateInitialGame_ShouldReturnSameLobby()
+        {
+            //arrange
+            var lobbyMapper = new LobbyMapper(_mapperFixture.GetLobbyMapper());
+            var lobby = new LobbyBuilder()
+                            .WithPlayers(_players)
+                            .Build();
+
+            lobby.NewRound();
+            lobby.DealDeck();
+
+            //act
+            var data = lobbyMapper.Map(lobby);
+            var lobbyReversed = lobbyMapper.Map(lobbyMapper.Map(lobby));
+
+            //assert
+            
+            lobby.Should().BeEquivalentTo(lobbyReversed);
+            lobby.Rounds.Count.Should().Be(1);
+        }
+
+        [Fact]
         public void ReverseMapAggregateWithRounds_ShouldReturnSameLobby()
         {
             //arrange
@@ -31,10 +54,12 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
                             .Build();
 
             //act
+            var data = lobbyMapper.Map(lobby);
             var lobbyReversed = lobbyMapper.Map(lobbyMapper.Map(lobby));
 
             //assert
             lobby.Should().BeEquivalentTo(lobbyReversed);
+            lobby.Rounds.Count.Should().Be(2);
         }
 
         [Fact]
@@ -87,7 +112,7 @@ namespace Dixit.Tests.Core.Infrastructure.Mapper
             var data = lobbyMapper.Map(lobby);
 
             //assert
-            var round = data.Rounds.Last();
+            var round = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Round>>(data.Rounds).Last();
             round.Story.Should().Equals(lobby.CurrentRound.Story);
             round.StoryTeller.Should().Equals(lobby.CurrentRound.StoryTeller);
             round.StoryTellerCard.Should().Equals(lobby.CurrentRound.StoryTellerCard);

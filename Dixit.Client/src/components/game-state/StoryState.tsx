@@ -17,18 +17,19 @@ export const StoryState: React.FC<{ code: string }> = props => {
   const player = useSelector((store: State) => store.player);
   const story = useSelector((store: State) => store.story);
   const storyTeller = story.currentStoryTeller;
-  const disabled = storyInput === "";
   const [showModal, setShowModel] = useState(false);
 
   const pickCard = (card: number) => async () => {
+    setCard(card);
     setShowModel(true);
+
   };
 
   const hideModal = () => {
     setShowModel(false);
   };
 
-  const tellStory = () => async () => {
+  const tellStory = async () => {
     await Apiclient.tellStory({
       code: props.code,
       story: storyInput,
@@ -37,17 +38,15 @@ export const StoryState: React.FC<{ code: string }> = props => {
     });
   };
 
-  const changeIndex = (index: number, item: React.ReactNode) => {
-    setCard(index);
-  };
-
   return (
     <React.Fragment>
       <InputModal
         show={showModal}
         message={"...and tell a story"}
-        submit={() => tellStory()}
+        submit={async () => await tellStory()}
         hide={hideModal}
+        story={storyInput}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setStoryInput(e.target.value)}
       />
       <div sx={styles.storyStateCss}>
         {storyTeller === player.name && (
@@ -75,14 +74,15 @@ export const StoryState: React.FC<{ code: string }> = props => {
             <Carousel>
               {player.hand.map(card => {
                 return (
-                  <Card 
+                  <Card
+                    key={card}
                     sx={{
-                      height: "100%", 
-                      backgroundImage: `url(${Image1})`, 
+                      height: "100%",
+                      backgroundImage: `url(${Image1})`,
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "contain",
                       backgroundPosition: "center"
-                    }} 
+                    }}
                     onClick={pickCard(card)}>
                     {/* <img
                       sx={{
