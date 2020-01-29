@@ -40,12 +40,12 @@ export const segmentLineCss: SxStyleProp = {
 
 export const indicatorCss: SxStyleProp = {
     // justifyContent: "flex-start",
-    marginRight:"md",
-    color:"green"
+    marginRight: "md",
+    color: "green"
 }
 
 export const textCss: SxStyleProp = {
-    
+
 }
 export const codeCss: SxStyleProp = {
     alignSelf: "center",
@@ -59,8 +59,48 @@ export const codeCss: SxStyleProp = {
 
 export const closeCss: SxStyleProp = {
     justifyContent: "flex-end",
-    color:"gray-20",
+    color: "gray-20",
     "> i": {
         cursor: "pointer"
     }
 }
+
+export const landingScreen: {
+    container: SxStyleProp,
+    input: SxStyleProp,
+    logo: SxStyleProp,
+    actions: SxStyleProp
+} = {
+    container: {
+        display: "grid",
+        gridTemplateRows: "10rem auto",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+    },
+    input: {
+        padding: "2rem",
+        "> *": {
+            mb: "1rem"
+        }
+    },
+    logo: {
+        height: "7rem",
+        alignSelf: "end",
+        justifySelf: "center",
+    },
+    actions: {
+        margin: "1rem 3rem",
+        fontWeight: "bold",
+        fontSize: "1.2rem",
+        "> div:last-child": {
+            borderTop: "solid 1px white",
+            fontWeight: "100",
+            fontSize: "0.9rem",
+        },
+        "> div": {
+            padding: "1.5rem",
+        }
+    }
+}
+

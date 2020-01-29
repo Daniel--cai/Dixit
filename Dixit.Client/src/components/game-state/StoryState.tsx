@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { State } from "../../store";
 import { Apiclient } from "../../api/api";
 import { Images } from "../card-images";
-import "./GameState.scss";
 import { InputModal } from "../modal/Modal";
 import { Card } from "../card/Card";
 import { Banner } from "../banner/Banner";

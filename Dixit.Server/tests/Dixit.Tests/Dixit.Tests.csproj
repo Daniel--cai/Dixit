@@ -29,6 +29,7 @@
     <Folder Include="Core\Infrastructure\Mapper\" />
     <Folder Include="Core\Fixture\" />
     <Folder Include="Core\Builders\" />
+    <Folder Include="Integration\CommandHandlers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Core\Fixture\LobbyFixture.cs" />

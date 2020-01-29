@@ -17,19 +17,7 @@ export function responseReducer(
   action: ResponseActionTypes
 ): ResponseState {
   switch (action.type) {
-    case STORY_REVEALED: {
-      return { ...state, revealed: action.payload.cards };
-    }
-    case GAME_FETCHED: {
-      return {
-        ...state,
-        revealed: action.payload.cards,
-        votes: action.payload.votes || []
-      };
-    }
-    case ROUND_FINISHED: {
-      return { ...state, votes: action.payload.votes };
-    }
+    
 
     default:
       return state;

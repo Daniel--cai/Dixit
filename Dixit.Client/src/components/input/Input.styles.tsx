@@ -1,7 +1,6 @@
 import { SxStyleProp } from "theme-ui";
-import { backgroundColor } from "styled-system";
 
-export const textAreaCss: SxStyleProp = {
+export const inputCss: SxStyleProp = {
     borderRadius: "soft",
     border: "1px solid",
     borderColor: "gray-20",
@@ -9,6 +8,11 @@ export const textAreaCss: SxStyleProp = {
     lineHeight: "body",
     outline: "none",
     backgroundColor: "white",
+    color: "black",
+    padding: "0.2rem",
+    width: "100%",
+    display: "block",
+    textAlign: "center",
     "WebkitAppearance": "none",
     ':hover': {
         borderColor: "gray-30"
@@ -19,5 +23,6 @@ export const textAreaCss: SxStyleProp = {
     },
     "button + button": {
         marginLeft: "1"
-    }
+    },
+
 };

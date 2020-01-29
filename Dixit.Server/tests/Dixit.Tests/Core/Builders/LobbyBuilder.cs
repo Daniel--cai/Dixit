@@ -65,6 +65,19 @@ namespace Dixit.Tests.Core.Builders
             return this;
         }
 
+        public LobbyBuilder WithVotedCardsExceptPlayer(string except)
+        {
+            foreach (var playerName in _playerNames)
+            {
+                if (_lobby.CurrentStoryTeller.Name == playerName || _lobby.CurrentStoryTeller.Name == except) continue;
+                var player = _lobby.GetPlayerByName(playerName);
+                var playerVotedCard = _lobby.CurrentPlayedCards.First(card => card.Owner != player);
+                _lobby.PlayerVoteCard(player, playerVotedCard);
+            }
+
+            return this;
+        }
+
         public LobbyBuilder WithVotedCards()
         {
             foreach (var playerName in _playerNames)

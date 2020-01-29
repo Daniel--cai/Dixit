@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../store/player/actions";
 import { State } from "../store";
 import { RouteComponentProps } from "react-router";
-import Axios from "axios";
 import { Apiclient } from "../api/api";
 import Logo from "../assets/images/logo.png";
 import { CSSTransition } from "react-transition-group";
@@ -83,26 +82,24 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
   }
 
   return (
-    <div className="landing-screen">
-      <img className="landing-screen__logo" src={Logo}></img>
+    <div sx={styles.landingScreen.container}>
+      <img sx={styles.landingScreen.logo} src={Logo}></img>
       <CSSTransition in={!inProp} timeout={0} classNames="t" unmountOnExit>
-        <div className="landing-screen__actions">
+        <div sx={styles.landingScreen.actions}>
           <Button onClick={() => setInProp(true)}> play </Button>
           <Button onClick={() => setInProp(false)}> how to play </Button>
         </div>
       </CSSTransition>
       <CSSTransition in={inProp} timeout={0} classNames="" unmountOnExit>
         <React.Fragment>
-          <div className="landing-screen__input">
+          <div sx={styles.landingScreen.input}>
             <label className="label">name</label>
             <Input
-              className="input"
               value={name}
               onChange={e => setName(e.target.value)}
             />
             <label className="label">code</label>
             <Input
-              className="input"
               value={code}
               onChange={e => setCode(e.target.value)}
             />

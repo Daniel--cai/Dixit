@@ -39,15 +39,6 @@
   color: transparent;
 }
 
-.landing-screen {
-  display: grid;
-  grid-template-rows: 10rem auto;
-  // background: url("../assets/images/cover-full.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .landing-screen__input {
   padding: 2rem;
 }
@@ -56,25 +47,7 @@
   margin-bottom: 1rem;
 }
 
-.landing-screen__logo {
-  height: 7rem;
-  align-self: end;
-  justify-self: center;
-}
-.landing-screen__actions {
-  margin: 1rem 3rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  div:last-child {
-    border-top: solid 1px white;
-    font-weight: 100;
-    font-size: 0.9rem;
-  }
 
-  div {
-    padding: 1.5rem;
-  }
-}
 
 .lobby-screen__actions {
   padding: 1em;

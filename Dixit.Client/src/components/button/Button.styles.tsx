@@ -26,7 +26,7 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
     fontSize: "1rem",
     textAlign: "center",
     color: "white",
-    
+
     borderRadius: "soft"
   };
 
@@ -40,18 +40,21 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
     css.width = "100%";
     css.display = "flex";
   }
-  if (props.secondary){
+  if (props.secondary) {
     css.backgroundColor = "white";
     css.color = "black";
-    css.borderColor= "gray-20";
-    
+    css.borderColor = "gray-20";
+
     css[":hover"] = {
       backgroundColor: "gray-20",
       borderColor: "gray-30"
     };
   }
   if (props.disabled) {
-    css.cursor= "stop"
+    console.log("dislabed")
+    css.cursor = "stop";
+    css.backgroundColor = "blue-light-2";
+    css.Color = "blue-light-2";
   }
 
   return css;

@@ -8,7 +8,7 @@ export type ButtonSize = "large";
 export type ButtonType = "primary" | "secondary" | "ghost";
 
 export interface ButtonProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends React.InputHTMLAttributes<HTMLButtonElement> {
   id?: string;
   sx?: SxStyleProp;
   children?: React.ReactNode;
@@ -19,7 +19,7 @@ export interface ButtonProps
   onClick?: (e: React.SyntheticEvent) => any;
 }
 
-export const Button: React.FunctionComponent<ButtonProps> = ({
+export const Button: React.FunctionComponent<ButtonProps> = React.forwardRef(({
   id,
   children,
   className,
@@ -31,16 +31,18 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   sx,
   secondary,
   ...rest
-}) => {
+}, ref: React.Ref<HTMLButtonElement>) => {
   return (
     <button
+      ref={ref}
       disabled={disabled}
-      sx={{ ...sx!, ...styles.buttonCss({ buttonType: "primary", buttonSize: "large" ,secondary}) }}
+      sx={{ ...sx!, ...styles.buttonCss({ buttonType: "primary", buttonSize: "large", secondary, disabled }) }}
       className={className}
       onClick={onClick}
       type="button"
+      {...rest}
     >
       {children}
     </button>
   );
-};
+});
