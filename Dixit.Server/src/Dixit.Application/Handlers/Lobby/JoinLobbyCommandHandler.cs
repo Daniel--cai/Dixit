@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Dixit.Application.Handlers
 {
-    public class JoinLobbyCommandHandler : INotificationHandler<PlayerConnectedEvent>
+    public class JoinLobbyCommandHandler : INotificationHandler<PlayerConnectedEvent>, INotificationHandler<ScreenConnectedEvent>
     {
         private readonly IMediator _mediator;
         private readonly ILobbyRepository _lobbyRepository;
@@ -33,6 +33,17 @@ namespace Dixit.Application.Handlers
             await _lobbyRepository.SaveLobby(lobby);
 
             await _mediator.Publish(new LobbyJoinedEvent { Player = connected, Code = notification.Code });
+        }
+
+        public async Task Handle(ScreenConnectedEvent notification, CancellationToken cancellationToken)
+        {
+            var lobby = await _lobbyRepository.GetLobbyByCode(notification.Code);
+
+            var connected = lobby.PlayerConnected("SYSTEM", notification.Identifier);
+            connected.Connected = false;
+            await _playerConnectionRepository.AddPlayerConnection("SYSTEM", notification.Identifier, notification.Code);
+            await _lobbyRepository.SaveLobby(lobby);
+
         }
     }
 }

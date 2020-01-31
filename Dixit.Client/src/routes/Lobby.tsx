@@ -17,8 +17,9 @@ import * as styles from "./Lobby.styles"
 import { Input } from "../components/input/Input";
 
 export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
-  var [name, setName] = useState("test");
-  var [code, setCode] = useState("");
+  const [name, setName] = useState("test");
+  //const [code, setCode] = useState("");
+  const code = props.match.params.code;
   const dispatch = useDispatch();
 
   const game = useSelector((store: State) => store.game);
@@ -93,30 +94,22 @@ export const Lobby: React.FC<RouteComponentProps<{ code: string }>> = props => {
       <CSSTransition in={inProp} timeout={0} classNames="" unmountOnExit>
         <React.Fragment>
           <div sx={styles.landingScreen.input}>
+
+            <label className="label">code</label>
+            <Input
+              value={code}
+            />
             <label className="label">name</label>
             <Input
               value={name}
               onChange={e => setName(e.target.value)}
             />
-            <label className="label">code</label>
-            <Input
-              value={code}
-              onChange={e => setCode(e.target.value)}
-            />
-            <div className="button-group">
-              <Button
-                secondary
-                onClick={joinGame}
-                disabled={code === ""}>
-                Join
-              </Button>
-              <Button
-                onClick={createAndConnect}
-                disabled={code !== ""}
-              >
-                Create
-              </Button>
-            </div>
+            <Button
+              secondary
+              onClick={joinGame}
+              disabled={code === ""}>
+              Join
+            </Button>
           </div>
         </React.Fragment>
       </CSSTransition>

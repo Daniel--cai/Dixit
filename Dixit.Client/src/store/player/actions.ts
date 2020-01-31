@@ -1,9 +1,10 @@
 import { PlayerActionTypes, CONNECT } from "./types";
 
-export function connect(code: string, name: string): PlayerActionTypes {
+export function connect(code: string, name: string, screen: boolean = false): PlayerActionTypes {
   return {
     type: CONNECT,
     code,
-    name
+    name,
+    screen
   };
 }

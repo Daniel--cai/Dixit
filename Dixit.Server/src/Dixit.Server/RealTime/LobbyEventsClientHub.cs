@@ -22,8 +22,15 @@ namespace Dixit.Server.RealTime
             await base.OnConnectedAsync();
             var name = Context.GetHttpContext().Request.Query["name"].ToString();
             var code = Context.GetHttpContext().Request.Query["code"].ToString();
+            var screen = bool.Parse(Context.GetHttpContext().Request.Query["screen"].ToString());
             var connectionId = Context.ConnectionId;
-            await _mediator.Publish(new PlayerConnectedEvent { Player = name, Code = code, Identifier = connectionId });
+            if (!screen)
+            {
+                await _mediator.Publish(new PlayerConnectedEvent { Player = name, Code = code, Identifier = connectionId });
+            } else
+            {
+                await _mediator.Publish(new ScreenConnectedEvent { Code = code, Identifier = connectionId });
+            }
             
         }
         public override async Task OnDisconnectedAsync(Exception exception)

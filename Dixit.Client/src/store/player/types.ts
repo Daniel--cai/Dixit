@@ -19,6 +19,7 @@ export interface ConnectAction {
   type: typeof CONNECT;
   name: string;
   code: string;
+  screen: boolean
 }
 
 export type PlayerActionTypes =
