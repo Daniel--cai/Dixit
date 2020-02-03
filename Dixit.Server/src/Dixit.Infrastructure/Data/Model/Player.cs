@@ -16,5 +16,7 @@ namespace Dixit.Infrastructure.Data.Model
         public List<int> Hand { get; set; }
         [FirestoreProperty]
         public int Score { get; set; }
+        [FirestoreProperty]
+        public bool Connected { get; set; }
     }
 }

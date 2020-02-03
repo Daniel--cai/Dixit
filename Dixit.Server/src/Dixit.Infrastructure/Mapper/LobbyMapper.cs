@@ -48,7 +48,7 @@ namespace Dixit.Infrastructure.Mapper
                       Identifier = player.ConnectionId,
                       Score = player.Score,
                       Id = 0,
-                      Connected = true
+                      Connected = player.Connected
                   }).ToList();
 
             domain.Deck = new Deck(data.Deck.Select(id =>
