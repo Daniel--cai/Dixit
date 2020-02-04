@@ -6,16 +6,16 @@ import { State } from "../store";
 import { RouteComponentProps } from "react-router";
 import { push } from "connected-react-router";
 import { GameState } from "../constants/GameState";
-import * as styles from "./Game.styles";
+import * as styles from "./GameScreen.styles";
 import {
   InProgressState,
-  VotingState,
+  VotingStateScreen,
   StoryState
 } from "../components/game-state";
 import { PlayerBoard } from "../components/player-board/PlayerBoard";
 import { Banner } from "../components/banner/Banner";
 
-export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
+export const GameScreen: React.FC<RouteComponentProps<{ code: string }>> = props => {
   const player = useSelector((store: State) => store.player);
   const game = useSelector((store: State) => store.game);
   const story = useSelector((store: State) => store.story);
@@ -23,22 +23,24 @@ export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {
 
   useEffect(() => {
     if (!player.connected) {
-      dispatch(push("/"));
+      dispatch(push(`/screen/${props.match.params.code}`));
     }
     // eslint-disable-next-line
   }, []);
 
   return (
-    <div sx={styles.gameCss}>
+    <div sx={styles.gameScreenCss}>
       {game.gameState === GameState.Story && (
         <StoryState code={props.match.params.code} />
       )}
       {game.gameState === GameState.Voting && (
-        <VotingState code={props.match.params.code} />
+        <VotingStateScreen/>
       )}
       {game.gameState === GameState.InProgress && (
         <InProgressState code={props.match.params.code} />
       )}
+      <PlayerBoard />
+
     </div>
   );
 };

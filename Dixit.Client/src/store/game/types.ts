@@ -18,6 +18,7 @@ export type GameStateState = {
   roundNumber: number;
   gameState: GameState;
   score: Scoreboard[];
+  loaded: boolean;
 };
 
 export interface FetchGameAction {

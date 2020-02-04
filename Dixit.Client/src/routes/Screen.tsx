@@ -9,11 +9,9 @@ import { Apiclient } from "../api/api";
 import Logo from "../assets/images/logo.png";
 import { CSSTransition } from "react-transition-group";
 import { Button } from "../components/button";
-import { Spacing } from "../components/spacing";
 
 import "./Lobby.scss";
 import * as styles from "./Lobby.styles"
-import { Input } from "../components/input/Input";
 import { push } from "connected-react-router";
 import { connect } from "../store/player/actions";
 
@@ -30,13 +28,10 @@ export const Screen: React.FC<RouteComponentProps<{ code: string }>> = props => 
   };
   if (code != null && code != "" && !player.connected) {
     dispatch(connect(code, "SCREEN", true));
+  } else if(player.connected && game.loaded){
+    dispatch(push(`/screen/${code}/game`))
   }
 
-  // const startGame = async () => {
-  //   Apiclient.startLobby({ code: props.match.params.code })
-  // };
-
- 
   const remaining = 8 - game.players.length;
   const [inProp, setInProp] = useState(true);
   const disconnectPlayer = useCallback(() => {

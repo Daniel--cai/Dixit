@@ -37,13 +37,11 @@ namespace Dixit.Application.Handlers
 
         public async Task Handle(ScreenConnectedEvent notification, CancellationToken cancellationToken)
         {
-            var lobby = await _lobbyRepository.GetLobbyByCode(notification.Code);
-
-            var connected = lobby.PlayerConnected("SYSTEM", notification.Identifier);
-            connected.Connected = false;
+            //var lobby = await _lobbyRepository.GetLobbyByCode(notification.Code);
+            //var connected = lobby.PlayerConnected("SYSTEM", notification.Identifier);
+            //connected.Connected = false;
             await _playerConnectionRepository.AddPlayerConnection("SYSTEM", notification.Identifier, notification.Code);
-            await _lobbyRepository.SaveLobby(lobby);
-
+            //await _lobbyRepository.SaveLobby(lobby);
         }
     }
 }

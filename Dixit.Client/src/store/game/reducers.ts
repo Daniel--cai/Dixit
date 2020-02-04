@@ -17,7 +17,8 @@ const initialState: GameStateState = {
   players: [],
   roundNumber: 0,
   gameState: GameState.Lobby,
-  score: []
+  score: [],
+  loaded: false
 };
 
 export function gameStateReducer(
@@ -63,6 +64,7 @@ export function gameStateReducer(
         gameState: action.payload.gameState,
         players: action.payload.players,
         roundNumber: action.payload.roundNumber,
+        loaded: true
       };
     }
     case LOBBY_JOINED: {

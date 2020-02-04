@@ -8,7 +8,6 @@ export const playerBoardCss: SxStyleProp = {
     "& div": {
         display: "flex"
     },
-    display: ["none", "none", "unset"]
 }
 
 export const playerBoardRankCss: SxStyleProp = {

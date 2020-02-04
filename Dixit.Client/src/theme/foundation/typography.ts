@@ -26,7 +26,6 @@ const subHeadingHeight = 2;
 const labelScale = 1.25;
 const labelHeight = 1;
 
-console.log(baseline(bodyScale, bodyHeight))
 export const typography = {
     fontSizes: [
         "0.5rem",
@@ -44,24 +43,24 @@ export const typography = {
         subHeading: `${subHeadingHeight}rem`,
         label: `${labelHeight}`
     },
-    typography: {
+    text: {
         heading: {
-            transform: baseline(headingScale, headingHeight),
+            // transform: baseline(headingScale, headingHeight),
             lineHeight: `${headingHeight}rem`,
             fontSize: `${headingScale}rem`
         },
         body: {
-            transform: `translateY(${baseline(bodyScale, bodyHeight)}px)`,
+            // transform: `translateY(${baseline(bodyScale, bodyHeight)}px)`,
             lineHeight: `${bodyHeight * rowHeight / 16}rem`,
             fontSize: `${bodyScale}rem`
         },
         subheading: {
-            transform: baseline(subHeadingScale, subHeadingHeight),
+            // transform: baseline(subHeadingScale, subHeadingHeight),
             lineHeight: `${subHeadingHeight}rem`,
             fontSize: `${subHeadingScale}rem`
         },
         label: {
-            transform: baseline(labelScale, labelHeight),
+            // transform: baseline(labelScale, labelHeight),
             lineHeight: `${labelHeight}`,
             fontSize: `${labelScale}rem`
         }
