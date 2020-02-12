@@ -6,6 +6,7 @@ import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import { playerReducer } from "./player/reducers";
 import { storyReducer } from "./story/reducers";
 import { gameStateReducer } from "./game/reducers";
+
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from "history";
 import { initialise } from "./initialise";
