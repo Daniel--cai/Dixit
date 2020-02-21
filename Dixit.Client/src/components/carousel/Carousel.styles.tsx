@@ -7,7 +7,6 @@ export const carouselCss: SxStyleProp = {
     display:"grid",
     height:"100%",
     gridTemplateColumns: ["repeat(6, 75%)","repeat(6, 80%)","repeat(6, 85%)"],
-    columnGap: "md",
     "> div": {
         scrollSnapAlign: "center",
     },

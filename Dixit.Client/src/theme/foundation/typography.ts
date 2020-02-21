@@ -21,10 +21,10 @@ const headingScale = 1.75;
 const headingHeight = 5;
 
 const subHeadingScale = 0.75;
-const subHeadingHeight = 2;
+const subHeadingHeight = 2.25;
 
 const labelScale = 1.25;
-const labelHeight = 1;
+const labelHeight = 1.25;
 
 export const typography = {
     fontSizes: [

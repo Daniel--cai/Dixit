@@ -20,12 +20,12 @@ export const Card: React.FunctionComponent<CardProps> = ({
     ...rest
 }) => {
     return (
-        <div
-            sx={{ ...sx!, ...styles.cardCss({ src }) }}
+        <div sx={{...sx!, ...styles.cardCss({ src }) }}  {...rest}>
+        <img
+            sx={styles.cardImageCss}
             className={className}
-            {...rest}
-        >
-            {children}
+            src={src}
+        />
         </div>
     );
 };

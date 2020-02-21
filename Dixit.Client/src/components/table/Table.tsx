@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, SxStyleProp } from "theme-ui";
-
 import * as styles from "./Table.styles";
 interface TableProps {
     tableMaxHeight?: number | string
@@ -12,7 +11,7 @@ export const Table: React.FC<TableProps> = ({ tableMaxHeight }) => {
     return (
         <div sx={styles.tableWrapperCss(tableMaxHeight || 'auto')}>
             <table sx={styles.tableCss}>
-                <thead>
+                <thead sx={styles.tableHeadCss}>
                     <tr sx={styles.tableTrCss}>{headings.map((heading, i) => (
                         <th key={i} sx={styles.tableThCss}>{heading}</th>
                     ))}</tr>
