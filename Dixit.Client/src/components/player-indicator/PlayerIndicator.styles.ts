@@ -40,7 +40,7 @@ export const avatarCss: SxStyleProp = {
         height: '200%',
         borderRadius: '100%',
         backgroundColor: 'green-light-1',
-        animation: `${pulseRing} 1 s cubic-bezier(0.45, 0.25, 0.60, 0.95) infinite`,
+        animation: `${pulseRing} 1s cubic-bezier(0.45, 0.25, 0.60, 0.95) infinite`,
     },
     
     height: '4rem',
