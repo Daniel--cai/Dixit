@@ -8,5 +8,9 @@ export const bannerCss: SxStyleProp = {
   padding: "sm",
   width: ["100%", "100%", "30rem"], 
   marginLeft: "auto", 
-  marginRight: "auto" 
+  marginRight: "auto" ,
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: 'column',
+  justifyContent: 'center'
 };

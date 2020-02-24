@@ -17,17 +17,7 @@ export const Navigation: React.FC = () => {
         <a href="/" sx={styles.navigationLogoCss}>
           <img sx={{ width: "100px" }} src={Logo}></img>
         </a>
-        <div sx={styles.leftMenuCss}>
-          <a href="/" >
-            <span>Rules</span>
-          </a>
-          <a href="/" >
-            <span>History</span>
-          </a>
-          <a href="/" >
-            <span>Leave</span>
-          </a>
-        </div>
+        
       </nav>
 
       <nav sx={styles.navigationMobileCss}>

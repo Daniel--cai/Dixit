@@ -4,7 +4,7 @@ import { Navigation } from "../components/navigation";
 export const FullScreenLayout: React.FC = ({ children }) => {
     return (
         <React.Fragment>
-            <Navigation />
+            <Navigation/>
             {children}
         </React.Fragment>
     )
