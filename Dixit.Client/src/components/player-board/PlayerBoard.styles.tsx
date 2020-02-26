@@ -20,7 +20,6 @@ export const playerBoardRankCss: SxStyleProp = {
     lineHeight: "1rem",
     width:"3rem",
     textAlign: "center"
-
 }
 
 

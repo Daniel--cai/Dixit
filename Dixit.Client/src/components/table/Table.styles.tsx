@@ -29,7 +29,9 @@ export const tableThCss: SxStyleProp = {
 export const tableTrCss: SxStyleProp = {
     border: "solid 1px",
     borderColor: "gray-30",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    textAlign: 'center'
+
 }
 
 

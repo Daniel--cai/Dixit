@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import * as styles from "./PlayerIndicator.styles";
 
 export type Status = 'neutral' | 'loading'
-
+export type Size = 'sm' | 'lg'
 export interface Player {
     key?: any;
     name: string;
@@ -21,14 +21,14 @@ export const PlayerIndicator: React.FC<PlayerIndicatorProps> = ({ players, rende
             {players.map((player, index) => {
                 const key = player.key || index;
                 return renderChildren ? renderChildren(key) :
-                    (<PlayerIndicatorIcon player={player} key={key} />)
+                    (<PlayerIndicatorIcon status={player.status} key={key} />)
             })}
         </div>
     )
 }
 
-const PlayerIndicatorIcon: React.FC<{ player: Player }> = ({ player }) => {
-    return <div sx={styles.avatarCss}>
-        {player.name}
+export const PlayerIndicatorIcon: React.FC<{ size?: Size, status: Status }> = ({ status, size = 'lg' }) => {
+    return <div sx={styles.avatarCss({ pulsate: status === 'loading', size })}>
+
     </div>
 }

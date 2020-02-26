@@ -14,7 +14,7 @@ import {
 } from "../components/game-state";
 import { PlayerBoard } from "../components/player-board/PlayerBoard";
 import { Banner } from "../components/banner/Banner";
-import { PlayerIndicator, Player } from "../components/player-indicator"
+import { Player } from "../components/player-indicator"
 export const GameScreen: React.FC<RouteComponentProps<{ code: string }>> = props => {
   const player = useSelector((store: State) => store.player);
   const game = useSelector((store: State) => store.game);

@@ -1,5 +1,7 @@
 import { SxStyleProp } from "theme-ui";
 import { keyframes } from '@emotion/core';
+import { colors } from "../../theme/foundation/colors";
+import { Size } from ".";
 
 export const containerCss: SxStyleProp = {
     display: 'flex',
@@ -31,28 +33,46 @@ const pulseDot = keyframes`
     }
 }`
 
-export const avatarCss: SxStyleProp = {
-    '&:before': {
-        content: "''",
-        position: 'absolute',
-        display: 'block',
-        width: '200%',
-        height: '200%',
-        borderRadius: '100%',
-        backgroundColor: 'green-light-1',
-        animation: `${pulseRing} 1s cubic-bezier(0.45, 0.25, 0.60, 0.95) infinite`,
-    },
-    
-    height: '4rem',
-    width: '4rem',
-    textAlign: 'center',
-    variant: 'text.label',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: '0.125rem solid',
-    borderRadius: '50%',
-    borderColor: 'green-light-1',
-    color: 'green-light-1',
-    position:'relative'
-};
+interface AvatarCssProps {
+    pulsate: boolean;
+    size: Size
+}
+
+export const avatarCss = (props: AvatarCssProps): SxStyleProp => {
+    let size = '4rem';
+    if (props.size === 'sm'){
+        size = '2rem'
+    }
+
+    let style = {
+        height: size,
+        width: size,
+        textAlign: 'center',
+        variant: 'text.label',
+        display: 'inline-flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '0.125rem solid',
+        borderRadius: '50%',
+        borderColor: 'blue-light-1',
+        backgroundColor: 'blue-light-1',
+        color: 'white',
+        position: 'relative',
+        '&:before': {}
+    }
+    if (props.pulsate) {
+        style.color = 'blue';
+        style.backgroundColor = 'white'
+        style['&:before'] = {
+            content: "''",
+            position: 'absolute',
+            display: 'block',
+            width: '200%',
+            height: '200%',
+            borderRadius: '100%',
+            backgroundColor: 'blue-light-1',
+            animation: `${pulseRing} 1s cubic-bezier(0.45, 0.25, 0.60, 0.95) infinite`,
+        }
+    }
+    return style;
+}
