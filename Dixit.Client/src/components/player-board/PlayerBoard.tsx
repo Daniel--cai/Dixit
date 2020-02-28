@@ -21,13 +21,20 @@ export const PlayerBoard: React.FC = () => {
   const story = useSelector((store: State) => store.story);
   const votes = useSelector((store: State) => store.story.votes);
   console.log(game.score);
-  const data = game.score.map(scorer => ({ name: scorer.name, score: scorer.score, status: votes.find(vote => vote.player === scorer.name) ? 'loading' : 'neutral' }))
+  const data = game.score.map(scorer => ({
+    name: scorer.name,
+    score: scorer.score,
+    status: votes.find(vote => vote.player === scorer.name) ? 'loading' : 'neutral',
+    storyTeller: story.currentStoryTeller === scorer.name
+  }))
 
   const renderPlayerBlock = (value: PlayerBoardColumn) => {
     return <Flex sx={{ alignItems: 'center' }}>
       <PlayerIndicatorIcon size='sm' status={value.status} />
       <div sx={{ mx: 'sm' }}>{value.name}</div>
-      <Lozenge>Storyteller</Lozenge>
+      {value.storyTeller &&
+        <Lozenge>Storyteller</Lozenge>
+      }
     </Flex>
   }
 

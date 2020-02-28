@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, SxStyleProp } from "theme-ui";
+import { jsx } from "theme-ui";
 import React, { useState, useCallback } from "react";
 // import logo from "../assets/images/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,7 +32,6 @@ export const Screen: React.FC<RouteComponentProps<{ code: string }>> = props => 
     dispatch(push(`/screen/${code}/game`))
   }
 
-  const remaining = 8 - game.players.length;
   const [inProp, setInProp] = useState(true);
   const disconnectPlayer = useCallback(() => {
     //dispatch(removePlayer())

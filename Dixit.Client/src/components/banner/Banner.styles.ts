@@ -1,16 +1,17 @@
 import { SxStyleProp } from "theme-ui";
 
 export const bannerCss: SxStyleProp = {
-  border: "1px solid",
+  border: "0",
   borderColor: "gray-20",
   backgroundColor: "white",
   borderRadius: "soft",
-  padding: "sm",
-  width: ["100%", "100%", "30rem"], 
+  padding: ["sm","sm", "md"],
+  width: ["100%", "100%", "100%"], 
   marginLeft: "auto", 
   marginRight: "auto" ,
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  boxShadow: 'base'
 };

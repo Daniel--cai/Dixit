@@ -3,7 +3,7 @@ import { jsx } from "theme-ui";
 import { ReactNode } from "react";
 import * as styles from "./PlayerIndicator.styles";
 
-export type Status = 'neutral' | 'loading'
+export type Status = 'neutral' | 'loading' | 'done'
 export type Size = 'sm' | 'lg'
 export interface Player {
     key?: any;

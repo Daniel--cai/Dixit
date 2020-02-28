@@ -39,9 +39,9 @@ interface AvatarCssProps {
 }
 
 export const avatarCss = (props: AvatarCssProps): SxStyleProp => {
-    let size = '4rem';
+    let size = '2rem';
     if (props.size === 'sm'){
-        size = '2rem'
+        size = '1.5rem'
     }
 
     let style = {
