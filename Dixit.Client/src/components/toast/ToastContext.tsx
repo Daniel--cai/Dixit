@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ToastProps } from "./Toast";
+import React, { useState, PropsWithChildren } from "react";
+import { ToastProps, Toast } from "./Toast";
 
 
 
@@ -16,10 +16,10 @@ export const ToastContext = React.createContext<ToastContextType>({
 
 export const ToastConsumer = ToastContext.Consumer;
 
-export const ToastProvider = ({
+export const ToastProvider: React.FC = ({
     children
 }) => {
-    const [toasts, addToasts] = useState<ToastProps[]>([])
+    const [toasts, setToasts] = useState<ToastProps[]>([])
     const open = (props: ToastProps) => {
         setToasts([...toasts, props])
     }
@@ -29,6 +29,7 @@ export const ToastProvider = ({
 
     return (
         <ToastContext.Provider value={{ toasts, open, close }}>
+            <Toast message="123" duration={1} isOpen={true} />
             {children}
         </ToastContext.Provider>
     )
