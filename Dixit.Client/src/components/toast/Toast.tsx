@@ -17,8 +17,15 @@ export const Toast: React.FC<ToastProps> = ({ message, isOpen, duration }) => {
     const [openState, setOpenState] = useState(false);
     let timer: ReturnType<typeof setTimeout>
     useEffect(() => {
+        console.log("useEffect")
+        console.log(isOpen)
         setOpenState(isOpen)
     }, [isOpen])
+
+    useEffect(()=> {
+        setTimeout(() =>setOpenState(true),1000)
+    })
+
 
     const handleClose = () => {
         clearTimer();
@@ -31,10 +38,18 @@ export const Toast: React.FC<ToastProps> = ({ message, isOpen, duration }) => {
     
     return (
         createPortal(
-            <Transition appear in={openState} timeout={300} unmountOnExit>
-                {state =>
+            <Transition 
+                appear 
+                in={openState} 
+                timeout={200} 
+                unmountOnExit
+            >
+                {state =>{
+                      console.log(openState)
+                        console.log(state)
+                return (
                     <div sx={{ ...styles.toastCss, ...styles.opacityTransitionCss[state] }}>hello</div>
-                }
-            </Transition>, document.body)
+                )}}
+            </Transition>, document.getElementById("root")!)
     )
 }

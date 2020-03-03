@@ -29,7 +29,7 @@ export const ToastProvider: React.FC = ({
 
     return (
         <ToastContext.Provider value={{ toasts, open, close }}>
-            <Toast message="123" duration={1} isOpen={true} />
+            <Toast message="123" duration={1} isOpen={false} />
             {children}
         </ToastContext.Provider>
     )

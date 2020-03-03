@@ -5,10 +5,13 @@ export const toastCss: SxStyleProp = {
     position: "absolute",
     width: '100%',
     top: '50%',
-    left: '50%',
 
     backgroundColor: 'blue-light-1',
     color: 'white',
+    padding: 'xl',
+    variant: 'text.heading',
+    textAlign: 'center',
+    
 }
 
 export const opacityTransitionCss: { [key in TransitionStatus]: SxStyleProp } = {
