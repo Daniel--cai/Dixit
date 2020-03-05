@@ -5,51 +5,30 @@ import { createPortal } from "react-dom";
 import { Transition } from "react-transition-group";
 import * as styles from "./Toast.styles";
 
+
+
 export interface ToastProps {
     message: string
     duration: number;
+    close: (id: string) => void;
+    id: string;
     isOpen: boolean;
+    isExpired: boolean;
 }
 
+export const Toast: React.FC<ToastProps> = ({ message, isOpen }) => {
 
-
-export const Toast: React.FC<ToastProps> = ({ message, isOpen, duration }) => {
-    const [openState, setOpenState] = useState(false);
-    let timer: ReturnType<typeof setTimeout>
-    useEffect(() => {
-        console.log("useEffect")
-        console.log(isOpen)
-        setOpenState(isOpen)
-    }, [isOpen])
-
-    useEffect(()=> {
-        setTimeout(() =>setOpenState(true),1000)
-    })
-
-
-    const handleClose = () => {
-        clearTimer();
-        setOpenState(false);
-    }
-
-    const clearTimer = () => {
-        clearTimeout(timer);
-    }
-    
     return (
         createPortal(
-            <Transition 
-                appear 
-                in={openState} 
-                timeout={200} 
+            <Transition
+                appear
+                in={isOpen}
+                timeout={200}
                 unmountOnExit
             >
-                {state =>{
-                      console.log(openState)
-                        console.log(state)
-                return (
-                    <div sx={{ ...styles.toastCss, ...styles.opacityTransitionCss[state] }}>hello</div>
-                )}}
+                {state =>
+                    <div sx={{ ...styles.toastCss, ...styles.opacityTransitionCss[state] }}>{message}</div>
+                }
             </Transition>, document.getElementById("root")!)
     )
 }

@@ -8,13 +8,14 @@ import { push } from "connected-react-router";
 import { GameState } from "../constants/GameState";
 import * as styles from "./GameScreen.styles";
 import {
-  InProgressState,
+  InProgressStateScreen,
   VotingStateScreen,
-  StoryState
+  StoryStateScreen
 } from "../components/game-state";
 import { PlayerBoard } from "../components/player-board/PlayerBoard";
 import { Banner } from "../components/banner/Banner";
 import { Player } from "../components/player-indicator"
+import { ToastProvider } from "../components/toast/ToastContext";
 export const GameScreen: React.FC<RouteComponentProps<{ code: string }>> = props => {
   const player = useSelector((store: State) => store.player);
   const game = useSelector((store: State) => store.game);
@@ -27,21 +28,22 @@ export const GameScreen: React.FC<RouteComponentProps<{ code: string }>> = props
     }
     // eslint-disable-next-line
   }, []);
-
+console.log(game.gameState)
   return (
-    <div sx={styles.gameScreenCss}>
     
-        {game.gameState === GameState.Story && (
-          <StoryState code={props.match.params.code} />
-        )}
-        {game.gameState === GameState.Voting && (
-          <VotingStateScreen />
-        )}
-        {game.gameState === GameState.InProgress && (
-          <InProgressState code={props.match.params.code} />
-        )}
-        
- 
+    <div sx={styles.gameScreenCss}>
+       <ToastProvider>
+      {game.gameState === GameState.Story && (
+        <StoryStateScreen />
+      )}
+      {game.gameState === GameState.Voting && (
+        <VotingStateScreen />
+      )}
+      {game.gameState === GameState.InProgress && (
+        <InProgressStateScreen />
+      )}
+      </ToastProvider>
+
       <PlayerBoard />
 
     </div>
