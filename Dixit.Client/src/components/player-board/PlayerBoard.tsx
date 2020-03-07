@@ -8,6 +8,7 @@ import { Banner } from "../banner/Banner";
 import { Table, TableColumnDefinition } from "../table";
 import { PlayerIndicatorIcon, Status } from "../player-indicator";
 import { Lozenge } from "../lozenge";
+import { GameState } from "../../store/game/models";
 
 interface PlayerBoardColumn {
   name: string;
@@ -21,12 +22,26 @@ export const PlayerBoard: React.FC = () => {
   const story = useSelector((store: State) => store.story);
   const votes = useSelector((store: State) => store.story.votes);
   console.log(game.score);
+
+  const getStatus = (name: string): Status => {
+    switch (game.gameState) {
+      case GameState.Story:
+        return story.currentStoryTeller === name ? 'loading' : 'neutral'
+      case GameState.Voting:
+        if (story.currentStoryTeller === name) return 'done';
+        return votes.find(vote => vote.player === name) ? 'done' : 'neutral';
+      default:
+        return 'neutral'
+    }
+  }
+
   const data = game.score.map(scorer => ({
     name: scorer.name,
     score: scorer.score,
-    status: votes.find(vote => vote.player === scorer.name) ? 'loading' : 'neutral',
+    status: getStatus(scorer.name),
     storyTeller: story.currentStoryTeller === scorer.name
   }))
+
 
   const renderPlayerBlock = (value: PlayerBoardColumn) => {
     return <Flex sx={{ alignItems: 'center' }}>

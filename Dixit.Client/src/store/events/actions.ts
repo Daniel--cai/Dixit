@@ -90,7 +90,12 @@ export function codeUpdated(payload: any): EventTypes {
 
 export function gameStarted(payload: any) {
   return (dispatch: Dispatch, getState: () => State) => {
-    dispatch(push(`/game/${getState().player.code}`));
+    const player = getState().player;
+    if (player.name === "SCREEN" ) {
+      dispatch(push(`/screen/${getState().player.code}/game`));
+    } else {
+      dispatch(push(`/game/${getState().player.code}`));
+    }
     return dispatch({ type: "gameStarted", payload });
   };
 }

@@ -28,7 +28,10 @@ export const PlayerIndicator: React.FC<PlayerIndicatorProps> = ({ players, rende
 }
 
 export const PlayerIndicatorIcon: React.FC<{ size?: Size, status: Status }> = ({ status, size = 'lg' }) => {
-    return <div sx={styles.avatarCss({ pulsate: status === 'loading', size })}>
-
+    return <div sx={styles.avatarCss({
+        pulsate: status === 'loading',
+        filled: status === 'done',
+        size
+    })}>
     </div>
 }

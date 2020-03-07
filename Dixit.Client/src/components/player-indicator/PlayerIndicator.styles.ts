@@ -35,7 +35,8 @@ const pulseDot = keyframes`
 
 interface AvatarCssProps {
     pulsate: boolean;
-    size: Size
+    size: Size;
+    filled: boolean;
 }
 
 export const avatarCss = (props: AvatarCssProps): SxStyleProp => {
@@ -55,7 +56,7 @@ export const avatarCss = (props: AvatarCssProps): SxStyleProp => {
         border: '0.125rem solid',
         borderRadius: '50%',
         borderColor: 'blue-light-1',
-        backgroundColor: 'blue-light-1',
+        backgroundColor: props.filled ? 'blue-light-1': 'none',
         color: 'white',
         position: 'relative',
         '&:before': {}

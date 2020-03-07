@@ -33,7 +33,8 @@ export function gameStateReducer(
         score: action.payload.players.map(player => ({
           name: player,
           score: 0
-        }))
+        })),
+        loaded:true
       };
     }
     case STORY_TOLD: {
@@ -64,7 +65,7 @@ export function gameStateReducer(
         gameState: action.payload.gameState,
         players: action.payload.players,
         roundNumber: action.payload.roundNumber,
-        loaded: true
+        loaded: action.payload.gameState !== GameState.Lobby
       };
     }
     case LOBBY_JOINED: {

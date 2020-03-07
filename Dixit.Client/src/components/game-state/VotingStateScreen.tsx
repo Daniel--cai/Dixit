@@ -20,6 +20,13 @@ export const VotingStateScreen: React.FC<{}> = props => {
     const playerIndicators: Player[] = players.map(player => ({ name: player.name, status: (votes.find(vote => vote.player == player.name) ? 'neutral' : 'loading') }))
     const { addToast } = useToast();
 
+    useEffect(()=> {
+        addToast({
+            message:`Find the card that belong to ${story.currentStoryTeller}`,
+            duration: 1000
+        })
+    },[])
+
     return (
         <div sx={styles.storyScreenStateCss}>
             <Banner sx={{}}>
