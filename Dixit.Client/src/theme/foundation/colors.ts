@@ -1,60 +1,53 @@
-//seed #0a84ff
+//seed #00B2CA
 //https://palx.jxnblk.com/
 
 const gray = {
   black: "#333333",
   white: "#ffffff",
-  transparent: "rgba(0, 0, 0, 0.4)",
-  "gray-10": "#FAFBFD",
-  "gray-20": "#E8E9EB",
-  "gray-30": "#C2C7D2",
-  "gray-40": "#bdc5cc",
-  "gray-50": "#abb4be",
-  "gray-60": "#98a1a8",
-  "gray-70": "#7c8b9a",
-  "gray-80": "#616d7b",
-  "gray-90": "#394048"
+  hover: "rgba(0, 0, 0, 0.6)",
+  "gray-100": "#f9f9fa",
+  "gray-200": "#ebeeee",
+  "gray-300": "#dde2e2",
+  "gray-400": "#cdd4d5",
+  "gray-500": "#bcc5c7",
+  "gray-600": "#a9b5b7",
+  "gray-700": "#94a3a4",
+  "gray-800": "#7a8c8f",
+  "gray-900": "#597073"
 };
 
 const others = {
-  "green-light-2": "#62ff62",
-  "green-light-1": "#09e309 ",
-  green: "#08d008",
-  "green-dark-1": "#07ba07",
-  "green-dark-2": "#057e05",
+  "purple-100": "#839EBE",
+  "purple-200": "#466E9E",
+  "purple-300": "#1D4E89",
+  "purple-400": "#184071",
+  "purple-500": "#102B4B",
 
-  "blue-light-3": "#e0efff",
-  "blue-light-2": "#F2F8FE",
-  "blue-light-1": "#8BB9F7",
-  blue: "#3375F6",
-  "blue-dark-1": "#2961CC",
-  "blue-dark-2": "#0B2349",
-  "blue-dark-3": "#086bce",
+  "blue-100": "#d6f3f7",
+  "blue-200": "#b8e9f0",
+  "blue-300": "#00B2CA",
+  "blue-400": "#0097ab",
+  "blue-500": "#007787",
 
-  "violet-light-2": "#ecdaff",
-  "violet-light-1": "#dab5ff ",
-  violet: "#ce9eff",
-  "violet-dark-1": "#c184ff",
-  "violet-dark-2": "#9328ff",
+  "green-100": "#c6eacd",
+  "green-200": "#abdfb5",
+  "green-300": "#85c190",
+  "green-400": "#76ac81",
+  "green-500": "#66946f",
 
-  "red-light-2": "#ffd7d7",
-  "red-light-1": "#ffafaf ",
-  red: "#ff9595",
-  "red-dark-1": "#ff7474",
-  "red-dark-2": "#d90909",
+  "yellow-100": "#fdebd7",
+  "yellow-200": "#fcdbb8",
+  "yellow-300": "#f6cc9f",
+  "yellow-400": "#d0ad87",
+  "yellow-500": "#ba9a78",
 
-  "yellow-light-2": "#e8e809",
-  "yellow-light-1": "#caca08 ",
-  yellow: "#b9b907",
-  "yellow-dark-1": "#a5a506",
-  "yellow-dark-2": "#707004",
+  "orange-100": "#fcdac6",
+  "orange-200": "#fbc8ab",
+  "orange-300": "#f89d68",
+  "orange-400": "#e78750",
+  "orange-500": "#c67445",
 
-  "orange-light-2": "#ffdab6",
-  "orange-light-1": "#ffb469 ",
-  orange: "#ff9b36",
-  "orange-dark-1": "#f6800a",
-  "orange-dark-2": "#a75707"
-};
+}
 
 const semantics = {
   success: "",
@@ -64,17 +57,17 @@ const semantics = {
   danger: "",
   "error-light": "#F13C46",
   info: "#0D69D1",
-  muted: gray["gray-10"]
+  muted: gray["gray-100"]
 };
 
 const primary = {
-  primary: others.blue,
-  "primary-light": others["blue-light-1"],
-  "primary-dark": others["blue-dark-2"],
+  primary: others["blue-300"],
+  "primary-light": others["blue-200"],
+  "primary-dark": others["blue-400"],
   "nav-primary": "#3375F6",
   "nav-secondary": "#FAFBFD",
-  "bg-primary": gray["gray-10"],
-  "bg-secondary": gray["gray-20"]
+  "bg-primary": gray["gray-100"],
+  "bg-secondary": gray["gray-200"]
 };
 
 export const colors = { ...gray, ...others, ...primary, ...semantics };
