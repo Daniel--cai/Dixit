@@ -1,8 +1,7 @@
 import { SxStyleProp } from "theme-ui";
 
 export const playerBoardCss: SxStyleProp = {
-    // backgroundColor: "primary",
-    margin: "md",
+    m : "md",
     borderRadius: "soft",
     "& div": {
         display: "flex"
@@ -18,7 +17,8 @@ export const playerBoardRankCss: SxStyleProp = {
     justifyContent: "center",
     lineHeight: "1rem",
     width:"3rem",
-    textAlign: "center"
+    textAlign: "center",
+   
 }
 
 

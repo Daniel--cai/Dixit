@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, SxStyleProp } from "theme-ui";
 import React from "react";
-
+import Logo from "../../assets/images/logo.png"
 import * as styles from "./Card.styles";
 
 
@@ -19,12 +19,13 @@ export const Card: React.FunctionComponent<CardProps> = ({
     src,
     ...rest
 }) => {
+    
     return (
         <div sx={{...sx!, ...styles.cardCss({ src }) }}  {...rest}>
         <img
             sx={styles.cardImageCss}
             className={className}
-            src={src}
+            src={Logo}
         />
         </div>
     );

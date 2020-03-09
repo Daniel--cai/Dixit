@@ -3,7 +3,7 @@ import { SxStyleProp } from "theme-ui";
 export const inputCss: SxStyleProp = {
     borderRadius: "soft",
     border: "1px solid",
-    borderColor: "gray-20",
+    borderColor: "gray-200",
     fontSize: "2",
     lineHeight: "body",
     outline: "none",
@@ -15,7 +15,7 @@ export const inputCss: SxStyleProp = {
     textAlign: "center",
     "WebkitAppearance": "none",
     ':hover': {
-        borderColor: "gray-30"
+        borderColor: "gray-300"
     },
     ':focus': {
         borderColor: "primary",

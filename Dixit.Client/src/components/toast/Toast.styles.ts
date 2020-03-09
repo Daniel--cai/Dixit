@@ -6,7 +6,7 @@ export const toastCss: SxStyleProp = {
     width: '100%',
     top: `calc((100% - ${height}%)/2)`,
     height: `${height}%`,
-    backgroundColor: 'blue-light-1',
+    backgroundColor: 'blue-200',
     opacity:'50%',
     color: 'white',
     variant: 'text.heading',

@@ -2,7 +2,7 @@ import { SxStyleProp } from "theme-ui";
 
 export const lobbyCss: SxStyleProp = {
     fontSize: "3",
-    backgroundColor: "gray-10"
+    backgroundColor: "gray-100"
 };
 
 export const lobbyScreenCss: SxStyleProp = {
@@ -17,7 +17,7 @@ export const segmentCss: SxStyleProp = {
     display: "grid",
     gridGap: "0.5em",
     gridTemplateRows: "repeat(8, 1fr)",
-    background: "gray-20",
+    background: "gray-200",
     padding: "1rem 0",
 }
 
@@ -59,7 +59,7 @@ export const codeCss: SxStyleProp = {
 
 export const closeCss: SxStyleProp = {
     justifyContent: "flex-end",
-    color: "gray-20",
+    color: "gray-200",
     "> i": {
         cursor: "pointer"
     }

@@ -3,7 +3,7 @@ import { SxStyleProp } from "theme-ui";
 export const tableCss: SxStyleProp = {
     width: "100%",
     border: "solid 1px",
-    borderColor: "gray-20",
+    borderColor: "gray-200",
     borderCollapse: "collapse",
     position: 'relative'
 }
@@ -23,14 +23,15 @@ export const tableHeadCss: SxStyleProp = {
 }
 
 export const tableThCss: SxStyleProp = {
-    
+    padding: "sm",
 }
 
 export const tableTrCss: SxStyleProp = {
     border: "solid 1px",
-    borderColor: "gray-30",
+    borderColor: "gray-300",
     backgroundColor: "white",
-    textAlign: 'center'
+    textAlign: 'left',
+    padding: "sm",
 
 }
 

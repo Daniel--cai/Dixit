@@ -5,7 +5,7 @@ export const textAreaCss: SxStyleProp = {
     width: "90%",
     borderRadius: "soft",
     border: "1px solid",
-    borderColor: "gray-20",
+    borderColor: "gray-200",
     padding: "md",
     fontSize: "4",
     outline: "none",
@@ -13,7 +13,7 @@ export const textAreaCss: SxStyleProp = {
     backgroundColor: "white",
     "WebkitAppearance": "none",
     ':hover': {
-        borderColor: "gray-30"
+        borderColor: "gray-300"
     },
     ':focus': {
         borderColor: "primary",

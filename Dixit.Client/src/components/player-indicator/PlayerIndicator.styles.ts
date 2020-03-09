@@ -55,8 +55,8 @@ export const avatarCss = (props: AvatarCssProps): SxStyleProp => {
         alignItems: 'center',
         border: '0.125rem solid',
         borderRadius: '50%',
-        borderColor: 'blue-light-1',
-        backgroundColor: props.filled ? 'blue-light-1': 'none',
+        borderColor: 'blue-200',
+        backgroundColor: props.filled ? 'blue-200': 'none',
         color: 'white',
         position: 'relative',
         '&:before': {}
@@ -71,7 +71,7 @@ export const avatarCss = (props: AvatarCssProps): SxStyleProp => {
             width: '200%',
             height: '200%',
             borderRadius: '100%',
-            backgroundColor: 'blue-light-1',
+            backgroundColor: 'blue-200',
             animation: `${pulseRing} 1s cubic-bezier(0.45, 0.25, 0.60, 0.95) infinite`,
         }
     }

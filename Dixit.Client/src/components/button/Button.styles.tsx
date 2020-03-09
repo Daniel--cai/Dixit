@@ -43,11 +43,11 @@ export const buttonCss = (props: ButtonCssProps): SxStyleProp => {
   if (props.secondary) {
     css.backgroundColor = "white";
     css.color = "black";
-    css.borderColor = "gray-20";
+    css.borderColor = "gray-200";
 
     css[":hover"] = {
-      backgroundColor: "gray-20",
-      borderColor: "gray-30"
+      backgroundColor: "gray-200",
+      borderColor: "gray-300"
     };
   }
   if (props.disabled) {

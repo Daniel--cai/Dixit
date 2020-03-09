@@ -9,6 +9,6 @@ export const overlayCss: SxStyleProp = {
     right: 0,
     top: 0,
     bottom: 0,
-    backgroundColor: "gray-90",
+    backgroundColor: "gray-900",
     opacity: 0.5
 }

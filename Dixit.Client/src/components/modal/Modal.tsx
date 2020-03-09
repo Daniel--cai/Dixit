@@ -43,11 +43,11 @@ export const InputModal: React.FC<Props> = props => {
               <div sx={{ gridColumnStart: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <div sx={{ ...styles.inputWrapperImageCss, ...backgroundImageStyles }} />
                 <div sx={{ padding: "sm", color: "primary" }}> Tell a story</div>
-                <div sx={{ padding: "sm", color: "gray-50" }}>Something subtle yet creative. If nobody or everybody finds your card, you get 0 points </div>
+                <div sx={{ padding: "sm", color: "gray-500" }}>Something subtle yet creative. If nobody or everybody finds your card, you get 0 points </div>
               </div>
               <div
                 sx={{
-                  color: "gray-50",
+                  color: "gray-500",
                   justifySelf: "right",
                   marginLeft: "sm",
                   marginRight: "sm",

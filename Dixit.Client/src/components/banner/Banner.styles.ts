@@ -2,7 +2,7 @@ import { SxStyleProp } from "theme-ui";
 
 export const bannerCss: SxStyleProp = {
   border: "0",
-  borderColor: "gray-20",
+  borderColor: "gray-200",
   backgroundColor: "white",
   borderRadius: "soft",
   padding: ["sm","sm", "md"],

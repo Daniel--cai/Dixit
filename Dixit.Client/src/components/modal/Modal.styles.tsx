@@ -77,7 +77,7 @@ export const inputWrapperSubCaptionCss: SxStyleProp = {
     borderTopLeftRadius: "soft",
     borderTopRightRadius: "soft",
     "& div": {
-        color: "gray-50"
+        color: "gray-500"
     }
 }
 

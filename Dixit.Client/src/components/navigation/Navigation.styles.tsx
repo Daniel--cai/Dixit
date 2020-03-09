@@ -32,7 +32,7 @@ export const leftMenuCss: SxStyleProp = {
         fontSize: "3",
         letterSpacing: "0.5px",
         textDecoration: "none",
-        color: "gray-30",
+        color: "gray-300",
         ':hover': {
             color: "primary",
         },
