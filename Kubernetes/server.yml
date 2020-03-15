@@ -17,10 +17,24 @@ spec:
       containers:
         - name: dixit-server
           image: danielcaihobby/boardgamehub:dixit-1.0.2
+          env:
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /etc/gcp/sa_credentials.json
           ports:
             - containerPort: 80
+          volumeMounts:
+          - name: service-account-credentials-volume
+            mountPath: /etc/gcp
+            readOnly: true
       imagePullSecrets:
         - name: regcred
+      volumes:
+      - name: service-account-credentials-volume
+        secret:
+          secretName: service-account-credential
+          items:
+          - key: sa_json
+            path: sa_credentials.json
 
 ---
 kind: Service
