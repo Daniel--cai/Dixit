@@ -7,11 +7,12 @@ import * as styles from "./Grid.styles";
 interface GridProp {
     animate?: boolean
     animationDelay?: number
+    sx?: SxStyleProp
 }
 
-export const Grid: React.FC<GridProp> = ({ children, animate = true, animationDelay = 150 }) => {
+export const Grid: React.FC<GridProp> = ({ children, animate = true, animationDelay = 150, sx = {} }) => {
     return (
-        <div sx={styles.gridCss}>
+        <div sx={{ ...sx, ...styles.gridCss }}>
             {React.Children.map<React.ReactNode, React.ReactNode>(children, (child: React.PropsWithChildren<any>, i) => {
                 return (<Spring
                     delay={animationDelay * i}

@@ -210,18 +210,18 @@ spec:
         prometheus.io/port: "10254"
         prometheus.io/scrape: "true"
     spec:
-      # expose nginx to public
-      hostNetwork: true
       # wait up to five minutes for the drain of connections
       terminationGracePeriodSeconds: 300
       serviceAccountName: nginx-ingress-serviceaccount
-      # allow controller pod to be deployed on specific node taint
-      tolerations:
-      - key: ingress
-        value: "true"
-        effect: NoExecute
-      nodeSelector:
-        ingress: "true"
+      # # expose nginx to public
+      # hostNetwork: true
+      # # allow controller pod to be deployed on specific node taint
+      # tolerations:
+      # - key: ingress
+      #   value: "true"
+      #   effect: NoExecute
+      # nodeSelector:
+      #   ingress: "true"
         # kubernetes.io/os: linux
       containers:
         - name: nginx-ingress-controller

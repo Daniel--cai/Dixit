@@ -28,24 +28,33 @@ export const GameScreen: React.FC<RouteComponentProps<{ code: string }>> = props
     }
     // eslint-disable-next-line
   }, []);
-console.log(game.gameState)
+  console.log(game.gameState)
   return (
-    
+
     <div sx={styles.gameScreenCss}>
-       <ToastProvider>
-      {game.gameState === GameState.Story && (
-        <StoryStateScreen />
-      )}
-      {game.gameState === GameState.Voting && (
-        <VotingStateScreen />
-      )}
-      {game.gameState === GameState.InProgress && (
-        <InProgressStateScreen />
-      )}
+      <ToastProvider>
+        <Banner sx={{}}>
+          <div sx={{ variant: 'text.label' }}>
+            <b>"{story.story}"</b>
+          </div>
+          <div>
+            {
+              story.currentStoryTeller === player.name &&
+              <React.Fragment>Other players are still <b>voting</b></React.Fragment>
+            }
+          </div>
+        </Banner>
+        <PlayerBoard sx={{ gridColumn: '2', gridRow: '1 / 4' }} />
+        {game.gameState === GameState.Story && (
+          <StoryStateScreen />
+        )}
+        {game.gameState === GameState.Voting && (
+          <VotingStateScreen />
+        )}
+        {game.gameState === GameState.InProgress && (
+          <InProgressStateScreen />
+        )}
       </ToastProvider>
-
-      <PlayerBoard />
-
     </div>
   );
 };

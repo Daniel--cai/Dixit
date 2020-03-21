@@ -17,11 +17,14 @@ interface PlayerBoardColumn {
   storyTeller: boolean;
 }
 
-export const PlayerBoard: React.FC = () => {
+interface PlayerBoardProps {
+  sx?: SxStyleProp
+}
+
+export const PlayerBoard: React.FC<PlayerBoardProps> = ({ sx = {} }) => {
   const game = useSelector((store: State) => store.game);
   const story = useSelector((store: State) => store.story);
   const votes = useSelector((store: State) => store.story.votes);
-  console.log(game.score);
 
   const getStatus = (name: string): Status => {
     switch (game.gameState) {
@@ -65,9 +68,8 @@ export const PlayerBoard: React.FC = () => {
       renderProp: (value) => <div sx={{ textAlign: 'center' }}>{value.score}</div>
     }
   ]
-
   return (
-    <div sx={styles.playerBoardCss}>
+    <div sx={{ ...sx, ...styles.playerBoardCss }}>
       <Table columns={columns} data={data}></Table>
     </div>
   );

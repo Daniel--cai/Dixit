@@ -20,34 +20,19 @@ export const InProgressStateScreen: React.FC<{}> = props => {
     const playerIndicators: Player[] = players.map(player => ({ name: player.name, status: (votes.find(vote => vote.player == player.name) ? 'neutral' : 'loading') }))
 
     return (
-        <div sx={styles.storyScreenStateCss}>
-            <Banner sx={{}}>
-                <div sx={{ variant: 'text.label' }}>
-                    <b>"{story.story}"</b>
-                </div>
-                <div>
-                    {
-                        story.currentStoryTeller === player.name &&
-                        <React.Fragment>Other players are still <b>voting</b></React.Fragment>
-                    }
-                    {/* {
-                    story.currentStoryTeller !== player.name &&
-                    <React.Fragment><b>Find the card</b> that belong to {story.currentStoryTeller}</React.Fragment>
-                } */}
-                </div>
-            </Banner>
-            {/* <PlayerIndicator players={playerIndicators} /> */}
-            <Grid>
-                {story.revealed.sort().map(card => {
+        <Grid sx={{ gridRow: '2 / 4', height: '50%' }}>
+            {
+                story.revealed.sort().map(card => {
                     return (
                         <Card
                             key={card}
                             src={Images[card % 6]}
                         />
                     );
-                })}
-            </Grid>
+                })
+            }
+        </Grid >
 
-        </div >
+
     );
 };

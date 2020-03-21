@@ -12,7 +12,7 @@ export const storyScreenStateCss: SxStyleProp = {
     width: ["100%", "100%", "100%"],
     margin: "auto",
     display: "grid",
-    gridTemplateRows: "4rem 5rem auto",
+    gridTemplateRows: "4rem auto",
     height: "100%",
     justifyContent: 'center'
 };
