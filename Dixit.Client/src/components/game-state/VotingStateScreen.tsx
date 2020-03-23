@@ -44,7 +44,6 @@ export const VotingStateScreen: React.FC<{}> = props => {
                 } */}
                 </div>
             </Banner>
-            {/* <PlayerIndicator players={playerIndicators} /> */}
             <Grid>
                 {story.revealed.sort().map(card => {
                     return (

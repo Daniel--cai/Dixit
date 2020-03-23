@@ -5,7 +5,7 @@ import { typography } from "./foundation/typography";
 
 
 export default {
-  breakpoints: ["40em", "52em", "64em"],
+  breakpoints: ["40rem", "52rem", "64rem"],
   colors,
   radii,
   space: {

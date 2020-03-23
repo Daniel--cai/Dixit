@@ -4,27 +4,27 @@ interface CardCssProps {
     src: string;
 }
 
-export const cardImageCss: SxStyleProp = {
-    width: "auto",
-    height: "100%",
-    borderRadius: "0.25rem"
+export const cardImageCss = (props: CardCssProps): SxStyleProp => {
+    return {
+        width: ['100%', '100%', '100%'],
+        height: 'auto',
+        borderRadius: "medium",
+        border: 'solid 0.5rem',
+        borderColor: 'white',
+        boxShadow: 'base'
+
+    }
 };
 
 export const cardCss = (props: CardCssProps): SxStyleProp => {
     let css: SxStyleProp = {
-        // padding: ["0", "0", "1"],
         width: "100%",
         height: "100%",
-        cursor: "pointer",
-        backgroundImage: `url(${props.src})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        backgroundPosition: "center"
-
-        // ":hover": {
-        //     boxShadow: "deep",
-        //     opacity: 0.75
-        // }
+        overflow: 'hidden',
+        pt: 'lg',
+        px: 'lg',
+        display: 'flex',
+        alignItems: 'center',
     };
     return css;
 };

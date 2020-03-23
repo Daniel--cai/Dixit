@@ -33,18 +33,18 @@ export const GameScreen: React.FC<RouteComponentProps<{ code: string }>> = props
 
     <div sx={styles.gameScreenCss}>
       <ToastProvider>
-        <Banner sx={{}}>
+        <Banner sx={{ mt: 'md' }}>
           <div sx={{ variant: 'text.label' }}>
             <b>"{story.story}"</b>
           </div>
-          <div>
-            {
-              story.currentStoryTeller === player.name &&
-              <React.Fragment>Other players are still <b>voting</b></React.Fragment>
-            }
-          </div>
         </Banner>
-        <PlayerBoard sx={{ gridColumn: '2', gridRow: '1 / 4' }} />
+        <div sx={{
+          gridColumn: '2',
+          gridRow: '1 / 4',
+          overflow: 'hidden'
+        }}>
+          <PlayerBoard />
+        </div>
         {game.gameState === GameState.Story && (
           <StoryStateScreen />
         )}

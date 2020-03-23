@@ -20,9 +20,13 @@ export const initialise = () => {
         { name: "bob", score: 0 },
         { name: "smith", score: 0 },
         { name: "jones", score: 0 },
-        { name: "pear", score: 0 }
+        { name: "pear", score: 0 },
+        { name: "orange", score: 0 },
+        { name: "apple", score: 0 },
+        { name: "garply", score: 0 },
+        { name: "lorem", score: 0 }
       ],
-      gameState: GameState.Voting,
+      gameState: GameState.InProgress,
       roundNumber: 0,
       loaded: true,
       score: [

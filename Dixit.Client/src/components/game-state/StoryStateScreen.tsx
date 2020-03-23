@@ -39,7 +39,6 @@ export const StoryStateScreen: React.FC<{}> = props => {
                 } */}
                 </div>
             </Banner>
-            {/* <PlayerIndicator players={playerIndicators} /> */}
             <Grid>
                 {Array(6).fill(0).map(card => {
                     return (

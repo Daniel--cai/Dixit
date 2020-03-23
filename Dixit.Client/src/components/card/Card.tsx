@@ -8,6 +8,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
     className?: string;
     sx?: SxStyleProp;
+    src: string;
 }
 
 export const Card: React.FunctionComponent<CardProps> = ({
@@ -18,6 +19,8 @@ export const Card: React.FunctionComponent<CardProps> = ({
     ...rest
 }) => {
     return (
-        <div sx={{ ...sx!, ...styles.cardCss({ src: src }) }} {...rest} />
+        <div sx={{ ...sx!, ...styles.cardCss({ src }) }} {...rest} >
+            <img src={src} sx={{ ...styles.cardImageCss({ src: src }) }} />
+        </div>
     );
 };

@@ -38,7 +38,7 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({ sx = {} }) => {
     }
   }
 
-  const data = game.score.map(scorer => ({
+  const data = game.players.map(scorer => ({
     name: scorer.name,
     score: scorer.score,
     status: getStatus(scorer.name),
