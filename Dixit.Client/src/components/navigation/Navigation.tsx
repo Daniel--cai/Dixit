@@ -10,18 +10,21 @@ import { useScrollLock } from "../../hooks/useScrollLock";
 export const Navigation: React.FC = () => {
   const [toggle, setToggle] = useState(false);
   useScrollLock(toggle);
-
+  const [active, setActive] = useState(false);
   return (
     <nav sx={{ width: "100%" }}>
       <nav sx={styles.navigationCss}>
         <a href="/" sx={styles.navigationLogoCss}>
           <img sx={{ width: "100px" }} src={Logo}></img>
         </a>
-        
-      </nav>
 
+      </nav>
       <nav sx={styles.navigationMobileCss}>
-        <i className="fas fa-bars" onClick={() => setToggle(true)} />
+        <div sx={styles.burgerCss(toggle)} onClick={() => setToggle(!active)}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
         <div>Dixit</div>
         <div />
       </nav>

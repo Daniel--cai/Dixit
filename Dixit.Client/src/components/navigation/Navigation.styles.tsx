@@ -1,6 +1,7 @@
 import { SxStyleProp } from "theme-ui";
 import { TransitionStatus } from "react-transition-group/Transition";
 import { flex } from "styled-system";
+import { transform } from "@babel/core";
 
 export const navigationBaseCss = {
     width: "100%",
@@ -55,6 +56,51 @@ export const navigationMobileCss: SxStyleProp = {
     }
 
 };
+
+export const burgerCss = (active: boolean) => {
+    const style: SxStyleProp = {
+        position: 'relative',
+        width: '3rem',
+        height: '3rem',
+        cursor: 'pointer',
+        '> div': {
+            position: 'absolute',
+            height: '3px',
+            left: '12px',
+            width: '1.5rem',
+            top: '14px',
+            backgroundColor: 'primary',
+            transition: 'all 0.4s cubic-bezier(0, 0, 0, 1) 0s',
+        },
+        '> div:nth-child(1)': {
+            transform: 'none'
+        },
+        '> div:nth-child(2)': {
+            top: '22px',
+            transform: 'none'
+        },
+        '> div:nth-child(3)': {
+            top: '30px',
+            transform: 'none'
+        },
+    }
+    if (active) {
+        style['> div:nth-child(1)'] = {
+            transform: 'rotate(45deg) translate(7.77px, 7.77px)'
+        };
+        style['> div:nth-child(2)'] = {
+            top: '23px',
+            opacity: 0
+        };
+        style['> div:nth-child(3)'] = {
+            transform: 'rotate(-45deg) translate(7.77px,-7.77px)',
+            top: '34px',
+        }
+
+    }
+
+    return style;
+}
 
 export const navigationLinkMobileCss: SxStyleProp = {
     display: "flex",

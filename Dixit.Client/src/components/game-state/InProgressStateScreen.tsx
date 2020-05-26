@@ -10,29 +10,34 @@ import * as styles from "./GameState.styles";
 import { Images } from "../card-images";
 import { Grid } from "../grid";
 import { Player } from "../player-indicator/PlayerIndicator";
-export const InProgressStateScreen: React.FC<{}> = props => {
-    const player = useSelector((store: State) => store.player);
-    const story = useSelector((store: State) => store.story);
-    const players = useSelector((store: State) => store.game.players);
-    const votes = useSelector((store: State) => store.story.votes);
+export const InProgressStateScreen: React.FC<{}> = (props) => {
+  const player = useSelector((store: State) => store.player);
+  const story = useSelector((store: State) => store.story);
+  const players = useSelector((store: State) => store.game.players);
+  const votes = useSelector((store: State) => store.story.votes);
 
+  const playerIndicators: Player[] = players.map((player) => ({
+    name: player.name,
+    status: votes.find((vote) => vote.player == player.name)
+      ? "neutral"
+      : "loading",
+  }));
 
-    const playerIndicators: Player[] = players.map(player => ({ name: player.name, status: (votes.find(vote => vote.player == player.name) ? 'neutral' : 'loading') }))
-
-    return (
-        <Grid sx={{ gridRow: '2 / 4', height: '50%' }}>
-            {
-                story.revealed.sort().map(card => {
-                    return (
-                        <Card
-                            key={card}
-                            src={Images[card % 6]}
-                        />
-                    );
-                })
-            }
-        </Grid >
-
-
-    );
+  return (
+    <Grid
+      sx={{
+        gridRow: "2 / 4",
+        "> div:nth-child(1), > div:nth-child(4)": {
+          transform: "rotate(-7deg) translate(0,1rem)",
+        },
+        "> div:nth-child(3),  > div:nth-child(6) ": {
+          transform: "rotate(7deg) translate(0,1rem)",
+        },
+      }}
+    >
+      {story.revealed.sort().map((card) => {
+        return <Card key={card} src={Images[card % 6]} />;
+      })}
+    </Grid>
+  );
 };

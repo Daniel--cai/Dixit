@@ -21,7 +21,7 @@ export const cardCss = (props: CardCssProps): SxStyleProp => {
         width: "100%",
         height: "100%",
         overflow: 'hidden',
-        pt: 'lg',
+        py: 'lg',
         px: 'lg',
         display: 'flex',
         alignItems: 'center',
