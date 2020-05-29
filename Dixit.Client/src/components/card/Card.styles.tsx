@@ -19,7 +19,7 @@ export const cardImageCss = (props: CardCssProps): SxStyleProp => {
 export const cardCss = (props: CardCssProps): SxStyleProp => {
     let css: SxStyleProp = {
         width: "100%",
-        height: "100%",
+        // height: "100%",
         overflow: 'hidden',
         py: 'lg',
         px: 'lg',

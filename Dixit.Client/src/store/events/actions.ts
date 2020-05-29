@@ -12,7 +12,6 @@ import {
   CODE_UPDATED,
   GAME_FETCHED
 } from "../events/types";
-import { FETCH_GAME } from "../game/types";
 import { Dispatch } from "redux";
 import { Apiclient } from "../../api";
 import { State } from "..";
