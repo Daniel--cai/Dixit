@@ -24,17 +24,7 @@ export const InProgressStateScreen: React.FC<{}> = (props) => {
   }));
 
   return (
-    <Grid
-      sx={{
-        gridRow: "2 / 4",
-        "> div:nth-child(1), > div:nth-child(4)": {
-          transform: "rotate(-7deg) translate(0,1rem)",
-        },
-        "> div:nth-child(3),  > div:nth-child(6) ": {
-          transform: "rotate(7deg) translate(0,1rem)",
-        },
-      }}
-    >
+    <Grid fanned>
       {story.revealed.sort().map((card) => {
         return <Card key={card} src={Images[card % 6]} />;
       })}
