@@ -7,7 +7,7 @@ import { Apiclient } from "../../api/api";
 import { Card } from "../card/Card";
 import { Banner } from "../banner/Banner";
 import * as styles from "./GameState.styles";
-import { Images } from "../card-images";
+import { Images } from "../cardImages";
 import { Grid } from "../grid";
 import { Player } from "../player-indicator/PlayerIndicator";
 export const InProgressStateScreen: React.FC<{}> = (props) => {

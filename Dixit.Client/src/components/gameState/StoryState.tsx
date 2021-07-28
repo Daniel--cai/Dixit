@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../store";
 import { Apiclient } from "../../api/api";
-import { Images } from "../card-images";
+import { Images } from "../cardImages";
 import { InputModal } from "../modal/Modal";
 import { Card } from "../card/Card";
 import { Banner } from "../banner/Banner";

@@ -6,7 +6,7 @@ import { State } from "../../store";
 import { Card } from "../card/Card";
 import { Banner } from "../banner/Banner";
 import * as styles from "./GameState.styles";
-import { Images } from "../card-images";
+import { Images } from "../cardImages";
 import { Grid } from "../grid";
 import { useToast } from "../toast";
 export const StoryStateScreen: React.FC<{}> = (props) => {

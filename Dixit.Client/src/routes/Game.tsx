@@ -11,8 +11,8 @@ import {
   InProgressState,
   VotingState,
   StoryState
-} from "../components/game-state";
-import { PlayerBoard } from "../components/player-board/PlayerBoard";
+} from "../components/gameState";
+import { PlayerBoard } from "../components/playerBoard/PlayerBoard";
 import { Banner } from "../components/banner/Banner";
 
 export const Game: React.FC<RouteComponentProps<{ code: string }>> = props => {

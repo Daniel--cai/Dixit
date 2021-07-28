@@ -6,7 +6,7 @@ import { Transition } from "react-transition-group";
 import { Button } from "../button";
 import { TextArea } from "../textarea";
 import { createPortal } from "react-dom";
-import { Images } from "../card-images";
+import { Images } from "../cardImages";
 
 interface Props {
   message: string;

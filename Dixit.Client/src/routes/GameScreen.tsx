@@ -11,8 +11,8 @@ import {
   InProgressStateScreen,
   VotingStateScreen,
   StoryStateScreen
-} from "../components/game-state";
-import { PlayerBoard } from "../components/player-board/PlayerBoard";
+} from "../components/gameState";
+import { PlayerBoard } from "../components/playerBoard/PlayerBoard";
 import { Banner } from "../components/banner/Banner";
 import { Player } from "../components/player-indicator"
 import { ToastProvider } from "../components/toast/ToastContext";
