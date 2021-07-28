@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Notification\DTO\" />
     <Folder Include="Notification\Hub\" />
     <Folder Include="Notification\Dispatchers\" />
   </ItemGroup>

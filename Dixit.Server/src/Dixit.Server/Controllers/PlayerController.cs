@@ -12,33 +12,25 @@ namespace Dixit.Server.Controllers
     [ApiController]
     public class PlayerController : BaseController
     {
-        private readonly IMediator _mediator;
-
-        public PlayerController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         [HttpPost("TellStory")]
         public async Task<ActionResult> TellStory(TellStoryCommand command)
         {
-            await _mediator.Send(command);
+            await Mediator.Send(command);
             return Ok();
         }
 
         [HttpPost("PlayCard")]
         public async Task<ActionResult> PlayCard(PlayCardCommand command)
         {
-            await _mediator.Send(command);
+            await Mediator.Send(command);
             return Ok();
         }
 
         [HttpPost("VoteCard")]
         public async Task<ActionResult> VoteCard(VoteCardCommand command)
         {
-            await _mediator.Send(command);
+            await Mediator.Send(command);
             return Ok();
         }
-
     }
 }
