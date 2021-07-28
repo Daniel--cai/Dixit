@@ -22,7 +22,9 @@
     <Folder Include="Players\Events\" />
     <Folder Include="Games\" />
     <Folder Include="Games\Events\" />
-    <Folder Include="PushNotification\" />
+    <Folder Include="Notification\" />
+    <Folder Include="Notification\DTO\" />
+    <Folder Include="Notification\Interface\" />
   </ItemGroup>
 
 </Project>
