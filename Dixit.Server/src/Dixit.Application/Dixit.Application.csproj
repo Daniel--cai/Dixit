@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,8 +25,6 @@
     <Folder Include="Games\" />
     <Folder Include="Games\Events\" />
     <Folder Include="Notification\" />
-    <Folder Include="Notification\DTO\" />
-    <Folder Include="Notification\Interface\" />
   </ItemGroup>
 
 </Project>
