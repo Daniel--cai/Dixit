@@ -1,5 +1,4 @@
-﻿using Dixit.Application.Queries;
-using Dixit.Application.Services;
+﻿using Dixit.Application.Services;
 using Dixit.Domain.Aggregates;
 using MediatR;
 using System;
@@ -8,8 +7,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers
+namespace Dixit.Application.GameLobby
 {
+    public class GetLobbyByCodeQuery : IRequest<Lobby>
+    {
+        public string Code { get; set; }
+        public string Player { get; set; }
+    }
+
     public class GetLobbyByCodeQueryHandler : IRequestHandler<GetLobbyByCodeQuery, Lobby>
     {
         private readonly ILobbyRepository _lobbyRepository;

@@ -1,5 +1,4 @@
-﻿using Dixit.Application.Commands;
-using Dixit.Application.Events;
+﻿using Dixit.Application.Events;
 using Dixit.Application.Services;
 using Dixit.Domain.ValueObjects;
 using MediatR;
@@ -9,8 +8,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers
+namespace Dixit.Application.GameLobby
 {
+    public class StartLobbyCommand : IRequest
+    {
+        public string Code { get; set; }
+    }
+
     public class StartLobbyCommandHandler : IRequestHandler<StartLobbyCommand>
     {
         private readonly IMediator _mediator;

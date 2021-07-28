@@ -1,13 +1,19 @@
-﻿using Dixit.Application.Commands;
-using Dixit.Application.Events;
+﻿using Dixit.Application.Events;
 using Dixit.Application.Services;
 using Dixit.Domain.ValueObjects;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers
+namespace Dixit.Application.Player
 {
+    public class PlayCardCommand : IRequest
+    {
+        public string Code { get; set; }
+        public string Player { get; set; }
+        public int Card { get; set; }
+    }
+
     public class PlayCardCommandHandler : IRequestHandler<PlayCardCommand>
     {
         private readonly IMediator _mediator;

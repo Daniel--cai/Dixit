@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Game\" />
-    <Folder Include="Responses\Game\" />
-    <Folder Include="Responses\Player\" />
+    <Folder Include="GameLobby\" />
+    <Folder Include="Player\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
 
 </Project>

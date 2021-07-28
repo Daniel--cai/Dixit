@@ -1,5 +1,4 @@
-﻿using Dixit.Application.Commands;
-using Dixit.Application.Events;
+﻿using Dixit.Application.Events;
 using Dixit.Application.Responses;
 using Dixit.Application.Services;
 using MediatR;
@@ -9,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers
+namespace Dixit.Application.GameLobby
 {
     public class LeaveLobbyCommandHandler : INotificationHandler<PlayerDisconnectedEvent>
     {

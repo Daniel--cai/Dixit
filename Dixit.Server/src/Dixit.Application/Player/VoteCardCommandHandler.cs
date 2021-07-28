@@ -1,5 +1,4 @@
-﻿using Dixit.Application.Commands;
-using Dixit.Application.Events;
+﻿using Dixit.Application.Events;
 using Dixit.Application.Services;
 using Dixit.Domain.Aggregates;
 using Dixit.Domain.Interfaces;
@@ -8,8 +7,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers
+namespace Dixit.Application.Player
 {
+    public class VoteCardCommand : IRequest
+    {
+        public string Player { get; set; }
+        public int Card { get; set; }
+        public string Code { get; set; }
+    }
+
     public class VoteCardCommandHandler : IRequestHandler<VoteCardCommand>
     {
         private readonly IMediator _mediator;

@@ -1,5 +1,4 @@
-﻿using Dixit.Application.Commands;
-using Dixit.Application.Events;
+﻿using Dixit.Application.Events;
 using Dixit.Application.Services;
 using Dixit.Domain.Entities;
 using Dixit.Domain.ValueObjects;
@@ -10,8 +9,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers
+namespace Dixit.Application.Player
 {
+    public class TellStoryCommand : IRequest
+    {
+        public string StoryTeller { get; set; }
+        public int Card { get; set; }
+        public string Story { get; set; }
+        public string Code { get; set; }
+    }
+
     public class TellStoryCommandHandler : IRequestHandler<TellStoryCommand>
     {
         private readonly IMediator _mediator;

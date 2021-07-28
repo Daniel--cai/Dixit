@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace Dixit.Application.Handlers
 {
+    public class CreateLobbyCommand : IRequest<CreateLobbyResponse>
+    {
+        //public string Name { get; set; }
+    }
+
     public class CreateLobbyCommandHandler : IRequestHandler<CreateLobbyCommand, CreateLobbyResponse>
     {
         private readonly IMediator _mediator;
