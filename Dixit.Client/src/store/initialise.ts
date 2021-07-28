@@ -5,15 +5,15 @@ export const initialise = () => {
     story: {
       story: "Hither to the shakespeare",
       storyCard: 2,
-      revealed: [1, 2, 3, 4, 5, 6],
+      revealed: [1, 2, 3, 5, 6, 7],
       votes: [{ player: "bob", card: 1 }],
-      currentStoryTeller: "smith"
+      currentStoryTeller: "smith",
     },
     player: {
       name: "bob",
       code: "1234",
       hand: [11, 2, 3, 4, 5, 6],
-      connected: true
+      connected: true,
     },
     game: {
       players: [
@@ -23,18 +23,16 @@ export const initialise = () => {
         { name: "pear", score: 0 },
         { name: "orange", score: 0 },
         { name: "apple", score: 0 },
-        { name: "garply", score: 0 },
-        { name: "lorem", score: 0 }
       ],
-      gameState: GameState.InProgress,
+      gameState: GameState.Story,
       roundNumber: 0,
       loaded: true,
       score: [
-        { name: "bob", score: 0, scored: 0 },
-        { name: "smith", score: 0, scored: 0 },
-        { name: "jones", score: 0, scored: 0 },
-        { name: "pear", score: 0, scored: 0 }
-      ]
+        { name: "bob", score: 1, scored: 0 },
+        { name: "smith", score: 4, scored: 0 },
+        { name: "jones", score: 6, scored: 0 },
+        { name: "pear", score: 9, scored: 0 },
+      ],
     },
 
     router: {
@@ -43,10 +41,10 @@ export const initialise = () => {
         search: "",
         state: "",
         hash: "",
-        key: undefined
+        key: undefined,
       },
-      action: "REPLACE"
-    }
+      action: "REPLACE",
+    },
   };
   return initialState;
 };

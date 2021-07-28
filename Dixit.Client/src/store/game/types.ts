@@ -6,7 +6,7 @@ import {
   RoundFinishedEvent,
   GameFetchedEvent,
   LobbyJoinedEvent,
-  LobbyLeftEvent
+  LobbyLeftEvent,
 } from "../events/types";
 import { Scoreboard } from "../events/models";
 

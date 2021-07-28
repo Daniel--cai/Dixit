@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dixit.Application.Services;
-using Dixit.Domain.Aggregates;
-using Dixit.Infrastructure.Configuration;
-using Dixit.Infrastructure.Data.Model;
 using Dixit.Infrastructure.Mapper;
-using Microsoft.Extensions.Options;
 
 namespace Dixit.Infrastructure.Services
 {
