@@ -1,6 +1,6 @@
 ﻿using Dixit.Application;
 using Dixit.Infrastructure;
-using Dixit.Server.RealTime;
+using Dixit.Server.Notification.Hub;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

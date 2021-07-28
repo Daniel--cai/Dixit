@@ -1,13 +1,10 @@
-﻿using Dixit.Application.Events;
-using Dixit.Application.Players.Events;
-using Dixit.Domain.Entities;
-using Dixit.Server.RealTime.Interface;
+﻿using Dixit.Application.Players.Events;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
 
-namespace Dixit.Server.RealTime
+namespace Dixit.Server.Notification.Hub
 {
     public class LobbyEventsClientHub : Hub<IEventsClient>
     {
@@ -25,15 +22,18 @@ namespace Dixit.Server.RealTime
             var code = Context.GetHttpContext().Request.Query["code"].ToString();
             var screen = bool.Parse(Context.GetHttpContext().Request.Query["screen"].ToString());
             var connectionId = Context.ConnectionId;
+
             if (!screen)
             {
                 await _mediator.Publish(new PlayerConnectedEvent { Player = name, Code = code, Identifier = connectionId });
-            } else
+            }
+            else
             {
                 await _mediator.Publish(new ScreenConnectedEvent { Code = code, Identifier = connectionId });
             }
             
         }
+
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             await _mediator.Publish(new PlayerDisconnectedEvent { Identifier = Context.ConnectionId });

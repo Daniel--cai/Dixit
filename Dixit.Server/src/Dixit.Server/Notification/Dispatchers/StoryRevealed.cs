@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dixit.Server.DTO
+namespace Dixit.Server.Notification.Dispatchers
 {
-    public class StoryRevealedDTO : INotificationDTO
+    public class StoryRevealed : INotification
     {
         public List<int> Cards { get; set; }
     }

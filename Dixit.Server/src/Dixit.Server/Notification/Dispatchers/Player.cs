@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Dixit.Application.Events;
 using Dixit.Application.SharedKernel;
 
-namespace Dixit.Server.DTO
+namespace Dixit.Server.Notification.Dispatchers
 {
-    public class PlayerDTO : IMapFrom<RoundFinishedEvent>
+    public class Player : IMapFrom<RoundFinishedEvent>
     {
         public string Name { get; set; }
         public int Score { get; set; }

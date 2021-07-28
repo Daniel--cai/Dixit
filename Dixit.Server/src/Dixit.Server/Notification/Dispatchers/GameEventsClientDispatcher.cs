@@ -1,14 +1,13 @@
 ﻿using Dixit.Application.Events;
 using Dixit.Application.Players.Events;
-using Dixit.Server.DTO;
-using Dixit.Server.RealTime.Interface;
+using Dixit.Server.Notification.Hub;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Server.RealTime
+namespace Dixit.Server.Notification.Dispatchers
 {
     public class GameEventsClientDispatcher : INotificationHandler<StoryRevealedEvent>, INotificationHandler<RoundFinishedEvent>
     {
@@ -22,21 +21,21 @@ namespace Dixit.Server.RealTime
         public Task Handle(RoundFinishedEvent notification, CancellationToken cancellationToken)
         {
             var scores = notification.PlayerScores.Select(player =>
-                new PlayerDTO
+                new Player
                 {
                     Name = player.Player.Name,
                     Score = player.Score
                 });
 
             var votes = notification.Votes.Select(vote =>
-                new VoteDTO
+                new Vote
                 {
                     Player = vote.Player.Name,
                     Card = vote.Card.Id
                 });
 
             return _hubContext.Clients.All.RoundFinished(
-                new RoundFinishedDTO
+                new RoundFinished
                 {
                     PlayerUpdates = scores.ToList(),
                     Votes = votes.ToList(),
@@ -48,7 +47,7 @@ namespace Dixit.Server.RealTime
         public Task Handle(StoryRevealedEvent notification, CancellationToken cancellationToken)
         {
             return _hubContext.Clients.All.StoryRevealed(
-                new StoryRevealedDTO
+                new StoryRevealed
                 {
                     Cards = notification.Cards
                     .Select(card => card.Id).ToList()

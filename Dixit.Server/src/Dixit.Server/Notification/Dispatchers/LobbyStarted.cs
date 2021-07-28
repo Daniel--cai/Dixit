@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dixit.Server.DTO
+namespace Dixit.Server.Notification.Dispatchers
 {
-    public class LobbyStartedDTO : INotificationDTO
+    public class LobbyStarted : INotification
     {
         public string StoryTeller { get; set; }
         public List<string> Players { get; set; }

@@ -1,14 +1,13 @@
 ﻿using Dixit.Application.Events;
 using Dixit.Application.Players.Events;
-using Dixit.Server.DTO;
-using Dixit.Server.RealTime.Interface;
+using Dixit.Server.Notification.Hub;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Server.RealTime
+namespace Dixit.Server.Notification.Dispatchers
 {
     public class PlayerEventsClientDispatcher : INotificationHandler<CardVotedEvent>, INotificationHandler<CardSubmittedEvent>, INotificationHandler<CardDrawnEvent>, INotificationHandler<StoryToldEvent>
     {
@@ -22,7 +21,7 @@ namespace Dixit.Server.RealTime
         public Task Handle(StoryToldEvent notification, CancellationToken cancellationToken)
         {
             return _hubContext.Clients.All.StoryTold(
-                new StoryToldDTO
+                new StoryTold
                 {
                     StoryTeller = notification.StoryTeller,
                     Story = notification.Story
@@ -33,9 +32,9 @@ namespace Dixit.Server.RealTime
         public Task Handle(CardVotedEvent notification, CancellationToken cancellationToken)
         {
             return _hubContext.Clients.All.CardVoted(
-                new CardVotedDTO
+                new CardVoted
                 {
-                    Player =notification.Player.Name,
+                    Player = notification.Player.Name,
                 }
             );
         }
@@ -43,7 +42,7 @@ namespace Dixit.Server.RealTime
         public Task Handle(CardSubmittedEvent notification, CancellationToken cancellationToken)
         {
             return _hubContext.Clients.All.CardPlayed(
-                new CardPlayedDTO
+                new CardPlayed
                 {
                     Player = notification.Player.Name,
                 }
@@ -53,7 +52,7 @@ namespace Dixit.Server.RealTime
         public Task Handle(CardDrawnEvent notification, CancellationToken cancellationToken)
         {
             return _hubContext.Clients.Client(notification.Player.Identifier).CardDrawn(
-                new CardDrawnDTO
+                new CardDrawn
                 {
                     Player = notification.Player.Name,
                     Card = notification.Hand.Select(card => card.Id).ToList()

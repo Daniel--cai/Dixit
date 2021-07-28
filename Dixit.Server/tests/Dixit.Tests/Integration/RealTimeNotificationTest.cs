@@ -2,9 +2,8 @@
 using Dixit.Application.Events;
 using Dixit.Application.Lobbies.Events;
 using Dixit.Application.Players.Events;
-using Dixit.Server.DTO;
-using Dixit.Server.RealTime;
-using Dixit.Server.RealTime.Interface;
+using Dixit.Server.Notification.Dispatchers;
+using Dixit.Server.Notification.Hub;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,9 +21,9 @@ namespace Dixit.Tests.Integration
             var hubContext = new Mock<IHubContext<LobbyEventsClientHub, IEventsClient>>();
             var lobbyClients = new Mock<IEventsClient>();
 
-            hubContext.Setup(x => x.Clients.All.LobbyJoined(It.IsAny<LobbyJoinedDTO>())).Returns(Task.FromResult(0));
-            hubContext.Setup(x => x.Clients.All.LobbyLeft(It.IsAny<LobbyLeftDTO>())).Returns(Task.FromResult(0));
-            hubContext.Setup(x => x.Clients.Client(It.IsAny<string>()).CardDrawn(It.IsAny<CardDrawnDTO>())).Returns(Task.FromResult(0));
+            hubContext.Setup(x => x.Clients.All.LobbyJoined(It.IsAny<LobbyJoined>())).Returns(Task.FromResult(0));
+            hubContext.Setup(x => x.Clients.All.LobbyLeft(It.IsAny<LobbyLeft>())).Returns(Task.FromResult(0));
+            hubContext.Setup(x => x.Clients.Client(It.IsAny<string>()).CardDrawn(It.IsAny<CardDrawn>())).Returns(Task.FromResult(0));
             
             ServiceCollection service = new ServiceCollection();
 
@@ -49,15 +48,15 @@ namespace Dixit.Tests.Integration
             await mediator.Publish(fixture.Create<CardDrawnEvent>());
             await mediator.Publish(fixture.Create<StoryToldEvent>());
 
-            hubContext.Verify(mock => mock.Clients.All.LobbyJoined(It.IsAny<LobbyJoinedDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.All.LobbyStarted(It.IsAny<LobbyStartedDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.All.RoundFinished(It.IsAny<RoundFinishedDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.All.StoryRevealed(It.IsAny<StoryRevealedDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.All.CardVoted(It.IsAny<CardVotedDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.All.CardPlayed(It.IsAny<CardPlayedDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.Client(It.IsAny<string>()).CardDrawn(It.IsAny<CardDrawnDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.All.StoryTold(It.IsAny<StoryToldDTO>()), Times.Once());
-            hubContext.Verify(mock => mock.Clients.All.LobbyLeft(It.IsAny<LobbyLeftDTO>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.LobbyJoined(It.IsAny<LobbyJoined>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.LobbyStarted(It.IsAny<LobbyStarted>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.RoundFinished(It.IsAny<RoundFinished>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.StoryRevealed(It.IsAny<StoryRevealed>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.CardVoted(It.IsAny<CardVoted>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.CardPlayed(It.IsAny<CardPlayed>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.Client(It.IsAny<string>()).CardDrawn(It.IsAny<CardDrawn>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.StoryTold(It.IsAny<StoryTold>()), Times.Once());
+            hubContext.Verify(mock => mock.Clients.All.LobbyLeft(It.IsAny<LobbyLeft>()), Times.Once());
         }
     }
 }

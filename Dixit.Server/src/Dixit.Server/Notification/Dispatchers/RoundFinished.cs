@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dixit.Server.DTO
+namespace Dixit.Server.Notification.Dispatchers
 {
-    public class RoundFinishedDTO : INotificationDTO
+    public class RoundFinished : INotification
     {
-        public List<VoteDTO> Votes { get;set;}
-        public List<PlayerDTO> PlayerUpdates { get; set; }
+        public List<Vote> Votes { get;set;}
+        public List<Player> PlayerUpdates { get; set; }
         public string NextStoryTeller { get; set; }
         public int StoryCard { get; set; }
     }
