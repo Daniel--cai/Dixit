@@ -1,4 +1,6 @@
 ﻿using System;
+using AutoMapper;
+
 namespace Dixit.Application.SharedKernel
 {
     public interface IMapFrom<T>

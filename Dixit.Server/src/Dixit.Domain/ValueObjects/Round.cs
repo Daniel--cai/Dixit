@@ -1,4 +1,5 @@
 ﻿using Dixit.Domain.Entities;
+using Dixit.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 
@@ -23,10 +24,10 @@ namespace Dixit.Domain.ValueObjects
         public void PlayerVoteCard(Player player, Card card)
         {
             if (card.Owner == player)
-                throw new InvalidOperationException($"Player {player.Name} cannot vote for their own card.");
+                throw new InvalidPlayerActionException($"Player {player.Name} cannot vote for their own card.");
       
             if (player == StoryTeller)
-                throw new InvalidOperationException($"Storyteller {player.Name} cannot vote in this round.");
+                throw new InvalidPlayerActionException($"Storyteller {player.Name} cannot vote in this round.");
 
 
 
@@ -39,10 +40,10 @@ namespace Dixit.Domain.ValueObjects
         public void PlayerPlayCard(Player player, Card card)
         {
             if (player == StoryTeller)
-                throw new InvalidOperationException($"Storyteller {player.Name} cannot submit in this round.");
+                throw new InvalidPlayerActionException($"Storyteller {player.Name} cannot submit in this round.");
 
             if (card.Owner != player)
-                throw new InvalidOperationException($"Player {player.Name} does not hold card {card.Id}");
+                throw new InvalidPlayerActionException($"Player {player.Name} does not hold card {card.Id}");
 
             card.Played(Counter);
         }
@@ -50,10 +51,10 @@ namespace Dixit.Domain.ValueObjects
         public void PlayerTellStory(Player player, string story, Card card)
         {
             if (player != StoryTeller)
-                throw new InvalidOperationException($"Player {player.Name} is not the storyteller in this round.");
+                throw new InvalidPlayerActionException($"Player {player.Name} is not the storyteller in this round.");
 
             if (card.Owner != player)
-                throw new InvalidOperationException($"Player {player.Name} does not hold card {card.Id}.");
+                throw new InvalidPlayerActionException($"Player {player.Name} does not hold card {card.Id}.");
             Story = story;
             StoryTellerCard = card;
             

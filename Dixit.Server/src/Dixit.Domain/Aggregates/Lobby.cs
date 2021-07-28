@@ -1,4 +1,5 @@
 ﻿using Dixit.Domain.Entities;
+using Dixit.Domain.Exceptions;
 using Dixit.Domain.Interfaces;
 using Dixit.Domain.ValueObjects;
 using System;
@@ -99,7 +100,7 @@ namespace Dixit.Domain.Aggregates
         public Round NewRound()
         {
             if (GameState != State.Lobby && GameState != State.Voting)
-                throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for NewRound command");
+                throw new InvalidGameStateException($"Invalid game state {GameState.DisplayName} for NewRound command");
 
             var round = new Round(++RoundNumber, NextStoryTeller);
             Rounds.Add(round);
@@ -140,7 +141,7 @@ namespace Dixit.Domain.Aggregates
         public void PlayerTellStory(Player player, string story, Card card)
         {
             if (GameState != State.Story)
-                throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for TellStory command");
+                throw new InvalidGameStateException($"Invalid game state {GameState.DisplayName} for TellStory command");
             CurrentRound.PlayerTellStory(player, story, card);
             card.Played(RoundNumber);
             GameState = State.InProgress;
@@ -149,11 +150,11 @@ namespace Dixit.Domain.Aggregates
         public void PlayerVoteCard(Player player, Card card)
         {
             if (GameState != State.Voting)
-                throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for PlayerVoteCard command");
+                throw new InvalidGameStateException($"Invalid game state {GameState.DisplayName} for PlayerVoteCard command");
 
 
             if (!CurrentPlayedCards.Contains(card))
-                throw new InvalidOperationException($"Player {player.Name} cannot vote for a card that hasn't been played.");
+                throw new InvalidPlayerActionException($"Player {player.Name} cannot vote for a card that hasn't been played.");
 
             CurrentRound.PlayerVoteCard(player, card);
         }
@@ -161,10 +162,10 @@ namespace Dixit.Domain.Aggregates
         public void PlayerPlayCard(Player player, Card card)
         {
             if (GameState != State.InProgress)
-                throw new InvalidOperationException($"Invalid game state {GameState.DisplayName} for PlayerPlayCard command");
+                throw new InvalidGameStateException($"Invalid game state {GameState.DisplayName} for PlayerPlayCard command");
             var count = Deck.Hand(player).Count;
             if (Deck.Hand(player).Count < 6)
-                throw new InvalidOperationException($"Player {player.Name} has already played a card");
+                throw new InvalidPlayerActionException($"Player {player.Name} has already played a card");
 
             CurrentRound.PlayerPlayCard(player, card);
             if (HasAllPlayersPlayed())

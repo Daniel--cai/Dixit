@@ -1,22 +1,11 @@
-﻿using System;
-using System.Reflection;
-using AutoMapper;
-using Dixit.Application.Services;
-using Dixit.Domain.Interfaces;
-using Dixit.Domain.Services;
-using Dixit.Domain.Services.Rules;
-using Dixit.Infrastructure.Configuration;
-using Dixit.Infrastructure.Mapper;
-using Dixit.Infrastructure.Profiles;
-using Dixit.Infrastructure.Services;
+﻿using Dixit.Application;
+using Dixit.Infrastructure;
 using Dixit.Server.RealTime;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Serilog;
 
 namespace Dixit.Server
 {
@@ -32,33 +21,10 @@ namespace Dixit.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddHealthChecks();
-            services.Configure<FirestoreConfig>(Configuration.GetSection("Firestore"));
-            services.AddSignalR();
-
-            services.AddTransient(typeof(INoSqlClient<>), typeof(FirestoreClient<>));
-            
-            services.AddScoped<ILobbyRepository, LobbyRepository>();
-            services.AddScoped<IPlayerConnectionRepository, PlayerConnectionRepository>();
-
-            services.AddTransient<IScoringRule, BonusRule>();
-            services.AddTransient<IScoringRule, StoryTellerRule>();
-            services.AddTransient<IScoringRule, CorrectRule>();
-            services.AddTransient<IScoreService, ScoreService>();
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-
-            //mapper
-            services.AddAutoMapper(typeof(LobbyProfile), typeof(PlayerConnectionProfile));
-
-            services.AddTransient<ILobbyMapper, LobbyMapper>();
-            services.AddTransient<IMapper<Domain.Aggregates.Lobby,Infrastructure.Data.Model.Lobby>, LobbyMapper>();
-
-            services.AddSignalR()
-            .AddJsonProtocol(options =>
-            {
-                options.PayloadSerializerOptions.WriteIndented = false;
-            });
+            services.AddCore();
+            services.AddInfrastructure(Configuration);
+            services.AddServer();
             services.AddControllers();
         }
 
@@ -84,8 +50,6 @@ namespace Dixit.Server
             });
             
             app.UseHttpsRedirection();
-
-  
         }
     }
 }
