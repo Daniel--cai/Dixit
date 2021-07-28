@@ -3,7 +3,7 @@ using Dixit.Domain.ValueObjects;
 using MediatR;
 using System.Collections.Generic;
 
-namespace Dixit.Application.Events
+namespace Dixit.Application.Lobbies.Events
 {
     public class LobbyStartedEvent : INotification
     {

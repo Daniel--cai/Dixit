@@ -1,5 +1,4 @@
-﻿using Dixit.Application.Commands;
-using Dixit.Application.Events;
+﻿using Dixit.Application.Events;
 using Dixit.Application.Responses;
 using Dixit.Application.Services;
 using Dixit.Domain.Aggregates;
@@ -7,7 +6,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Handlers
+namespace Dixit.Application.GameLobby
 {
     public class CreateLobbyCommand : IRequest<CreateLobbyResponse>
     {

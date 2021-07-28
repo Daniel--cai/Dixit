@@ -1,7 +1,7 @@
 ﻿using Dixit.Domain.Entities;
 using MediatR;
 
-namespace Dixit.Application.Events
+namespace Dixit.Application.Lobbies.Events
 {
     public class LobbyLeaveEvent : INotification
     {

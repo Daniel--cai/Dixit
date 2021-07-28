@@ -1,11 +1,10 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Dixit.Domain.Entities;
 
-namespace Dixit.Application.Events
+namespace Dixit.Application.Players.Events
 {
     public class CardVotedEvent : INotification
     {

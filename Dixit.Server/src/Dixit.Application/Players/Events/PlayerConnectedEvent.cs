@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Dixit.Application.Events
+namespace Dixit.Application.Players.Events
 {
     public class PlayerConnectedEvent : INotification
     {

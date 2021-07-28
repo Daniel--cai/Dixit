@@ -13,9 +13,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GameLobby\" />
-    <Folder Include="Player\" />
-    <Folder Include="Handlers\" />
+    <Folder Include="Lobbies\" />
+    <Folder Include="Players\" />
+    <Folder Include="Lobbies\Commands\" />
+    <Folder Include="Lobbies\Queries\" />
+    <Folder Include="Lobbies\Events\" />
+    <Folder Include="Players\Commands\" />
+    <Folder Include="Players\Events\" />
+    <Folder Include="Games\" />
+    <Folder Include="Games\Events\" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.GameLobby
+namespace Dixit.Application.Lobbies.Queries
 {
     public class GetLobbyByCodeQuery : IRequest<Lobby>
     {
