@@ -61,7 +61,7 @@
     "react": "^16.9.0",
     "react-app-polyfill": "^1.0.2",
     "react-custom-scrollbars": "^4.2.1",
-    "react-dev-utils": "^9.0.3",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.9.0",
     "react-hot-loader": "^4.12.13",
     "react-motion": "^0.5.2",
