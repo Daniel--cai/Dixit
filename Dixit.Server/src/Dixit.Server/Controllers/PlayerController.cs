@@ -1,4 +1,4 @@
-﻿using Dixit.Application.Commands;
+﻿using Dixit.Application.Players.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;

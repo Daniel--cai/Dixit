@@ -1,5 +1,7 @@
 ﻿using AutoFixture;
 using Dixit.Application.Events;
+using Dixit.Application.Lobbies.Events;
+using Dixit.Application.Players.Events;
 using Dixit.Server.DTO;
 using Dixit.Server.RealTime;
 using Dixit.Server.RealTime.Interface;

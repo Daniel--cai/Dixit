@@ -6,6 +6,7 @@ using Dixit.Application.Events;
 using Dixit.Server.RealTime.Interface;
 using Dixit.Server.DTO;
 using System.Linq;
+using Dixit.Application.Lobbies.Events;
 
 namespace Dixit.Server.RealTime
 {

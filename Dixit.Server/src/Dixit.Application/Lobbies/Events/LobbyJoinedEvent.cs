@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dixit.Application.Events
+namespace Dixit.Application.Lobbies.Events
 {
     public class LobbyJoinedEvent : INotification
     {

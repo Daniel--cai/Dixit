@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Reflection;
 using AutoMapper;
-using Dixit.Application.Commands;
-using Dixit.Application.Events;
 using Dixit.Application.Services;
 using Dixit.Domain.Interfaces;
 using Dixit.Domain.Services;
@@ -47,7 +46,7 @@ namespace Dixit.Server
             services.AddTransient<IScoringRule, StoryTellerRule>();
             services.AddTransient<IScoringRule, CorrectRule>();
             services.AddTransient<IScoreService, ScoreService>();
-            services.AddMediatR(typeof (CreateLobbyCommand), typeof(LobbyJoinedEvent),typeof(LobbyEventsClientDispatcher));
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             //mapper
             services.AddAutoMapper(typeof(LobbyProfile), typeof(PlayerConnectionProfile));

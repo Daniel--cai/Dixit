@@ -1,4 +1,5 @@
 ﻿using Dixit.Application.Events;
+using Dixit.Application.Players.Events;
 using Dixit.Application.Services;
 using Dixit.Domain.Entities;
 using Dixit.Domain.ValueObjects;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dixit.Application.Player
+namespace Dixit.Application.Players.Commands
 {
     public class TellStoryCommand : IRequest
     {

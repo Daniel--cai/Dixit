@@ -1,5 +1,5 @@
-﻿using Dixit.Application.Events;
-using Dixit.Application.Responses;
+﻿using Dixit.Application.Lobbies.Events;
+using Dixit.Application.Players.Events;
 using Dixit.Application.Services;
 using MediatR;
 using System;

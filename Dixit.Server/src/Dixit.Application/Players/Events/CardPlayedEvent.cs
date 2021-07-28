@@ -1,7 +1,7 @@
 ﻿using Dixit.Domain.Entities;
 using MediatR;
 
-namespace Dixit.Application.Events
+namespace Dixit.Application.Players.Events
 {
     public class CardSubmittedEvent : INotification
     {
