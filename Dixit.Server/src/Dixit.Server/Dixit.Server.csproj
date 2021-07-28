@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Api\" />
-    <Folder Include="ApiModels\" />
-    <Folder Include="Filters\" />
-    <Folder Include="Configurations\" />
     <Folder Include="Notification\DTO\" />
     <Folder Include="Notification\Interface\" />
   </ItemGroup>

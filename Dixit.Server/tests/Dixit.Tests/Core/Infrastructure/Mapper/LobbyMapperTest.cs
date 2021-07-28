@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Dixit.Infrastructure.Mapper;
 using Dixit.Tests.Core.Fixture;
 using Xunit;
 using FluentAssertions;
 using Dixit.Tests.Core.Builders;
 using System.Linq;
 using Dixit.Infrastructure.Data.Model;
+using Dixit.Infrastructure.Data.Mapping;
 
 namespace Dixit.Tests.Core.Infrastructure.Mapper
 {

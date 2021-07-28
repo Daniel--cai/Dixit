@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Dixit.Application.Services;
-using Dixit.Infrastructure.Mapper;
+using Dixit.Infrastructure.Data.Mapping;
 
 namespace Dixit.Infrastructure.Services
 {

@@ -5,6 +5,7 @@ using Dixit.Domain.Services;
 using Dixit.Domain.Services.Rules;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Dixit.Application
 {

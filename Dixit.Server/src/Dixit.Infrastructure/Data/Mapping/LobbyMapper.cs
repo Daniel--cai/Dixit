@@ -8,9 +8,9 @@ using Dixit.Domain.ValueObjects;
 using Dixit.Infrastructure.Data.Model;
 using Newtonsoft.Json;
 
-namespace Dixit.Infrastructure.Mapper
+namespace Dixit.Infrastructure.Data.Mapping
 {
-    public interface ILobbyMapper : IMapper<Domain.Aggregates.Lobby, Data.Model.Lobby> { }
+    public interface ILobbyMapper : IDataMapper<Domain.Aggregates.Lobby, Data.Model.Lobby> { }
 
     public class LobbyMapper : ILobbyMapper
     {
