@@ -120,7 +120,7 @@
     "@types/react-transition-group": "^4.2.2",
     "@types/theme-ui": "^0.2.4",
     "@types/webpack-env": "^1.14.0",
-    "cypress": "^4.2.0",
+    "cypress": "^4.12.1",
     "dotenv-webpack": "^1.7.0",
     "enzyme": "^3.10.0",
     "http-proxy-middleware": "^0.20.0"
